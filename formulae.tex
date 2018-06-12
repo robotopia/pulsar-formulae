@@ -103,8 +103,6 @@ The $x$- and $y$-coordinates of the footpoint, $(x_p,y_p)$:
     \left.\frac{d\psi}{d\phase}\right|_{\phase=0} = \frac{\sin\alpha}{\sin\beta}
 \end{equation}
 
-\rule{\columnwidth}{1pt}
-
 \section{Retardation}
 
 Let $\hat{n}$ be the line of sight, a unit vector pointing towards the observer.
@@ -117,13 +115,6 @@ and a corresponding ``retardation phase''
     \Delta\phase_\text{ret} = \frac{2\pi\Delta\tau_\text{ret}}{P},
 \end{equation}
 where $P$ is the pulsar's rotation period, and where it is understood that emission from a particle at $\vec{r}$ at some rotation phase $\phase$ would be observed at phase $\phase - \Delta\phase_\text{ret}$.
-
-\section{Jackson's Classical Electrodynamics}
-
-\begin{equation}
-    f_c = \frac{3\gamma^3 c\kappa}{4\pi}
-    \tag{J14.81}
-\end{equation}
 
 \section{Coordinate Systems}
 
@@ -237,6 +228,38 @@ The transformation matrices are
 
 \begin{equation}
     \kappa = \frac{|2(f^\prime(\theta))^2 + (f(\theta))^2 - f(\theta)f^{\prime\prime}(\theta)|}{\left[(f^\prime(\theta))^2 + (f(\theta))^2\right]^{3/2}}
+\end{equation}
+
+\onecolumn
+\section{Jackson's Classical Electrodynamics}
+
+A convenient reparameterisation:
+\begin{equation}
+    \xi = \frac{\omega\rho}{3c}\left(\frac{1}{\gamma^2} + \theta^2\right)^{3/2}
+    \tag{J14.76}
+\end{equation}
+Spectral intensity as a function of frequency and direction:
+\begin{equation}
+    \frac{d^2I}{d\omega\,d\Omega} =
+        \frac{e^2}{3\pi^2c}
+        \left( \frac{\omega\rho}{c} \right)^2
+        \left( \frac{1}{\gamma^2} + \theta^2 \right)^2
+        \left[ K_{2/3}^2(\xi) + \frac{\theta^2}{(1/\gamma^2) + \theta^2} K_{1/3}^2(\xi) \right]
+    \tag{J14.79}
+\end{equation}
+As above, but made explicit for positive and negative helicity:
+\begin{equation}
+    \frac{d^2I_\pm}{d\omega\,d\Omega} =
+        \frac{e^2}{6\pi^2c}
+        \left( \frac{\omega\rho}{c} \right)^2
+        \left( \frac{1}{\gamma^2} + \theta^2 \right)^2
+        \left| K_{2/3}(\xi) \pm \frac{\theta}{\left(\frac{1}{\gamma^2} + \theta^2\right)^{1/2}} K_{1/3}(\xi) \right|^2
+    \tag{J Problem 14.25}
+\end{equation}
+Critical frequency:
+\begin{equation}
+    f_c = \frac{3\gamma^3 c\kappa}{4\pi}
+    \tag{J14.81}
 \end{equation}
 
 
