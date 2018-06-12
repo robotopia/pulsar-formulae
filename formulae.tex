@@ -111,7 +111,11 @@ The $x$- and $y$-coordinates of the footpoint, $(x_p,y_p)$:
     f_c = \frac{3\gamma^3 c\kappa}{4\pi}
 \end{equation}
 
-\section{Rotation Matrices}
+\section{Coordinate Systems}
+
+In this section (and unless otherwise specified), $\theta$ is the colatitude (measured from the $z$-axis) and $\phase$ is the longitude (measured from the $x$-axis).
+
+\subsection{Euler rotations}
 
 2D:
 \begin{equation}
@@ -136,10 +140,36 @@ The $x$- and $y$-coordinates of the footpoint, $(x_p,y_p)$:
     \end{bmatrix}
 \end{equation}
 \begin{equation}
-    R_x(\theta) = \begin{bmatrix}
+    R_z(\theta) = \begin{bmatrix}
         \cos\theta & -\sin\theta & 0 \\
         \sin\theta & \cos\theta * 0 \\
         0 & 0 & 1 \\
+    \end{bmatrix}
+\end{equation}
+
+\subsection{Magnetic coordinates}
+
+In the magnetic coordinate system, the $z$-axis is identified with the magnetic moment, and the $x$-axis is chosen to be in the plane containing both the rotation and magnetic axes.
+The angle between the rotation and magnetic axes is, as usual, denoted by $\alpha$.
+At rotation phase $\phase$, the relations between magnetic and observer coordinates are therefore defined as follows.
+
+\subsubsection{Magnetic to Observer coordinates}
+\begin{equation}
+    R_z(\phase) R_y(\alpha) =
+    \begin{bmatrix}
+        \cos\phase\cos\alpha & -\sin\phase & \cos\phase\sin\alpha \\
+        \sin\phase\cos\alpha &  \cos\phase & \sin\phase\sin\alpha \\
+        -\sin\alpha          & 0           & \cos\alpha
+    \end{bmatrix}
+\end{equation}
+
+\subsubsection{Observer to Magnetic coordinates}
+\begin{equation}
+    R_y(-\alpha) R_z(-\phase) =
+    \begin{bmatrix}
+        \cos\phase\cos\alpha & \sin\phase\cos\alpha & -\sin\alpha \\
+        -\sin\phase          & \cos\phase           & 0           \\
+        \cos\phase\sin\alpha & \sin\phase\sin\alpha &  \cos\alpha
     \end{bmatrix}
 \end{equation}
 
