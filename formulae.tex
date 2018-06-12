@@ -113,7 +113,26 @@ The $x$- and $y$-coordinates of the footpoint, $(x_p,y_p)$:
 
 \section{Coordinate Systems}
 
-In this section (and unless otherwise specified), $\theta$ is the colatitude (measured from the $z$-axis) and $\phase$ is the longitude (measured from the $x$-axis).
+In this section (unless otherwise specified), $\theta$ is the colatitude (measured from the $z$-axis) and $\phase$ is the longitude (measured from the $x$-axis).
+
+\subsection{Spherical $\leftrightarrow$ Cartesian}
+
+\subsubsection*{Spherical $(r,\theta,\phase)$ $\rightarrow$ Cartesian $(x,y,z)$}
+\begin{equation}
+    \begin{aligned}
+        x &= r \cos\theta\sin\phase \\
+        y &= r \sin\theta\sin\phase \\
+        z &= r \cos\phase
+    \end{aligned}
+\end{equation}
+\subsubsection*{Cartesian $(x,y,z)$ $\rightarrow$ Spherical $(r,\theta,\phase)$}
+\begin{equation}
+    \begin{aligned}
+        r &= \sqrt{x^2+y^2+z^2} \\
+        \theta &= \cos^{-1} \left(\frac{z}{r}\right) \\
+        \phase &= \tan^{-1} \left(\frac{y}{x}\right)
+    \end{aligned}
+\end{equation}
 
 \subsection{Euler rotations}
 
@@ -147,13 +166,13 @@ In this section (and unless otherwise specified), $\theta$ is the colatitude (me
     \end{bmatrix}
 \end{equation}
 
-\subsection{Magnetic coordinates}
+\subsection{Magnetic $\leftrightarrow$ Observer}
 
 In the magnetic coordinate system, the $z$-axis is identified with the magnetic moment, and the $x$-axis is chosen to be in the plane containing both the rotation and magnetic axes.
 The angle between the rotation and magnetic axes is, as usual, denoted by $\alpha$.
 At rotation phase $\phase$, the relations between magnetic and observer coordinates are therefore defined as follows.
 
-\subsubsection{Magnetic to Observer coordinates}
+\subsubsection*{Magnetic to Observer coordinates}
 \begin{equation}
     R_z(\phase) R_y(\alpha) =
     \begin{bmatrix}
@@ -163,7 +182,7 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
     \end{bmatrix}
 \end{equation}
 
-\subsubsection{Observer to Magnetic coordinates}
+\subsubsection*{Observer to Magnetic coordinates}
 \begin{equation}
     R_y(-\alpha) R_z(-\phase) =
     \begin{bmatrix}
