@@ -105,10 +105,24 @@ The $x$- and $y$-coordinates of the footpoint, $(x_p,y_p)$:
 
 \rule{\columnwidth}{1pt}
 
+\section{Retardation}
+
+Let $\hat{n}$ be the line of sight, a unit vector pointing towards the observer.
+A particle at position $\vec{r}$ has a ``retardation time''
+\begin{equation}
+    \Delta\tau_\text{ret} = \frac{\vec{r}\cdot\hat{n}}{c}
+\end{equation}
+and a corresponding ``retardation phase''
+\begin{equation}
+    \Delta\phase_\text{ret} = \frac{2\pi\Delta\tau_\text{ret}}{P},
+\end{equation}
+where $P$ is the pulsar's rotation period, and where it is understood that emission from a particle at $\vec{r}$ at some rotation phase $\phase$ would be observed at phase $\phase - \Delta\phase_\text{ret}$.
+
 \section{Jackson's Classical Electrodynamics}
 
 \begin{equation}
     f_c = \frac{3\gamma^3 c\kappa}{4\pi}
+    \tag{J14.81}
 \end{equation}
 
 \section{Coordinate Systems}
