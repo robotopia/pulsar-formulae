@@ -192,6 +192,28 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
     \end{bmatrix}
 \end{equation}
 
+\subsection{Spark $\leftrightarrow$ Magnetic coordinates}
+Let $\sigma$ be the angular radius of the carousel, $N$ be the number of sparks, $P_4$ be the carousel rotation period, and $t$ be the current time.
+We define spark $0$ to be the spark that lies in the $xz$-plane (of magnetic coordinates) at time $t=0$.
+Spark 1 is the next spark counterclockwise (as viewed from above).
+Rotation occurs in the same sense (i.e. spark 0 will head towards spark 1) for positive $P_4$; in the opposite sense otherwise.
+Then the magnetic azimuth of the $n$th spark at time $t$ is
+\begin{equation}
+    \phase_n(t) = 2\pi\left(\frac{n}{N} + \frac{t}{P_4}\right)
+\end{equation}
+The transformation matrices are
+
+\subsubsection*{Spark to Magnetic coordinates}
+\begin{equation}
+    \begin{bmatrix}
+        \cos\phase_n(t)\cos\sigma & -\sin\phase_n(t) & \cos\phase_n(t)\sin\sigma \\
+        \sin\phase_n(t)\cos\sigma &  \cos\phase_n(t) & \sin\phase_n(t)\sin\sigma \\
+        -\sin\sigma          & 0           & \cos\sigma
+    \end{bmatrix}
+\end{equation}
+
+\subsubsection*{Magnetic to Spark coordinates}
+
 \section{Miscellaneous}
 
 \begin{equation}
