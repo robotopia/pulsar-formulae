@@ -105,18 +105,45 @@ The $x$- and $y$-coordinates of the footpoint, $(x_p,y_p)$:
 
 \rule{\columnwidth}{1pt}
 
-\section{Miscellaneous}
+\section{Jackson's Classical Electrodynamics}
 
 \begin{equation}
     f_c = \frac{3\gamma^3 c\kappa}{4\pi}
 \end{equation}
 
+\section{Rotation Matrices}
+
+2D:
 \begin{equation}
-    R = \begin{bmatrix}
+    R(\theta) = \begin{bmatrix}
         \cos\theta & -\sin\theta \\
         \sin\theta & \cos\theta
     \end{bmatrix}
 \end{equation}
+3D:
+\begin{equation}
+    R_x(\theta) = \begin{bmatrix}
+        1 & 0 & 0 \\
+        0 & \cos\theta & -\sin\theta \\
+        0 & \sin\theta & \cos\theta
+    \end{bmatrix}
+\end{equation}
+\begin{equation}
+    R_y(\theta) = \begin{bmatrix}
+        \cos\theta & 0 & \sin\theta \\
+        0 & 1 & 0 \\
+        -\sin\theta & 0 & \cos\theta
+    \end{bmatrix}
+\end{equation}
+\begin{equation}
+    R_x(\theta) = \begin{bmatrix}
+        \cos\theta & -\sin\theta & 0 \\
+        \sin\theta & \cos\theta * 0 \\
+        0 & 0 & 1 \\
+    \end{bmatrix}
+\end{equation}
+
+\section{Miscellaneous}
 
 \begin{equation}
     \kappa = \frac{|\vec{v}\times\vec{a}|}{|\vec{v}|^3}
