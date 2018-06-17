@@ -236,6 +236,18 @@ The transformation matrices are
     \kappa = \frac{|2(f^\prime(\theta))^2 + (f(\theta))^2 - f(\theta)f^{\prime\prime}(\theta)|}{\left[(f^\prime(\theta))^2 + (f(\theta))^2\right]^{3/2}}
 \end{equation}
 
+\subsubsection*{Curvature of particle trajectories for an aligned rotator}
+
+Let $a \equiv R/r_L$, where $R$ is the distance of maximum extent for a given field lines, and $r_L = c/\Omega$ is the light cylinder radius.
+Let $B \equiv \sin^2\theta = \frac{r}{R}$.
+\begin{equation}
+    \kappa = 3\sqrt{
+        \frac{-(a^4B^8 - 4a^4B^7 + 4a^4B^6 -
+               11a^2B^5 + 41a^2B^4 - 48a^2B^3 +
+               (16a^2+1)B^2 - 4B + 4)}{
+                   Rr(27B^3 - 108B^2 + 144B - 64)}}
+\end{equation}
+
 \subsection{Bessel functions}
 
 \subsubsection*{Expansions at $x=0$:}
@@ -271,16 +283,18 @@ Therefore, in order to get accurate numerical upper integrals of the form $F_\nu
     F_{5/3}(10) &= \int_{10}^\infty K_{5/3}(x)\,dx = 0.0000192238
 \end{align}
 
-\subsection{Curvature of particle trajectories for an aligned rotator}
+\subsection{Stokes Parameters}
 
-Let $a \equiv R/r_L$, where $R$ is the distance of maximum extent for a given field lines, and $r_L = c/\Omega$ is the light cylinder radius.
-Let $B \equiv \sin^2\theta = \frac{r}{R}$.
+\subsubsection*{From circularly polarised fields}
+
+Let $E_L$ and $E_R$ be the amplitudes of the left and right circularly polarized electric field respectively, and let $\delta$ be the phase angle between them.
 \begin{equation}
-    \kappa = 3\sqrt{
-        \frac{-(a^4B^8 - 4a^4B^7 + 4a^4B^6 -
-               11a^2B^5 + 41a^2B^4 - 48a^2B^3 +
-               (16a^2+1)B^2 - 4B + 4)}{
-                   Rr(27B^3 - 108B^2 + 144B - 64)}}
+    \begin{aligned}
+        I &= \left\langle E_L^2 \right\rangle + \left\langle E_R^2 \right\rangle \\
+        Q &= 2\left\langle E_L E_R \cos\delta \right\rangle \\
+        U &= 2\left\langle E_L E_R \sin\delta \right\rangle \\
+        V &= \left\langle E_R^2 \right\rangle - \left\langle E_L^2 \right\rangle
+    \end{aligned}
 \end{equation}
 
 \section{Jackson's Classical Electrodynamics}
