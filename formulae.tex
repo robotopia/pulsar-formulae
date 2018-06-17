@@ -1,4 +1,4 @@
-\documentclass[twocolumn]{article}
+\documentclass{article}
 
 \usepackage{amsmath}
 \usepackage{fullpage}
@@ -261,7 +261,15 @@ The transformation matrices are
         \approx \sqrt{\frac{\pi}{2x}}e^{-x}
 \end{equation}
 
-\onecolumn
+\subsubsection*{Upper integrals}
+
+In practice, I often only evaluate the $K_\nu(x)$ family of functions (above) up to $x = 10$.
+Therefore, in order to get accurate numerical upper integrals of the form $F_\nu(x) = \int_x^\infty K_\nu(x)\,dx$, it is useful to have some values of $F_\nu(10)$.
+\begin{align}
+    F_{1/3}(10) &= \int_{10}^\infty K_{1/3}(x)\,dx = 0.0000170985 \\
+    F_{2/3}(10) &= \int_{10}^\infty K_{2/3}(x)\,dx = 0.0000173511 \\
+    F_{5/3}(10) &= \int_{10}^\infty K_{5/3}(x)\,dx = 0.0000192238
+\end{align}
 
 \subsection{Curvature of particle trajectories for an aligned rotator}
 
