@@ -86,6 +86,19 @@ The $x$- and $y$-coordinates of the footpoint, $(x_p,y_p)$:
     x_p &= r_p\sqrt{\frac{r_p}{R}} \\
     y_p &= r_p \sqrt{1 - \frac{r_p}{R}}
 \end{align}
+To normalise a footpoint with respect to the footpoint of the last open field lines (aligned dipole case), we define
+\begin{equation}
+    \theta_L \equiv \sin^{-1}\sqrt{\frac{r_p}{r_L}}
+             =      \sin^{-1}\sqrt{\frac{2\pi r_p}{cP}}
+\end{equation}
+and then
+\begin{equation}
+    s \equiv \frac{\theta_p}{\theta_L}
+\end{equation}
+To convert from a given $s$ to $R$:
+\begin{equation}
+    R = \frac{r_p}{\sin^2\left(s\sin^{-1}\sqrt{\frac{2\pi r_p}{cP}}\right)}
+\end{equation}
 
 \subsection{Curvature}
 
@@ -115,6 +128,33 @@ and a corresponding ``retardation phase''
     \Delta\phase_\text{ret} = \frac{2\pi\Delta\tau_\text{ret}}{P},
 \end{equation}
 where $P$ is the pulsar's rotation period, and where it is understood that emission from a particle at $\vec{r}$ at some rotation phase $\phase$ would be observed at phase $\phase - \Delta\phase_\text{ret}$.
+
+\section{Carousels and Sparks}
+\label{sec:carousel}
+
+Let $\theta_\text{cl}$ be the angular radius of the carousel, $N$ be the number of sparks, $\theta_\text{sp}$ be the angular radius of an individual spark, $P_4$ be the carousel rotation period, and $t$ be the current time.
+We define spark $0$ to be the spark that lies in the $xz$-plane (of magnetic coordinates) at time $t=0$.
+Spark 1 is the next spark counterclockwise (as viewed from above).
+Rotation occurs in the same sense (i.e. spark 0 will head towards spark 1) for positive $P_4$; in the opposite sense otherwise.
+Then the magnetic azimuth of the $n$th spark at time $t$ is
+\begin{equation}
+    \sigma_n(t) = 2\pi\left(\frac{n}{N} + \frac{t}{P_4}\right)
+\end{equation}
+An arbitrary point on the polar cap with magnetic azimuth $\sigma$ has the time-dependent spark phase
+\begin{equation}
+    \phase_\text{sp}(\sigma,t) = N\left(\sigma - \frac{2\pi t}{P_4}\right)
+\end{equation}
+and will be nearest in position to spark
+\begin{equation}
+    n_\text{nearest} = \left\lfloor N\left(\frac{\sigma}{2\pi} - \frac{t}{P_4}\right) + 0.5 \right\rfloor
+\end{equation}
+where $n_\text{nearest}$ is understood to be taken modulo $N$.
+Let $D$ be the angular distance between a given footpoint $(\theta_\text{fp},\sigma_\text{fp})$ and the centre of the nearest spark at time $t$.
+Then the spark profile is defined as
+\begin{equation}
+    H_\text{sp}(\theta_\text{fp},\sigma_\text{fp},t) \equiv e^{-9D^2/2\theta_\text{sp}}
+\end{equation}
+where the spark radius is identified with $3\sigma$ of a standard normal profile.
 
 \section{Coordinate Systems}
 
@@ -199,15 +239,8 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
 \end{equation}
 
 \subsection{Spark $\leftrightarrow$ Magnetic coordinates}
-Let $\sigma$ be the angular radius of the carousel, $N$ be the number of sparks, $P_4$ be the carousel rotation period, and $t$ be the current time.
-We define spark $0$ to be the spark that lies in the $xz$-plane (of magnetic coordinates) at time $t=0$.
-Spark 1 is the next spark counterclockwise (as viewed from above).
-Rotation occurs in the same sense (i.e. spark 0 will head towards spark 1) for positive $P_4$; in the opposite sense otherwise.
-Then the magnetic azimuth of the $n$th spark at time $t$ is
-\begin{equation}
-    \phase_n(t) = 2\pi\left(\frac{n}{N} + \frac{t}{P_4}\right)
-\end{equation}
-The transformation matrices are
+
+(See \S\ref{sec:carousel} for the meaning of the notation in the following formulas.)
 
 \subsubsection*{Spark to Magnetic coordinates}
 \begin{equation}
@@ -219,6 +252,8 @@ The transformation matrices are
 \end{equation}
 
 \subsubsection*{Magnetic to Spark coordinates}
+
+[YET TO DO]
 
 \section{Miscellaneous}
 
@@ -241,11 +276,18 @@ The transformation matrices are
 Let $a \equiv R/r_L$, where $R$ is the distance of maximum extent for a given field lines, and $r_L = c/\Omega$ is the light cylinder radius.
 Let $B \equiv \sin^2\theta = \frac{r}{R}$.
 \begin{equation}
-    \kappa = 3\sqrt{
-        \frac{-(a^4B^8 - 4a^4B^7 + 4a^4B^6 -
-               11a^2B^5 + 41a^2B^4 - 48a^2B^3 +
-               (16a^2+1)B^2 - 4B + 4)}{
-                   Rr(27B^3 - 108B^2 + 144B - 64)}}
+    \begin{aligned}
+        \kappa &= 3\sqrt{
+            \frac{-(a^4B^8 - 4a^4B^7 + 4a^4B^6 -
+                   11a^2B^5 + 41a^2B^4 - 48a^2B^3 +
+                   (16a^2+1)B^2 - 4B + 4)}{
+                       Rr(27B^3 - 108B^2 + 144B - 64)}} \\
+           &= 3\sqrt{
+               \frac{-a^4B^6(B-2)(B+2) +
+                   a^2B^2(11B^3 - 41B^2 + 48B - 16) -
+                   (B-2)(B+2)}{
+                       Rr(27B^3 - 108B^2 + 144B - 64)}}
+    \end{aligned}
 \end{equation}
 
 \subsection{Bessel functions}
@@ -305,6 +347,14 @@ In terms of \emph{intensity}, $I_\pm \equiv \frac{d^2I_\pm}{d\omega\,d\Omega} = 
     \end{aligned}
 \end{equation}
 
+\subsection{Spherical distance}
+
+Let $(\theta_1,\phase_1)$ and $(\theta_2,\phase_2)$ be two points on the unit sphere, where $\theta$ denotes colatitude and $\phase$ denotes longitude.
+The great-circle angle between the two points is\footnote{According to Wikipedia (``Great-circle distance'', accessed 2018-06-23), this formula becomes inaccurate on computer systems with low floating-point precision if the distance is small. However, for 64-bit floating point numbers, it ``does not have serious rounding errors for distances larger than a few meters on the surface of the Earth.''}
+\begin{equation}
+    \delta = \cos^{-1}(\cos\theta_1 \cos\theta_2 + \sin\theta_1 \sin\theta_2 \cos(\phase_1 - \phase_2))
+\end{equation}
+
 \section{Jackson's Classical Electrodynamics}
 
 A convenient reparameterisation:
@@ -333,7 +383,12 @@ As above, but made explicit for positive and negative helicity:
 \end{equation}
 Critical frequency:
 \begin{equation}
-    f_c = \frac{3\gamma^3 c\kappa}{4\pi}
+    \begin{aligned}
+        f_c &= \frac{3\gamma^3 c\kappa}{4\pi}
+             = \frac{3\gamma^3 c}{4\pi\rho} \\
+        \omega_c &= \frac{3\gamma^3 c\kappa}{2}
+                  = \frac{3\gamma^3 c}{2\rho}
+    \end{aligned}
     \tag{J14.81}
 \end{equation}
 
