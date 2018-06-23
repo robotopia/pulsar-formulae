@@ -2,7 +2,10 @@
 
 \usepackage{amsmath}
 \usepackage{fullpage}
-\usepackage{hyperref}
+\usepackage[colorlinks]{hyperref}
+
+\title{Formulas relating to pulsar geometry}
+\author{Sam McSweeney}
 
 \newcommand{\phase}{\varphi}
 \newcommand{\deriv}[2]{\frac{d{#1}}{d{#2}}}
@@ -11,11 +14,19 @@
 
 \begin{document}
 
+\maketitle
+
 \tableofcontents
 
 \section{Magnetic dipole equations}
 
-\subsection{Field lines}
+In this section, unless otherwise specified, $\theta$ refers to the angle a given point makes with the magnetic axis.
+
+\subsection{Aligned Rotator}
+
+From symmetry, we can treat the aligned rotator as a 2D problem, with the magnetic axis aligned with the $y$-axis.
+
+\subsubsection{Field lines}
 
 The magnetic field, in coordinate-free notation:
 \begin{equation}
@@ -25,6 +36,7 @@ A single field line with maximum extent $R$, in polar coordinates:
 \begin{equation}
     r = R\sin^2\theta
 \end{equation}
+
 The $x$- and $y$-coordinates of the above:
 \begin{align}
     x &= R\sin^3\theta \\
@@ -35,7 +47,7 @@ And finally, the field line in Cartesian coordinates, where the $y$ axis is iden
     y = x^{2/3} \sqrt{R^{2/3} - x^{2/3}}
 \end{equation}
 
-\subsection{Derivatives}
+\subsubsection{Derivatives}
 
 \begin{equation}
     \begin{aligned}
@@ -74,7 +86,7 @@ The arc length of a field line, as a function of $\theta$:
     \end{aligned}
 \end{equation}
 
-\subsection{Footpoints}
+\subsubsection{Footpoints}
 
 Let $r_p$ be the pulsar's radius, and $\theta_p$ by the angle the footpoint makes with the magnetic axis.
 \begin{align}
@@ -100,13 +112,13 @@ To convert from a given $s$ to $R$:
     R = \frac{r_p}{\sin^2\left(s\sin^{-1}\sqrt{\frac{2\pi r_p}{cP}}\right)}
 \end{equation}
 
-\subsection{Curvature}
+\subsubsection{Curvature}
 
 \begin{equation}
     \kappa = \frac{3(\cos^2 + 1)}{R\sin\theta(3\cos^2\theta + 1)^{3/2}}
 \end{equation}
 
-\subsection{RVM}
+\subsubsection{RVM}
 
 \begin{equation}
     \tan{\psi} = \frac{\sin\alpha \sin\phase}{\sin\zeta\cos\alpha - \cos\zeta\sin\alpha\cos\phase}
@@ -114,6 +126,39 @@ To convert from a given $s$ to $R$:
 
 \begin{equation}
     \left.\frac{d\psi}{d\phase}\right|_{\phase=0} = \frac{\sin\alpha}{\sin\beta}
+\end{equation}
+
+\subsection{Inclined Rotator}
+
+In the following, $\alpha$ is the angle that the magnetic axis makes with the rotation axis.
+The rotation axis is aligned with the $z$-axis, and unless otherwise specified, the formulas pertain to the time when the magnetic axis $\vec{\mu}$ is instantaneously in the $xz$-plane (and where $\vec{\mu}\cdot\hat{x}$ is positive).
+The full 3D field is
+
+\begin{equation}
+    \vec{B} =
+    \frac{\cos\alpha}{r^5}\begin{bmatrix}
+        3xz \\
+        3yz \\
+        (3z^2 - r^2)
+    \end{bmatrix} + 
+    \frac{\sin\alpha}{r^5}\begin{bmatrix}
+        (3x^2 - r^2) \\
+        3xy \\
+        3xz
+    \end{bmatrix}
+\end{equation}
+
+\section{Beam Opening Angles}
+
+Let $\vec{r}$ be an arbitrary point in the magnetosphere, and let $\theta_m$ be the magnetic colatitude of $\vec{r}$.
+Let $\Gamma_B$ be the angle that the tangent of the (assumed dipolar) magnetic field at $\vec{r}$ makes with the magnetic axis.
+Further, let $\Gamma_V$ be the angle that the velocity vector of a particle at $\vec{r}$ makes with the magnetic axis.
+The relationship between $\theta_m$ and $\Gamma_B$ (and its inverse) is given by\footnote{Gangadhara (2004)}
+\begin{equation}
+    \begin{aligned}
+        \cos(2\theta_m) &= \frac13\left(\cos(\Gamma_B)\sqrt{8 + \cos^2(\Gamma_B)} - \sin^2(\Gamma_B)\right) \\
+        \tan(\Gamma_B)  &= \frac{3\sin(\theta_m)\cos(\theta_m)}{3\cos^2(\theta_m)+1}
+    \end{aligned}
 \end{equation}
 
 \section{Retardation}
@@ -125,9 +170,9 @@ A particle at position $\vec{r}$ has a ``retardation time''
 \end{equation}
 and a corresponding ``retardation phase''
 \begin{equation}
-    \Delta\phase_\text{ret} = \frac{2\pi\Delta\tau_\text{ret}}{P},
+    \Delta\phase_\text{ret} = -\frac{2\pi\Delta\tau_\text{ret}}{P} = -\frac{\vec{r}\cdot\hat{n}}{r_L}
 \end{equation}
-where $P$ is the pulsar's rotation period, and where it is understood that emission from a particle at $\vec{r}$ at some rotation phase $\phase$ would be observed at phase $\phase - \Delta\phase_\text{ret}$.
+where $P$ is the pulsar's rotation period, $r_L$ is the light cylinder radius, and where it is understood that emission from a particle at $\vec{r}$ at some rotation phase $\phase$ would be observed at phase $\phase + \Delta\phase_\text{ret}$.
 
 \section{Carousels and Sparks}
 \label{sec:carousel}
@@ -162,7 +207,7 @@ In this section (unless otherwise specified), $\theta$ is the colatitude (measur
 
 \subsection{Spherical $\leftrightarrow$ Cartesian}
 
-\subsubsection*{Spherical $(r,\theta,\phase)$ $\rightarrow$ Cartesian $(x,y,z)$}
+\subsubsection{Spherical $(r,\theta,\phase)$ $\rightarrow$ Cartesian $(x,y,z)$}
 \begin{equation}
     \begin{aligned}
         x &= r \cos\theta\sin\phase \\
@@ -170,7 +215,7 @@ In this section (unless otherwise specified), $\theta$ is the colatitude (measur
         z &= r \cos\phase
     \end{aligned}
 \end{equation}
-\subsubsection*{Cartesian $(x,y,z)$ $\rightarrow$ Spherical $(r,\theta,\phase)$}
+\subsubsection{Cartesian $(x,y,z)$ $\rightarrow$ Spherical $(r,\theta,\phase)$}
 \begin{equation}
     \begin{aligned}
         r &= \sqrt{x^2+y^2+z^2} \\
@@ -181,7 +226,7 @@ In this section (unless otherwise specified), $\theta$ is the colatitude (measur
 
 \subsection{Euler rotations}
 
-\subsubsection*{2D Rotation}
+\subsubsection{2D Rotation}
 \begin{equation}
     R(\theta) = \begin{bmatrix}
         \cos\theta & -\sin\theta \\
@@ -189,7 +234,7 @@ In this section (unless otherwise specified), $\theta$ is the colatitude (measur
     \end{bmatrix}
 \end{equation}
 
-\subsubsection*{3D Rotation}
+\subsubsection{3D Rotation}
 \begin{equation}
     R_x(\theta) = \begin{bmatrix}
         1 & 0 & 0 \\
@@ -218,7 +263,7 @@ In the magnetic coordinate system, the $z$-axis is identified with the magnetic 
 The angle between the rotation and magnetic axes is, as usual, denoted by $\alpha$.
 At rotation phase $\phase$, the relations between magnetic and observer coordinates are therefore defined as follows.
 
-\subsubsection*{Magnetic to Observer coordinates}
+\subsubsection{Magnetic to Observer coordinates}
 \begin{equation}
     R_z(\phase) R_y(\alpha) =
     \begin{bmatrix}
@@ -228,7 +273,7 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
     \end{bmatrix}
 \end{equation}
 
-\subsubsection*{Observer to Magnetic coordinates}
+\subsubsection{Observer to Magnetic coordinates}
 \begin{equation}
     R_y(-\alpha) R_z(-\phase) =
     \begin{bmatrix}
@@ -242,7 +287,7 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
 
 (See \S\ref{sec:carousel} for the meaning of the notation in the following formulas.)
 
-\subsubsection*{Spark to Magnetic coordinates}
+\subsubsection{Spark to Magnetic coordinates}
 \begin{equation}
     \begin{bmatrix}
         \cos\phase_n(t)\cos\sigma & -\sin\phase_n(t) & \cos\phase_n(t)\sin\sigma \\
@@ -251,7 +296,7 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
     \end{bmatrix}
 \end{equation}
 
-\subsubsection*{Magnetic to Spark coordinates}
+\subsubsection{Magnetic to Spark coordinates}
 
 [YET TO DO]
 
@@ -259,19 +304,19 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
 
 \subsection{Curvature}
 
-\subsubsection*{Curvature of arbitrarily accelerated particle}
+\subsubsection{Curvature of arbitrarily accelerated particle}
 
 \begin{equation}
     \kappa = \frac{|\vec{v}\times\vec{a}|}{|\vec{v}|^3}
 \end{equation}
 
-\subsubsection*{Curvature of polar function $r = f(\theta)$}
+\subsubsection{Curvature of polar function $r = f(\theta)$}
 
 \begin{equation}
     \kappa = \frac{|2(f^\prime(\theta))^2 + (f(\theta))^2 - f(\theta)f^{\prime\prime}(\theta)|}{\left[(f^\prime(\theta))^2 + (f(\theta))^2\right]^{3/2}}
 \end{equation}
 
-\subsubsection*{Curvature of particle trajectories for an aligned rotator}
+\subsubsection{Curvature of particle trajectories for an aligned rotator}
 
 Let $a \equiv R/r_L$, where $R$ is the distance of maximum extent for a given field lines, and $r_L = c/\Omega$ is the light cylinder radius.
 Let $B \equiv \sin^2\theta = \frac{r}{R}$.
@@ -292,7 +337,7 @@ Let $B \equiv \sin^2\theta = \frac{r}{R}$.
 
 \subsection{Bessel functions}
 
-\subsubsection*{Expansions at $x=0$:}
+\subsubsection{Expansions at $x=0$:}
 
 \begin{equation}
     \lim_{x\rightarrow0} K_\nu(x)
@@ -308,14 +353,14 @@ Let $B \equiv \sin^2\theta = \frac{r}{R}$.
         &\approx 1.433018827689652\,x^{-5/3}
 \end{align}
 
-\subsubsection*{Expansions at $x=\infty$:}
+\subsubsection{Expansions at $x=\infty$:}
 
 \begin{equation}
     \lim_{x\rightarrow\infty} K_\nu(x)
         \approx \sqrt{\frac{\pi}{2x}}e^{-x}
 \end{equation}
 
-\subsubsection*{Upper integrals}
+\subsubsection{Upper integrals}
 
 In practice, I often only evaluate the $K_\nu(x)$ family of functions (above) up to $x = 10$.
 Therefore, in order to get accurate numerical upper integrals of the form $F_\nu(x) = \int_x^\infty K_\nu(x)\,dx$, it is useful to have some values of $F_\nu(10)$.
@@ -327,7 +372,7 @@ Therefore, in order to get accurate numerical upper integrals of the form $F_\nu
 
 \subsection{Stokes Parameters}
 
-\subsubsection*{From circularly polarised fields}
+\subsubsection{From circularly polarised fields}
 
 Let $E_L$ and $E_R$ be the amplitudes of the left and right circularly polarized electric field respectively, and let $\delta$ be the phase angle between them.
 \begin{equation}
