@@ -101,7 +101,8 @@ In particular, the arc length as measured from the origin is
 \end{equation}
 whose Taylor expansion about $\theta = 0$ gives
 \begin{equation}
-    \frac{\ell_0}{R} \approx \theta^2 + \frac{13}{48}\theta^4 - \frac{241}{5760}\theta^6 + O(\theta^8)
+    \frac{\ell_0}{R} \approx \theta^2 - \frac{13}{48}\theta^4 + \frac{241}{5760}\theta^6 + O(\theta^8)
+    \label{eqn:arclengthth}
 \end{equation}
 The arc length, $\ell$, as a function of $r$:
 \begin{equation}
@@ -138,6 +139,7 @@ A Taylor series expansion of $\ell_0$ about $r=0$ gives
 \begin{equation}
     \ell_0 \approx r + \frac{r^2}{16R} + \frac{5r^3}{128R^2} + \frac{113r^4}{4096R^3} + O(r^5)
 \end{equation}
+in agreement with Eq \eqref{eqn:arclengthth} above.
 
 \subsubsection{Footpoints}
 
