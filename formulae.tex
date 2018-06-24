@@ -55,8 +55,9 @@ The relations between the various coordinates are found in Table \ref{tbl:dipola
 \subsubsection{Derivatives}
 
 See Table \ref{tbl:dipolarderiv}.
+We use the definition $d\ell = \sqrt{dx^2+dy^2}$.
 
-\begin{table}[!ht]
+\begin{table}[!p]
     \centering
     \caption{The derivatives of the expressions in Table \ref{tbl:dipolar}}
     \label{tbl:dipolarderiv}
@@ -71,13 +72,16 @@ See Table \ref{tbl:dipolarderiv}.
         $d\theta/dx =$ & & & & \\[8pt]
         $d\theta/dy =$ & & & & \\[8pt]
         \hline
-        $dx/dr =$      & & & & \\[8pt]
+        $dx/dr =$      & $\dfrac32\sqrt{\dfrac{r}{R}}$ & & & \\[8pt]
         $dx/d\theta =$ & & $3R\sin^2\theta\cos\theta$ & $3x^{2/3} \sqrt{R^{2/3} - x^{2/3}}$ & $3y$ \\[8pt]
         $dx/dy =$      & & $\dfrac{3\sin\theta\cos\theta}{3\cos^2\theta-1}$ & $\dfrac{3x^{1/3}\sqrt{R^{2/3} - x^{2/3}}}{2R^{2/3} - 3x^{2/3}}$ & \\[8pt]
         \hline
-        $dy/dr =$      & & & & \\[8pt]
-        $dy/d\theta =$ & $\sqrt{rR}\left(2-3\dfrac{r}{R}\right)$ & $R\sin\theta(3\cos^2\theta - 1)$ & $x^{1/3}(2R^{2/3} - 3x^{2/3})$ & \\[8pt]
+        $dy/dr =$      & $\dfrac{2R-3r}{2\sqrt{R(R-r)}}$ & & & \\[8pt]
+        $dy/d\theta =$ & $\sqrt{\dfrac{r}{R}}\left(2R-3r\right)$ & $R\sin\theta(3\cos^2\theta - 1)$ & $x^{1/3}(2R^{2/3} - 3x^{2/3})$ & \\[8pt]
         $dy/dx =$      & & $\dfrac{3\cos^2\theta-1}{3\sin\theta\cos\theta}$ & $\dfrac{2R^{2/3} - 3x^{2/3}}{3x^{1/3}\sqrt{R^{2/3} - x^{2/3}}}$ & \\[8pt]
+        \hline
+        $d\ell/dr =$ & $\dfrac12 \sqrt{\dfrac{4R-3r}{R-r}}$ & & & \\[8pt]
+        $d\ell/d\theta =$ & & $R\sin\theta \sqrt{3\cos^2\theta + 1}$ & &
     \end{tabular}
 \end{table}
 
@@ -85,9 +89,54 @@ See Table \ref{tbl:dipolarderiv}.
 The arc length of a field line, as a function of $\theta$:
 \begin{equation}
     \begin{aligned}
-        \deriv{s}{\theta} &= \sqrt{\left(\deriv{x}{\theta}\right)^2 + \left(\deriv{y}{\theta}\right)^2} \\
-                          &= R\sin\theta \sqrt{3\cos^2\theta + 1}
+        \int\,d\ell = \int\deriv{\ell}{\theta}\,d\theta
+            &= \int R\sin\theta \sqrt{3\cos^2\theta + 1} \, d\theta \\
+            &= -\frac{R}{6}\left(3\cos\theta\sqrt{3\cos^2\theta + 1} + \sqrt{3}\sinh^{-1}(\sqrt{3}\cos\theta)\right) + C
     \end{aligned}
+\end{equation}
+In particular, the arc length as measured from the origin is
+\begin{equation}
+    \ell_0(\theta) = -\frac{R}{6}\left(3\cos\theta\sqrt{3\cos^2\theta + 1} + \sqrt{3}\sinh^{-1}(\sqrt{3}\cos\theta)\right) +
+                      \frac{R\sqrt{3}\sinh^{-1}\sqrt{3}}{6} + R
+\end{equation}
+whose Taylor expansion about $\theta = 0$ gives
+\begin{equation}
+    \frac{\ell_0}{R} \approx \theta^2 + \frac{13}{48}\theta^4 - \frac{241}{5760}\theta^6 + O(\theta^8)
+\end{equation}
+The arc length, $\ell$, as a function of $r$:
+\begin{equation}
+    \begin{aligned}
+        \ell = \int\,d\ell = \int\deriv{\ell}{r}\,dr
+            &= \int \frac12 \sqrt{\frac{4R-3r}{R-r}} \, dr \\
+            &= \frac{R}{12}\left(\frac{6S}{3 - S^2} + \sqrt{3}\log\left(\frac{S - \sqrt{3}}{S + \sqrt{3}}\right)\right) + C
+    \end{aligned}
+\end{equation}
+where
+\begin{equation}
+    S = \sqrt{\frac{4R-3r}{R-r}}
+\end{equation}
+In particular, the arc length as measured from the origin is
+\begin{equation}
+    \ell_0 = \int_0^r \deriv{s}{r^\prime} \,dr^\prime
+           = \frac{R}{12}\left(\frac{6S}{3 - S^2} + \sqrt{3}\log\left(\frac{S - \sqrt{3}}{S + \sqrt{3}}\right)\right) +
+             R - \frac{R\sqrt{3}}{12}\log\left(\frac{2-\sqrt{3}}{2+\sqrt{3}}\right)
+\end{equation}
+and the arc length as measured from the surface is
+\begin{equation}
+    \begin{aligned}
+        \ell_\text{surface} &= \int_{r_p}^r \deriv{s}{r^\prime} \,dr^\prime \\
+               &= \frac{R}{12}\left(\frac{6S}{3 - S^2} + \sqrt{3}\log\left(\frac{S - \sqrt{3}}{S + \sqrt{3}}\right)\right) -
+                  \frac{R}{12}\left(\frac{6S_{r_p}}{3 - S_{r_p}^2} + \sqrt{3}\log\left(\frac{S_{r_p} -
+                  \sqrt{3}}{S_{r_p} + \sqrt{3}}\right)\right)
+     \end{aligned}
+\end{equation}
+where
+\begin{equation}
+    S_{r_p} = \sqrt{\frac{4R-3r_p}{R-r_p}}
+\end{equation}
+A Taylor series expansion of $\ell_0$ about $r=0$ gives
+\begin{equation}
+    \ell_0 \approx r + \frac{r^2}{16R} + \frac{5r^3}{128R^2} + \frac{113r^4}{4096R^3} + O(r^5)
 \end{equation}
 
 \subsubsection{Footpoints}
