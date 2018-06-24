@@ -35,7 +35,8 @@ The magnetic field, in coordinate-free notation:
 \begin{equation}
     \vec{B} = \frac{1}{r^3}\left[3(\vec{\mu}\cdot\hat{r})\hat{r} - \vec{\mu}\right]
 \end{equation}
-Consider a single field line with maximum extent $R$. It can be expressed in either Cartesian or polar coordinates.
+Consider a single field line with maximum extent $R$.
+It can be expressed in either Cartesian or polar coordinates.
 The relations between the various coordinates are found in Table \ref{tbl:dipolar}.
 \begin{table}[!ht]
     \centering
@@ -53,28 +54,32 @@ The relations between the various coordinates are found in Table \ref{tbl:dipola
 
 \subsubsection{Derivatives}
 
-\begin{equation}
-    \begin{aligned}
-        \deriv{x}{\theta} &= 3R\sin^2\theta\cos\theta \\
-          &= 3x^{2/3} \sqrt{R^{2/3} - x^{2/3}} \\
-          &= 3y
-    \end{aligned}
-\end{equation}
+See Table \ref{tbl:dipolarderiv}.
 
-\begin{equation}
-    \begin{aligned}
-        \deriv{y}{\theta} &= R\sin\theta(3\cos^2\theta - 1) \\
-                          &= x^{1/3}(2R^{2/3} - 3x^{2/3})
-    \end{aligned}
-\end{equation}
-The tangent of a field line:
-\begin{equation}
-    \begin{aligned}
-        \deriv{y}{x} &= \frac{3\cos^2\theta-1}{3\sin\theta\cos\theta} \\
-                     &= \frac{2R^{2/3} - 3x^{2/3}}{3x^{1/3}\sqrt{R^{2/3} - x^{2/3}}}
-    \end{aligned}
-\end{equation}
-For the beam opening angle, $\tan\Gamma = dx/dy$, see Section \S\ref{sec:beamopeningangles}.
+\begin{table}[!ht]
+    \centering
+    \caption{The derivatives of the expressions in Table \ref{tbl:dipolar}}
+    \label{tbl:dipolarderiv}
+    \begin{tabular}{c|cccc}
+        & $r$ & $\theta$ & $x$ & $y$ \\[5pt]
+        \hline
+        $dr/d\theta =$ & $2\sqrt{r(R-r)}$ & $2R\sin\theta\cos\theta$ & $2R^{1/3}x^{1/3}\sqrt{R^{2/3}-x^{2/3}}$ & ? \\[8pt]
+        $dr/dx =$      & $\dfrac23\sqrt{\dfrac{R}{r}}$ & $\dfrac{2}{3\sin\theta}$ & $\dfrac23\sqrt[3]{\dfrac{R}{x}}$ & \\[8pt]
+        $dr/dy =$      & & & & \\[8pt]
+        \hline
+        $d\theta/dr =$ & & & & \\[8pt]
+        $d\theta/dx =$ & & & & \\[8pt]
+        $d\theta/dy =$ & & & & \\[8pt]
+        \hline
+        $dx/dr =$      & & & & \\[8pt]
+        $dx/d\theta =$ & & $3R\sin^2\theta\cos\theta$ & $3x^{2/3} \sqrt{R^{2/3} - x^{2/3}}$ & $3y$ \\[8pt]
+        $dx/dy =$      & & $\dfrac{3\sin\theta\cos\theta}{3\cos^2\theta-1}$ & $\dfrac{3x^{1/3}\sqrt{R^{2/3} - x^{2/3}}}{2R^{2/3} - 3x^{2/3}}$ & \\[8pt]
+        \hline
+        $dy/dr =$      & & & & \\[8pt]
+        $dy/d\theta =$ & $\sqrt{rR}\left(2-3\dfrac{r}{R}\right)$ & $R\sin\theta(3\cos^2\theta - 1)$ & $x^{1/3}(2R^{2/3} - 3x^{2/3})$ & \\[8pt]
+        $dy/dx =$      & & $\dfrac{3\cos^2\theta-1}{3\sin\theta\cos\theta}$ & $\dfrac{2R^{2/3} - 3x^{2/3}}{3x^{1/3}\sqrt{R^{2/3} - x^{2/3}}}$ & \\[8pt]
+    \end{tabular}
+\end{table}
 
 \subsubsection{Arc Length}
 The arc length of a field line, as a function of $\theta$:
@@ -117,21 +122,23 @@ To convert from a given $s$ to $R$:
     \kappa = \frac{3(\cos^2 + 1)}{R\sin\theta(3\cos^2\theta + 1)^{3/2}}
 \end{equation}
 
-\subsubsection{RVM}
+\subsubsection{Beam Opening Angles}
+\label{sec:beamopeningangles}
 
+The relationship between $\theta$ and $\Gamma$ (and its inverse) is given by\footnote{Gangadhara (2004)}
 \begin{equation}
-    \tan{\psi} = \frac{\sin\alpha \sin\phase}{\sin\zeta\cos\alpha - \cos\zeta\sin\alpha\cos\phase}
-\end{equation}
-
-\begin{equation}
-    \left.\frac{d\psi}{d\phase}\right|_{\phase=0} = \frac{\sin\alpha}{\sin\beta}
+    \begin{aligned}
+        \cos(2\theta) &= \frac13\left(\cos(\Gamma)\sqrt{8 + \cos^2(\Gamma)} - \sin^2(\Gamma)\right) \\
+        \tan(\Gamma)  &= \frac{3\sin(\theta)\cos(\theta)}{3\cos^2(\theta)+1}
+    \end{aligned}
 \end{equation}
 
 \subsection{Inclined Rotator}
 
-In the following, $\alpha$ is the angle that the magnetic axis makes with the rotation axis.
+In the following, $\alpha$ is the angle that the magnetic axis makes with the rotation axis, and $\zeta$ is the angle between the rotation axis and the line of sight.
 The rotation axis is aligned with the $z$-axis, and unless otherwise specified, the formulas pertain to the time when the magnetic axis $\vec{\mu}$ is instantaneously in the $xz$-plane (and where $\vec{\mu}\cdot\hat{x}$ is positive).
-The full 3D field is
+
+\subsubsection{Magnetic Field in Cartesian Coordinates}
 
 \begin{equation}
     \vec{B}(\vec{r}) =
@@ -145,6 +152,24 @@ The full 3D field is
         3xy \\
         3xz
     \end{bmatrix}
+\end{equation}
+
+\subsubsection{Rotating Vector Model (RVM)}
+
+\begin{equation}
+    \tan{\psi} = \frac{\sin\alpha \sin\phase}{\sin\zeta\cos\alpha - \cos\zeta\sin\alpha\cos\phase}
+\end{equation}
+
+\begin{equation}
+    \left.\frac{d\psi}{d\phase}\right|_{\phase=0} = \frac{\sin\alpha}{\sin(\zeta-\alpha)}
+\end{equation}
+
+\subsubsection{Pulse Width}
+
+The pulse width, $W$, is related to the beam opening angle, $\Gamma$, as follows (from the \emph{Handbook}):
+\begin{equation}
+    \cos\Gamma = \cos\alpha\cos\zeta + \sin\alpha\sin\zeta\cos\left(\frac{W}{2}\right)
+    \tag{H3.27}
 \end{equation}
 
 \section{Magnetic Deutsch/Arendt equations}
@@ -171,20 +196,6 @@ where
 and
 \begin{equation}
     \ph = \frac{r - r_\ast}{r_L}
-\end{equation}
-
-\section{Beam Opening Angles}
-\label{sec:beamopeningangles}
-
-Let $\vec{r}$ be an arbitrary point in the magnetosphere, and let $\theta_m$ be the magnetic colatitude of $\vec{r}$.
-Let $\Gamma_B$ be the angle that the tangent of the (assumed dipolar) magnetic field at $\vec{r}$ makes with the magnetic axis.
-Further, let $\Gamma_V$ be the angle that the velocity vector of a particle at $\vec{r}$ makes with the magnetic axis.
-The relationship between $\theta_m$ and $\Gamma_B$ (and its inverse) is given by\footnote{Gangadhara (2004)}
-\begin{equation}
-    \begin{aligned}
-        \cos(2\theta_m) &= \frac13\left(\cos(\Gamma_B)\sqrt{8 + \cos^2(\Gamma_B)} - \sin^2(\Gamma_B)\right) \\
-        \tan(\Gamma_B)  &= \frac{3\sin(\theta_m)\cos(\theta_m)}{3\cos^2(\theta_m)+1}
-    \end{aligned}
 \end{equation}
 
 \section{Retardation}
