@@ -225,18 +225,33 @@ A Taylor expansion about $\theta = 0$ gives
 \subsubsection{Beam Opening Angles}
 \label{sec:beamopeningangles}
 
-Assuming no rotation effects, the relationship between $\theta$ and $\Gamma$ (and its inverse) is given by\footnote{Gangadhara (2004)}
+\paragraph{Without rotation effects:}
+The relationship between $\theta$ and $\Gamma$ (and its inverse) is given by\footnote{Gangadhara (2004)}
 \begin{equation}
     \begin{aligned}
         \cos(2\theta) &= \frac13\left(\cos\Gamma\sqrt{8 + \cos^2\Gamma} - \sin^2\Gamma\right) \\
         \tan\Gamma &= \frac{3\sin\theta\cos\theta}{3\cos^2\theta - 1}
     \end{aligned}
 \end{equation}
-Taylor series expansions (about 0):
+Taylor series expansions (about $\theta = 0$):
 \begin{equation}
     \begin{aligned}
         \theta &\approx \frac23 \Gamma - \frac2{81} \Gamma^3 + O(\Gamma^7) \\
         \Gamma &\approx \frac32 \theta + \frac18 \theta^3 + \frac1{32} \theta^5 + O(\theta^7)
+    \end{aligned}
+\end{equation}
+
+\paragraph{With rotation effects:}
+\begin{equation}
+    \cos\Gamma = \frac{\sqrt{r^2\cos^2\theta-r^2+r_L^2}(3\cos^2\theta-1)}{r_L\sqrt{3cos^2\theta+1}}
+\end{equation}
+Taylor series expansions (about $\theta = 0$):
+\begin{equation}
+    \begin{aligned}
+        \cos\Gamma &\approx 1 - \frac{4r^2+9r_L^2}{8r_L^2}\,\theta^2 -
+                            \frac{48r^4 - 280r^2r_L^2 - 9r_L^4}{384r_L^4}\,\theta^4 + O(\theta^6) \\
+        \Gamma &\approx \frac{\sqrt{4r^2+9r_L^2}}{2r_L}\,\theta +
+                        \frac{8r^4 - 26r^2r_L^2 + 9r_L^4}{24r_L^3\sqrt{4r^2+9r_L^2}}\,\theta^3 + O(\theta^5)
     \end{aligned}
 \end{equation}
 
