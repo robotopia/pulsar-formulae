@@ -300,17 +300,24 @@ In this section, $(r,\theta,\sigma)$ are the spherical coordinates in the magnet
 The Taylor expansion about $\theta = 0$ for the full expression of the beam opening angle, $\Gamma$, including rotation effects, is
 \begin{equation}
     \cos\Gamma \approx \frac{3\cos^2\alpha-1}{\sqrt{3\cos^2\alpha + 1}} +
-                   \left(-\frac{r\sin\alpha(9\cos^2\alpha+1)\sin\sigma}{2r_L(3\cos^2\alpha + 1)} +
-                          \frac{9\sin\alpha\cos\alpha(\cos^2\alpha+1)\cos\sigma}{(3\cos^2\alpha+1)^{3/2}}\right) \,\theta +
+                   \frac{\sin\alpha\cos\alpha}{3\cos^2\alpha + 1}
+                   \left(\frac{9(\cos^2\alpha+1)\cos\sigma}{\sqrt{3\cos^2\alpha+1}} -
+                         \frac{6r\cos\alpha\sin\sigma}{r_L}\right) \,\theta +
                    O(\theta^2)
 \end{equation}
 For the equatorial rotator ($\alpha = \pi/2$),
 \begin{equation}
-    \cos\Gamma = -\frac{r \sin\sigma \sin\theta(9\cos^2\sigma \sin^2\theta + 1) - (3\cos^2\sigma \sin^2\theta - 1) \sqrt{-(12 \, r^2 \cos^2\sigma \sin^4\theta - 4 \, r_L^2 + {\left(3 \, r^2 + {\left(r^2 - 12 \, r_L^2\right)} \cos^2\sigma\right)} \sin^2\theta)}}{2r_L {\left(3\cos^2\sigma \sin^2\theta + 1\right)}}
+    \cos\Gamma = \dots \text{(YET TO DO)}
 \end{equation}
-
 \begin{equation}
-    \cos\Gamma \approx 1 - \frac{r\sin\sigma}{2r_L}\,\theta - \left(\frac{3r^2 + (r^2 + 36r_L^2)\cos^2\sigma}{8r_L^2}\right)\,\theta^2 + O(\theta^3)
+    \begin{aligned}
+        \cos\Gamma &\approx 1 - \frac{(r^2+9r_L^2)\cos^2\sigma}{2r_L}\,\theta^2
+                              - \frac{6r\sin\sigma\cos^2\sigma}{r_L}\,\theta^3 +
+                              O(\theta^4) \\
+        \sin\Gamma &\approx \frac{\cos\sigma\sqrt{r^2+9r_L^2}}{r_L}\,\theta +
+                            \frac{6r\sin\sigma\cos\sigma}{\sqrt{r^2+9r_L^2}}\,\theta^2 +
+                            O(\theta^3)
+    \end{aligned}
 \end{equation}
 
 \subsubsection{``Aberration'' Angle}
