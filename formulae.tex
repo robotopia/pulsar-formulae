@@ -352,6 +352,21 @@ and a corresponding ``retardation phase''
 \end{equation}
 where $P$ is the pulsar's rotation period, $r_L$ is the light cylinder radius, and where it is understood that emission from a particle at $\vec{r}$ at some rotation phase $\phase$ would be observed at phase $\phase + \Delta\phase_\text{ret}$.
 
+\section{Rotation effects}
+\label{sec:rotation}
+
+The velocity of a particle at an arbitrary point in the magnetosphere will have an azimuthal component (induced by the rotation of the magnetosphere) and a component directed along the local field line.
+In order for a particle to stay on the same field line \emph{and} keep up with the rotation, the particle's velocity must satisfy
+\begin{equation}
+    \vec{V} = c\hat{V} = \rho\Omega\hat{V}_\phase + V_B\hat{B},
+\end{equation}
+where $\rho = \sqrt{x^2 + y^2}$ is the perpendicular distance from the rotation axis, $\Omega = 2\pi/P$ is the angular rotation speed, $\hat{V}_\phase$ is the unit vector denoting the azimuthal direction, $V_B$ is the (unknown) velocity component directed along the magnetic field, and $\hat{B}$ is the normalised direction of the local magnetic field itself.
+This can be solved for $V_B$, yielding
+\begin{equation}
+    V_B = -\Omega(\vec{\phase}\cdot\hat{B}) \pm \sqrt{\Omega^2(\vec{\phase}\cdot\hat{B})^2 - (\rho^2\Omega^2-c^2)},
+\end{equation}
+where $\vec{\phase} = \rho\hat{V}_\phase = \{-y,x,0\}$.
+
 \section{Carousels and Sparks}
 \label{sec:carousel}
 
@@ -493,6 +508,13 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
 \begin{equation}
     \kappa = \frac{|2(f^\prime(\theta))^2 + (f(\theta))^2 - f(\theta)f^{\prime\prime}(\theta)|}{\left[(f^\prime(\theta))^2 + (f(\theta))^2\right]^{3/2}}
     \label{eqn:curvature_polar}
+\end{equation}
+
+\subsection{Acceleration}
+
+The material derivative of a time-dependent velocity field is
+\begin{equation}
+    \vec{A} = \pd{\vec{V}}{t} + V_x\pd{\vec{V}}{x} + V_y\pd{\vec{V}}{y} + V_z\pd{\vec{V}}{z}
 \end{equation}
 
 \subsection{Bessel functions}
