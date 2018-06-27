@@ -326,16 +326,13 @@ Let $\eta = \cos^{-1}(\hat{V}\cdot\hat{B})$ be the angle between the local magne
 Without rotation effects, $\hat{V} = \hat{B}$ everywhere, so $\eta = 0$.
 With rotation effects, we compute $\hat{V}\cdot\hat{B}$ in the magnetic frame, and expand it around $\theta = 0$ (where $\theta$ is the magnetic colatitude):
 \begin{equation}
-    \cos\eta \approx 1 - \frac{r\sin\alpha\sin\sigma}{2r_L\sqrt{3\cos^2\alpha+1}}\,\theta +
-        \left(\frac{r^2\sin^2\alpha\sin^2\sigma}{8r_L^2(3\cos^2\alpha+1)} -
-              \frac{r^2}{2r_L^2} -
-              \frac{3r\sin^2\alpha\cos\alpha\sin\sigma\cos\sigma}{2r_L(3\cos^2\alpha+1)^{3/2}}\right)\,\theta^2 + O(\theta^3) \\
-\end{equation}
-or
-\begin{equation}
-    \eta^2 \approx \frac{r\sin\alpha\sin\sigma}{r_L\sqrt{3\cos^2\alpha+1}}\,\theta +
-        \left(\frac{r^2(\sin^2\alpha\cos^2\sigma + 19\cos^2\alpha + 5)}{6r_L(3\cos^2\alpha + 1)} +
-              \frac{3r\sin^2\alpha\cos\alpha\sin\sigma\cos\sigma}{r_L(3\cos^2\alpha+1)^{3/2}}\right)\,\theta^2 + O(\theta^3)
+    \begin{aligned}
+        \cos\eta &\approx 1 - \frac{r^2}{2r_L^2}\left(\frac{(1-\cos^2\alpha)\sin^2\sigma}{3\cos^2\alpha+1} - 1\right)\,\theta^2 -
+                          \frac{r^2\sin^3\alpha\cos\alpha\sin^2\sigma\cos\sigma}{r_L^2(3\cos^2\alpha+1)^2}\,\theta^3 +
+                          O(\theta^4) \\
+        \sin\eta &\approx \frac{r}{r_L}\sqrt{\frac{\cos^2\sigma\sin^2\alpha + 4\cos^2\alpha}{3\cos^2\alpha+1}}\,\theta +
+                          O(\theta^2)
+    \end{aligned}
 \end{equation}
 
 \section{Magnetic Deutsch/Arendt equations}
