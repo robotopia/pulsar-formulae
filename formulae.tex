@@ -335,6 +335,17 @@ With rotation effects, we compute $\hat{V}\cdot\hat{B}$ in the magnetic frame, a
     \end{aligned}
 \end{equation}
 
+\subsubsection{``Viewing'' Angle}
+
+Let $\zeta = \cos^{-1}(\hat{V}\cdot\hat{z})$ be the angle between the velocity field and the rotation axis\footnote{NB: $\zeta$ is being defined here as what viewing angle any arbitrary emission location would be viewed at, not as the actual viewing angle of a given observer.}.
+If we compute $\zeta$ in the magnetic frame and Taylor expand about $\theta = 0$, we get
+\begin{equation}
+    \begin{aligned}
+        \cos\zeta &\approx \frac{\cos\alpha(1-3\cos^2\sigma)}{\sqrt{3\cos^3\alpha(3\cos^2\sigma-2)+1}} + O(\theta) \\
+        \sin\zeta &\approx \frac{\sin\alpha}{\sqrt{3\cos^3\alpha(3\cos^2\sigma-2)+1}} + O(\theta)
+    \end{aligned}
+\end{equation}
+
 \section{Magnetic Deutsch/Arendt equations}
 
 \begin{equation}
