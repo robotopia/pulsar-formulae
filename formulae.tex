@@ -173,9 +173,9 @@ To convert from a given $s$ to $R$:
 From Eq \eqref{eqn:curvature_polar},
 \begin{equation}
     \begin{aligned}
-        \kappa &= \frac{3(\cos^2 + 1)}{R\sin\theta(3\cos^2\theta + 1)^{3/2}} \\
+        \kappa &= \frac{3(\cos^2\theta + 1)}{R\sin\theta(3\cos^2\theta + 1)^{3/2}} \\
         \rho = \frac{1}{\kappa}
-            &= \frac{R\sin\theta(3\cos^2\theta + 1)^{3/2}}{3(\cos^2 + 1)}
+            &= \frac{R\sin\theta(3\cos^2\theta + 1)^{3/2}}{3(\cos^2\theta + 1)}
     \end{aligned}
 \end{equation}
 Taylor expansions about $\theta = 0$:
@@ -352,8 +352,10 @@ and a corresponding ``retardation phase''
 \end{equation}
 where $P$ is the pulsar's rotation period, $r_L$ is the light cylinder radius, and where it is understood that emission from a particle at $\vec{r}$ at some rotation phase $\phase$ would be observed at phase $\phase + \Delta\phase_\text{ret}$.
 
-\section{Rotation effects}
+\section{Other Rotation Effects}
 \label{sec:rotation}
+
+\subsection{Particle velocity}
 
 The velocity of a particle at an arbitrary point in the magnetosphere will have an azimuthal component (induced by the rotation of the magnetosphere) and a component directed along the local field line.
 In order for a particle to stay on the same field line \emph{and} keep up with the rotation, the particle's velocity must satisfy
