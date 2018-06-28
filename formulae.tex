@@ -374,10 +374,16 @@ Substituting $\theta = \sin^{-1}\sqrt{\frac{r}{R}}$, one obtains
             \frac{2\cos\alpha}{\sqrt{3\cos^2\alpha+1}} +
             \frac{3\sin\alpha(\cos^2\alpha+1)\cos\sigma}{(3\cos^2\alpha+1)^{3/2}}\sqrt{\frac{r}{R}} - \\
             &\qquad
-            \frac{3\cos\alpha[(3\cos^2\alpha+4)\sin^2\alpha\cos^2\sigma + (3\cos^2\alpha+1)(2\cos^2\alpha+1)]}{
-                  (3\cos^2\alpha+1)^{5/2}}\frac{r}{R} +
-              O\left(\left(\frac{r}{r_p}\right)^{3/2}\right) \\
-        \sin\zeta &\approx \dots \text{(YET TO DO)}
+            \frac{3\cos\alpha}{(3\cos^2\alpha+1)^{3/2}}
+            \left(\frac{(3\cos^2\alpha+4)\sin^2\alpha\cos^2\sigma}{3\cos^2\alpha+1} +
+                  (2\cos^2\alpha+1)\right)\frac{r}{R} +
+            O\left(\left(\frac{r}{R}\right)^{3/2}\right) \\
+        \sin\zeta &\approx
+            \frac{\sin\alpha}{\sqrt{3\cos^2\alpha+1}} +
+            \frac{6\cos\alpha(\cos^2\alpha+1)\cos\sigma}{(3\cos^2\alpha+1)^{3/2}}\sqrt{\frac{r}{R}} - \\
+            &\qquad
+            \dots \text{(YET TO DO)}\dots +
+            O\left(\left(\frac{r}{R}\right)^{3/2}\right)
     \end{aligned}
     \label{eqn:viewingangle_taylor}
 \end{equation}
@@ -391,6 +397,11 @@ From Eq \eqref{eqn:viewingangle_taylor}, one can estimate the emission height by
               9\sin^2\alpha(\cos^2\alpha+1)\cos^2\sigma}
 \end{equation}
 (I can see that there are problems immediately, e.g., when $\sigma = \pi/2$. Maybe the next Taylor series term is needed\dots)
+Including three terms, and solving the resulting quadratic in $\sqrt{r/R}$, and then Taylor expanding around $\sigma = 0$ gives
+\begin{equation}
+    \sqrt{\frac{r}{R}} \approx \dots + O(\sigma^2)
+\end{equation}
+(There is no term in $\sigma$)
 
 \section{Magnetic Deutsch/Arendt equations}
 
@@ -662,6 +673,34 @@ The great-circle angle between the two points is\footnote{According to Wikipedia
 \begin{equation}
     \delta = \cos^{-1}(\cos\theta_1 \cos\theta_2 + \sin\theta_1 \sin\theta_2 \cos(\phase_1 - \phase_2))
 \end{equation}
+
+\section{Strong Magnetic Fields}
+
+\subsection{Quantum Critical Magnetic Field}
+
+The ``quantum critical magnetic field'' (e.g. Diachenko 2017):
+\begin{equation}
+    B_c = \frac{m^2c^3}{e\hbar}
+\end{equation}
+For electrons, $B_c = 4.413\times10^{13}\,$ G.
+
+\subsection{Landau levels}
+
+Electrons in a magnetic field occupy discrete energy levels (Diachenko 2017):
+\begin{equation}
+    E = \sqrt{p_z^2 + \tilde{m}},
+    \qquad
+    \tilde{m} = m\sqrt{1 + 2lb},
+\end{equation}
+where $p_z$ is parallel to the field momentum, $l$ is the level number and $b$ is the magnetic field strength in units of the quantum critical field $B_c$.
+
+\subsection{Pair Cascades}
+
+The maximum multiplicity, the number of secondary particles for each primary particle, of an ideal cascade initiated by a single primary particle with energy $\epsilon_p$ would be (Timokhin \& Harding, 2015)
+\begin{equation}
+    \kappa_\text{max} \simeq 2\frac{\epsilon_p}{\epsilon_{\gamma,\text{esc}}}
+\end{equation}
+where $\epsilon_{\gamma,\text{esc}}$ is the maximum energy of photons escaping from the cascade (or the minimum energy of pair producing photons).
 
 \section{Jackson's Classical Electrodynamics}
 
