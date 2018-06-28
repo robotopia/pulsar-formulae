@@ -146,7 +146,8 @@ in agreement with Eq \eqref{eqn:arclengthth} above.
 Let $r_p$ be the pulsar's radius, and $\theta_p$ by the angle the footpoint makes with the magnetic axis.
 \begin{align}
     r_p &= R\sin^2\theta_p \\
-    \theta_p &= \sin^{-1}\sqrt{\frac{r_p}{R}}
+    \theta_p &= \sin^{-1}\sqrt{\frac{r_p}{R}} = \sin^{-1}\sqrt{\frac{r_p\sin^2\theta}{r}} \\
+    \theta   &= \sin^{-1}\left[\sqrt{\frac{r}{r_p}}\sin\theta_p\right] \label{eqn:thp_to_th}
 \end{align}
 The $x$- and $y$-coordinates of the footpoint, $(x_p,y_p)$:
 \begin{align}
@@ -165,6 +166,10 @@ and then
 To convert from a given $s$ to $R$:
 \begin{equation}
     R = \frac{r_p}{\sin^2\left(s\sin^{-1}\sqrt{\frac{2\pi r_p}{cP}}\right)}
+\end{equation}
+Given the $s$ and $r$ of an arbitrary point in the magnetosphere, the point's colatitude is
+\begin{equation}
+    \theta = \sin^{-1}\sqrt{\frac{r}{r_p}\sin^2\left(s \sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)}
 \end{equation}
 
 \subsubsection{Curvature}
@@ -354,6 +359,31 @@ If we compute $\zeta$ in the magnetic frame and Taylor expand about $\theta = 0$
                            O(\theta^2) \\
     \end{aligned}
 \end{equation}
+Another possibly useful Taylor expansion is to consider field lines with a fixed footpoint colatitude $\theta_p$ (or, equivalently, a fixed maximum-extent distance $R$), and then expand about $r=0$.
+Substituting $\theta = \sin^{-1}\sqrt{\frac{r}{R}}$, one obtains
+\begin{equation}
+    \begin{aligned}
+        \cos\zeta &\approx
+            \frac{2\cos\alpha}{\sqrt{3\cos^2\alpha+1}} +
+            \frac{3\sin\alpha(\cos^2\alpha+1)\cos\sigma}{(3\cos^2\alpha+1)^{3/2}}\sqrt{\frac{r}{R}} - \\
+            &\qquad
+            \frac{3\cos\alpha[(3\cos^2\alpha+4)\sin^2\alpha\cos^2\sigma + (3\cos^2\alpha+1)(2\cos^2\alpha+1)]}{
+                  (3\cos^2\alpha+1)^{5/2}}\frac{r}{R} +
+              O\left(\left(\frac{r}{r_p}\right)^{3/2}\right) \\
+        \sin\zeta &\approx \dots \text{(YET TO DO)}
+    \end{aligned}
+    \label{eqn:viewingangle_taylor}
+\end{equation}
+
+\subsubsection{Emission Heights}
+
+From Eq \eqref{eqn:viewingangle_taylor}, one can estimate the emission height by taking the two lowest order terms and solving for $r/R$ (THIS NEEDS TO BE DOUBLE AND TRIPLE CHECKED!!):
+\begin{equation}
+    \frac{r}{R} \approx
+        \frac{(\cos\zeta\sqrt{3\cos^2\alpha+1} + 2\cos\alpha)^2(3\cos^2\alpha+1)^2}{
+              9\sin^2\alpha(\cos^2\alpha+1)\cos^2\sigma}
+\end{equation}
+(I can see that there are problems immediately, e.g., when $\sigma = \pi/2$. Maybe the next Taylor series term is needed\dots)
 
 \section{Magnetic Deutsch/Arendt equations}
 
