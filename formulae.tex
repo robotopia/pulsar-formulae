@@ -303,13 +303,13 @@ The pulse width, $W$, is related to the beam opening angle, $\Gamma$, as follows
 
 In this and the following section, $(r,\theta,\sigma)$ are the spherical coordinates in the magnetic frame.
 Let $\Gamma = \cos^{-1}(\hat{V}\cdot\hat{\mu})$ be the (half) opening angle of the beam.
-The Taylor expansion of $\Gamma$ about $\theta = 0$ (in the magnetic frame), including rotation effects, is
+The Taylor expansion of $\Gamma$ about $\theta = 0$ (in the magnetic frame), including rotation effects, is (NEED TO DOUBLE CHECK SIGNS!)
 \begin{equation}
     \begin{aligned}
         \cos\Gamma &\approx \frac{3\cos^2\alpha-1}{\sqrt{3\cos^2\alpha + 1}} +
-                       \frac{\sin\alpha\cos\alpha}{3\cos^2\alpha + 1}
-                       \left(\frac{9(\cos^2\alpha+1)\cos\sigma}{\sqrt{3\cos^2\alpha+1}} -
-                             \frac{6r\cos\alpha\sin\sigma}{r_L}\right) \,\theta +
+                       \frac{3\sin\alpha\cos\alpha}{3\cos^2\alpha + 1}
+                       \left(\frac{3(\cos^2\alpha+1)\cos\sigma}{\sqrt{3\cos^2\alpha+1}} -
+                             \frac{2r\cos\alpha\sin\sigma}{r_L}\right) \,\theta +
                        O(\theta^2) \\
         \sin\Gamma &\approx \frac{3\cos\alpha\sin\alpha}{\sqrt{3\cos^2\alpha+1}} +
                        \frac{3\cos^2\alpha-1}{3\cos^2\alpha+1}
