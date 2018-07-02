@@ -627,22 +627,63 @@ The material derivative of a time-dependent velocity field is
         &\approx 1.433018827689652\,x^{-5/3}
 \end{align}
 
+\begin{equation}
+    \lim_{x\rightarrow0} \int_x^\infty K_{5/3}(x^\prime)\,dx^\prime
+        \approx \frac{3^{1/2}2^{2/3}\pi}{\Gamma\left(-\frac23\right)x^{2/3}} = 2.149528241534478\,x^{-2/3}
+\end{equation}
+
 \subsubsection{Expansions at $x=\infty$:}
 
 \begin{equation}
     \lim_{x\rightarrow\infty} K_\nu(x)
-        \approx \sqrt{\frac{\pi}{2x}}e^{-x}
+        \approx \sqrt{\frac{\pi}{2}}x^{-1/2}e^{-x}
 \end{equation}
 
-\subsubsection{Upper integrals}
+\begin{equation}
+    \lim_{x\rightarrow\infty} \int_x^\infty K_\nu(x^\prime)\,dx^\prime
+        \approx \sqrt{\frac{\pi}{2}}x^{-1/2}e^{-x}
+\end{equation}
+
+\subsubsection{Special values}
 
 In practice, I often only evaluate the $K_\nu(x)$ family of functions (above) up to $x = 10$.
-Therefore, in order to get accurate numerical upper integrals of the form $F_\nu(x) = \int_x^\infty K_\nu(x)\,dx$, it is useful to have some values of $F_\nu(10)$.
+Therefore, in order to get accurate numerical upper integrals of the form $F_\nu(x) = \int_x^\infty K_\nu(x^\prime)\,dx^\prime$, it is useful to have some values of $F_\nu(10)$.
 \begin{align}
     F_{1/3}(10) &= \int_{10}^\infty K_{1/3}(x)\,dx = 0.0000170985 \\
     F_{2/3}(10) &= \int_{10}^\infty K_{2/3}(x)\,dx = 0.0000173511 \\
     F_{5/3}(10) &= \int_{10}^\infty K_{5/3}(x)\,dx = 0.0000192238
 \end{align}
+
+\subsubsection{Approximating functions}
+
+This is only a very rough approximation and should not be used.
+\begin{equation}
+    \tilde{F}_{5/3}(x) = \int_x^\infty K_{5/3}(x^\prime)\,dx^\prime
+        \approx \begin{cases}
+            (1-Z(x))(2.149528241534478\,x^{-2/3}) + Z(x)\left(\sqrt{\frac{\pi}{2}}x^{-1/2}e^{-x}\right) & x \le 7 \\
+            \sqrt{\frac{\pi}{2}}x^{-1/2}e^{-x} & x > 7
+        \end{cases}
+\end{equation}
+where
+\begin{equation}
+    Z(x) = 1-e^{-(5x/2)^{4/5}}
+\end{equation}
+Its errors are approximately the following, for various values of $x$.
+The ``correct'' values ($F_{5/3}(x)$) were evaluated using WolframAlpha.
+The column named ``numerical'' is the result of numerically integrating $K_{5/3}(x)$.
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{c|c|c|c|c|c}
+        $x$ & $F_{5/3}(x)$ & $\tilde{F}_{5/3}(x)$ & error & numerical & error \\
+        \hline
+        0.001 & 213.139                & 213.506                & +0.172\% & 220.503                & 3.455\% \\
+        0.01  & 44.4973                & 44.5833                & +0.193\% & 44.6522                & 0.348\% \\
+        0.1   & 8.18186                & 8.18142                & -0.005\% & 8.18522                & 0.041\% \\
+        1     & 0.651423               & 0.671717               & +3.115\% & 0.651487               & 0.010\% \\
+        6.99  & $4.77657\times10^{-4}$ & $4.67262\times10^{-4}$ & -2.176\% & $4.77663\times10^{-4}$ & 0.001\% \\
+        7.01  & $4.6743\times10^{-4}$  & $4.27363\times10^{-4}$ & -8.572\% & $4.6744\times10^{-4}$  & 0.001\%
+    \end{tabular}
+\end{table}
 
 \subsection{Stokes Parameters}
 
