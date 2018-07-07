@@ -715,6 +715,20 @@ The great-circle angle between the two points is\footnote{According to Wikipedia
     \delta = \cos^{-1}(\cos\theta_1 \cos\theta_2 + \sin\theta_1 \sin\theta_2 \cos(\phase_1 - \phase_2))
 \end{equation}
 
+\subsection{Thomas precession}
+
+(From Wikipedia:) Consider the motion of a particle.
+Introduce a lab frame in which an observer can measure the relative motion of the particle.
+At each instant of time the particle has an inertial frame in which it is at rest.
+Relative to this lab frame, the instantaneous velocity of the particle is $\vec{v}(t)$ with magnitude $|\vec{v}| = v$ bounded by the speed of light $c$, so that $0 \le v < c$.
+Here the time $t$ is the coordinate time as measured in the lab frame, not the proper time of the particle.
+
+Apart from the upper limit on magnitude, the velocity of the particle is arbitrary and not necessarily constant; its corresponding vector of acceleration is $\vec{a} = d\vec{v}(t)/dt$.
+As a result of the Wigner rotation at every instant, the particle's frame precesses with an angular velocity given by
+\begin{equation}
+    \omega_T = \frac{1}{c^2}\left(\frac{\gamma^2}{\gamma + 1}\right)\vec{a}\times\vec{v}.
+\end{equation}
+
 \section{Strong Magnetic Fields}
 
 \subsection{Quantum Critical Magnetic Field}
