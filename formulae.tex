@@ -726,7 +726,20 @@ Here the time $t$ is the coordinate time as measured in the lab frame, not the p
 Apart from the upper limit on magnitude, the velocity of the particle is arbitrary and not necessarily constant; its corresponding vector of acceleration is $\vec{a} = d\vec{v}(t)/dt$.
 As a result of the Wigner rotation at every instant, the particle's frame precesses with an angular velocity given by
 \begin{equation}
-    \omega_T = \frac{1}{c^2}\left(\frac{\gamma^2}{\gamma + 1}\right)\vec{a}\times\vec{v}.
+    \vec{\omega}_T = \frac{1}{c^2}\left(\frac{\gamma^2}{\gamma + 1}\right)\vec{a}\times\vec{v}.
+\end{equation}
+
+\subsection{Apparent angular speed}
+
+A non-rotating observer will consider a particle at $(r,\theta)$ (2D polar coordinates), moving with velocity $\vec{\beta}$ at an angle $\eta$ to its radial vector to have angular velocity
+\begin{equation}
+    \Omega_\text{IF} = \frac{\beta\sin\theta}{1 + \beta\cos\theta}.
+    \label{eqn:angular_rate_IF}
+\end{equation}
+If the observer corotates with the particle (i.e. with angular velocity $\Omega = \frac{\beta\sin\theta}{r}$), the particle will be observed to have angular velocity
+\begin{equation}
+    \Omega_\text{CF} = \frac{-\Omega\beta\cos\eta}{1+\beta\cos\eta}.
+    \label{eqn:angular_rate_CF}
 \end{equation}
 
 \section{Strong Magnetic Fields}
@@ -794,5 +807,28 @@ Critical frequency:
     \tag{J14.81}
 \end{equation}
 
+\appendix
+
+\section{Derivation of Eqs. \eqref{eqn:angular_rate_IF} and \eqref{eqn:angular_rate_CF}}
+
+Let a particle have radial position $\vec{r} = (r,\theta)$ (polar coordinates), and let it have a velocity, $\vec{\beta}$, which makes an angle $\eta$ with the radial vector.
+Let the particle emit two photons at two consecutive times $t$ and $t+dt$, both directed towards the origin.
+The second photon must traverse an extra distance $\beta\cos\eta$ (where $\beta = |\vec{\beta}|$) to ``catch up'' to the first photon, so an observer standing at the origin will detect the two photons at an interval $dt^\prime = (1+\beta\cos\eta)\,dt$.
+Moreover, the observer will see the photons arrive with an angular separation of $d\theta^\prime = \beta\sin\eta\,dt$.
+Overall, it will appear to the observer that, at time $t$, the particle is moving with angular speed
+\begin{equation}
+    \Omega_\text{IF}
+        = \deriv{\theta^\prime}{t^\prime}
+        = \frac{\beta\sin\eta}{1 + \beta\cos\eta}.
+\end{equation}
+If the observer corotates with velocity $\Omega = \frac{\beta\sin\eta}{r}$, then the time between detections will be the same, $dt^{\prime\prime} = (1+\beta\cos\eta)\,dt$.
+However, the apparent angular separation will differ.
+Even though the corotation guarantees that the particle is at the same apparent bearing when it emits, the photon won't arrive at the origin until the photon crosses the extra distance of $\beta\cos\eta\,dt$, which corresponds to an extra rotation of $\Omega\beta\cos\eta\,dt$.
+Therefore, the apparent direction of the second photon will lag behind the first by $d\theta^{\prime\prime} = \Omega\beta\cos\eta\,dt$, resulting in an observed angular speed of
+\begin{equation}
+    \Omega_\text{CF}
+        = \deriv{\theta^{\prime\prime}}{t^{\prime\prime}}
+        = \frac{-\Omega\beta\cos\eta}{1+\beta\cos\eta}.
+\end{equation}
 
 \end{document}
