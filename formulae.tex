@@ -323,27 +323,24 @@ The pulse width, $W$, is related to the beam opening angle, $\Gamma$, as follows
 
 \subsubsection{Beam Opening Angle \linktosage{sage:Gamma}}
 
-In this and the following section, $(r,\theta,\sigma)$ are the spherical coordinates in the magnetic frame.
+In this and the following sections, $(r,\theta,\sigma)$ are the spherical coordinates in the magnetic frame.
 Let $\Gamma = \cos^{-1}(\hat{V}\cdot\hat{\mu})$ be the (half) opening angle of the beam.
-The Taylor expansion of $\Gamma$ about $\theta = 0$ (in the magnetic frame), including rotation effects, is (CHECK $\beta$'s!)
+The Taylor expansion of $\Gamma$ about $\theta = 0$ (in the magnetic frame), including rotation effects, is
 \begin{equation}
-    \cos\Gamma \approx \Lambda\cos\alpha -
-        \frac{\sin\alpha}{2\Lambda}\left[\left(3\Lambda^2 + 2\left(\frac{r\cos\alpha}{\beta r_L}\right)^2\right)\cos\sigma +
-            \frac{r\cos\alpha}{\beta r_L}\sin\sigma\right] \sin\theta + O(\sin^2\theta)
+    \begin{aligned}
+        \cos\Gamma &\approx \Lambda - \frac{r\sin\alpha}{\beta r_L}
+            \left(\frac{1}{\Lambda}\frac{r\cos\alpha}{\beta r_L}\cos\sigma +
+                  \frac32\sin\sigma\right)\sin\theta + O(\sin^2\theta) \\
+        \sin\Gamma &\approx \frac{r\sin\alpha}{\beta r_L} +
+            \left(\frac{r\cos\alpha}{\beta r_L}\cos\sigma + \frac{3\Lambda}{2}\sin\sigma\right)\sin\theta +
+            O(\sin^2\theta)
+    \end{aligned}
 \end{equation}
 where
 \begin{equation}
     \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}
 \end{equation}
-or
-\begin{equation}
-    \sin\Gamma \approx \Lambda^\prime \sin\alpha + \dots
-\end{equation}
-where
-\begin{equation}
-    \Lambda^\prime \equiv \sqrt{\left(\frac{r}{r_L}\right)^2 + \Lambda^2}
-        = \sqrt{1+\left(\frac{r\cos\alpha}{\beta r_L}\right)^2}
-\end{equation}
+(NB: There is a weird relationship between the expression for $\sin\Gamma$ above and the equivalent expression for the aligned case, $\alpha = 0$. Not sure what to make of it yet. They kind of match, but not quite.)
 
 \subsubsection{``Aberration'' Angle \linktosage{sage:aberration}}
 
@@ -363,43 +360,34 @@ where
     \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}
 \end{equation}
 
-\subsubsection{``Viewing'' Angle}
+\subsubsection{``Viewing'' Angle \linktosage{sage:zeta}}
 
 Let $\zeta = \cos^{-1}(\hat{V}\cdot\hat{z})$ be the angle between the velocity field and the rotation axis\footnote{NB: $\zeta$ is being defined here as what viewing angle any arbitrary emission location would be viewed at, not as the actual viewing angle of a given observer.}.
 If we compute $\zeta$ in the magnetic frame and Taylor expand about $\theta = 0$, we get
 \begin{equation}
-    \begin{aligned}
-        \cos\zeta &\approx \frac{2\cos\alpha}{\sqrt{3\cos^2\alpha+1}} +
-                           \frac{\sin\alpha}{3\cos^2\alpha+1}
-                           \left(\frac{3(\cos^2\alpha+1)\cos\sigma}{\sqrt{3\cos^2\alpha+1}} -
-                                 \frac{2r\sin\sigma}{r_L}\right)\,\theta +
-                           O(\theta^2) \\
-        \sin\zeta &\approx \frac{\sin\alpha}{\sqrt{3\cos^2\alpha+1}} +
-                           \frac{2\cos\alpha}{3\cos^2\alpha+1}
-                           \left(\frac{3(\cos^2\alpha+1)\cos\sigma}{\sqrt{3\cos^2\alpha+1}} -
-                                 \frac{2r\sin\sigma}{r_L}\right)\,\theta +
-                           O(\theta^2) \\
-    \end{aligned}
+    \cos\zeta \approx \Lambda\cos\alpha -
+        \frac{\sin\alpha}{2\Lambda}\left[\left(3\Lambda^2 + 2\left(\frac{r\cos\alpha}{\beta r_L}\right)^2\right)\cos\sigma +
+            \frac{r\cos\alpha}{\beta r_L}\sin\sigma\right] \sin\theta + O(\sin^2\theta)
 \end{equation}
-Another possibly useful Taylor expansion is to consider field lines with a fixed footpoint colatitude $\theta_p$ (or, equivalently, a fixed maximum-extent distance $R$), and then expand about $r=0$.
-Substituting $\theta = \sin^{-1}\sqrt{\frac{r}{R}}$, one obtains
+where
 \begin{equation}
-    \begin{aligned}
-        \cos\zeta &\approx
-            \frac{2\cos\alpha}{\sqrt{3\cos^2\alpha+1}} +
-            \frac{3\sin\alpha(\cos^2\alpha+1)\cos\sigma}{(3\cos^2\alpha+1)^{3/2}}\sqrt{\frac{r}{R}} - \\
-            &\qquad
-            \frac{3\cos\alpha}{(3\cos^2\alpha+1)^{3/2}}
-            \left(\frac{(3\cos^2\alpha+4)\sin^2\alpha\cos^2\sigma}{3\cos^2\alpha+1} +
-                  (2\cos^2\alpha+1)\right)\frac{r}{R} +
-            O\left(\left(\frac{r}{R}\right)^{3/2}\right) \\
-        \sin\zeta &\approx
-            \frac{\sin\alpha}{\sqrt{3\cos^2\alpha+1}} +
-            \frac{6\cos\alpha(\cos^2\alpha+1)\cos\sigma}{(3\cos^2\alpha+1)^{3/2}}\sqrt{\frac{r}{R}} - \\
-            &\qquad
-            \dots \text{(YET TO DO)}\dots +
-            O\left(\left(\frac{r}{R}\right)^{3/2}\right)
-    \end{aligned}
+    \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}
+\end{equation}
+or
+\begin{equation}
+    \sin\zeta \approx \Lambda^\prime \sin\alpha + \dots
+\end{equation}
+where
+\begin{equation}
+    \Lambda^\prime \equiv \sqrt{\left(\frac{r}{r_L}\right)^2 + \Lambda^2}
+        = \sqrt{1+\left(\frac{r\cos\alpha}{\beta r_L}\right)^2}
+\end{equation}
+The viewing angle can also be taylor expanded about $r/r_L = 0$, in which case we get
+\begin{equation}
+    \cos\zeta \approx
+        \frac{3\cos\sigma\sin\theta\cos\theta\sin\alpha - (3\cos^2\theta - 1)\cos\alpha}{\sqrt{3\cos^2\theta + 1}}
+        \left[1 + \frac{\sin\sigma\sin\theta}{\sqrt{3\cos^2\theta+1}} \frac{r\sin\alpha}{\beta r_L}\right] +
+        O\left(\left(\frac{r}{r_L}\right)^2\right)
     \label{eqn:viewingangle_taylor}
 \end{equation}
 
@@ -407,16 +395,8 @@ Substituting $\theta = \sin^{-1}\sqrt{\frac{r}{R}}$, one obtains
 
 From Eq \eqref{eqn:viewingangle_taylor}, one can estimate the emission height by taking the two lowest order terms and solving for $r/R$ (THIS NEEDS TO BE DOUBLE AND TRIPLE CHECKED!!):
 \begin{equation}
-    \frac{r}{R} \approx
-        \frac{(\cos\zeta\sqrt{3\cos^2\alpha+1} + 2\cos\alpha)^2(3\cos^2\alpha+1)^2}{
-              9\sin^2\alpha(\cos^2\alpha+1)\cos^2\sigma}
+    \frac{r}{R} \approx \dots
 \end{equation}
-(I can see that there are problems immediately, e.g., when $\sigma = \pi/2$. Maybe the next Taylor series term is needed\dots)
-Including three terms, and solving the resulting quadratic in $\sqrt{r/R}$, and then Taylor expanding around $\sigma = 0$ gives
-\begin{equation}
-    \sqrt{\frac{r}{R}} \approx \dots + O(\sigma^2)
-\end{equation}
-(There is no term in $\sigma$)
 
 \section{Magnetic Deutsch/Arendt equations}
 
@@ -931,5 +911,10 @@ Therefore, the apparent direction of the second photon will lag behind the first
 \label{sage:V_taylor}
 
 \lstinputlisting{sagescripts/V_taylor.sage}
+
+\subsection*{Viewing Angle}
+\label{sage:zeta}
+
+\lstinputlisting{sagescripts/zeta.sage}
 
 \end{document}
