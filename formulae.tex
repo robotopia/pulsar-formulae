@@ -359,6 +359,11 @@ where
 \begin{equation}
     \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}
 \end{equation}
+When $\alpha = 0$, we have the exact expressions
+\begin{align}
+    \cos\eta &= \sqrt{1-\left(\frac{r\sin\theta}{\beta r_L}\right)^2}, &
+    \sin\eta &= \frac{r\sin\theta}{\beta r_L}
+\end{align}
 
 \subsubsection{Viewing Inclination \linktosage{sage:zeta}}
 
@@ -871,6 +876,7 @@ Critical frequency:
 
 \appendix
 
+\newpage
 \section{Derivations}
 
 \subsection{Eqs. \eqref{eqn:angular_rate_IF} and \eqref{eqn:angular_rate_CF}}
@@ -895,9 +901,12 @@ Therefore, the apparent direction of the second photon will lag behind the first
         = \frac{-\Omega\beta\cos\eta}{1+\beta\cos\eta}.
 \end{equation}
 
+\newpage
 \section{Sage Scripts}
 
 \newcommand{\lstsage}[2]{\subsection*{#1}\label{sage:#2}\lstinputlisting{sagescripts/#2.sage}}
+
+The scripts are in alphabetical order by filename.
 
 \lstsage{3D Rotation}{3Drotation}
 \lstsage{Aberration Angle}{aberration}
