@@ -580,7 +580,7 @@ In this section (unless otherwise specified), $\theta$ is the colatitude (measur
     \end{bmatrix}
 \end{equation}
 
-\subsubsection{3D Rotation \linktosage{sage:3drotation}}
+\subsubsection{3D Rotation \linktosage{sage:3Drotation}}
 
 \begin{equation}
     R_x(\theta) = \begin{bmatrix}
@@ -897,59 +897,23 @@ Therefore, the apparent direction of the second photon will lag behind the first
 
 \section{Sage Scripts}
 
-\subsection*{3D Rotation}
-\label{sage:3drotation}
+\newcommand{\lstsage}[2]{\subsection*{#1}\label{sage:#2}\lstinputlisting{sagescripts/#2.sage}}
 
-\lstinputlisting{sagescripts/3Drotation.sage}
-
-\subsection*{Aberration Angle}
-\label{sage:aberration}
-
-\lstinputlisting{sagescripts/aberration.sage}
-
-\subsection*{Magnetic Dipole}
-\label{sage:Bdip}
-
-\lstinputlisting{sagescripts/Bdip.sage}
-
-\subsection*{Magnetic Dipole---Aligned Rotator}
-\label{sage:Bdip_aligned}
-
-\lstinputlisting{sagescripts/Bdip_aligned.sage}
-
-\subsection*{Magnetic Dipole---Inclined Rotator}
-\label{sage:Bdip_inclined}
-
-\lstinputlisting{sagescripts/Bdip_inclined.sage}
-
-\subsection*{Beam Opening Angle}
-\label{sage:Gamma}
-
-\lstinputlisting{sagescripts/Gamma.sage}
-
-\subsection*{Magnetic $\leftrightarrow$ Observer}
-\label{sage:mag2obs}
-
-\lstinputlisting{sagescripts/mag2obs.sage}
-
-\subsection*{Particle Velocity}
-\label{sage:V}
-
-\lstinputlisting{sagescripts/V.sage}
-
-\subsection*{Particle Velocity---Aligned Rotator}
-\label{sage:V_aligned}
-
-\lstinputlisting{sagescripts/V_aligned.sage}
-
-\subsection*{Particle Velocity---Inclined Rotator}
-\label{sage:V_taylor}
-
-\lstinputlisting{sagescripts/V_taylor.sage}
-
-\subsection*{Viewing Inclination}
-\label{sage:zeta}
-
-\lstinputlisting{sagescripts/zeta.sage}
+\lstsage{3D Rotation}{3Drotation}
+\lstsage{Aberration Angle}{aberration}
+\lstsage{Magnetic Dipole}{Bdip}
+\lstsage{Magnetic Dipole---Aligned Rotator}{Bdip_aligned}
+\lstsage{Magnetic Dipole---Inclined Rotator}{Bdip_inclined}
+\lstsage{Coordinates}{coordinates}
+\lstsage{Emission Height}{emissionheight}
+\lstsage{Beam Opening Angle}{Gamma}
+\lstsage{Magnetic $\leftrightarrow$ Observer}{mag2obs}
+\lstsage{Viewing Phase}{phase}
+\lstsage{Pulsar Angles}{pulsarangles}
+\lstsage{Retardation}{retardation}
+\lstsage{Particle Velocity}{V}
+\lstsage{Particle Velocity---Aligned Rotator}{V_aligned}
+\lstsage{Particle Velocity---Inclined Rotator}{V_taylor}
+\lstsage{Viewing Inclination}{zeta}
 
 \end{document}
