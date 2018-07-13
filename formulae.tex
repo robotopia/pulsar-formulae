@@ -369,19 +369,15 @@ If we compute $\zeta$ in the magnetic frame and Taylor expand about $\theta = 0$
         \frac{\sin\alpha}{2\Lambda}\left[\left(3\Lambda^2 + 2\left(\frac{r\cos\alpha}{\beta r_L}\right)^2\right)\cos\sigma +
             \frac{r\cos\alpha}{\beta r_L}\sin\sigma\right] \sin\theta + O(\sin^2\theta)
 \end{equation}
-where
-\begin{equation}
-    \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}
-\end{equation}
 or
 \begin{equation}
     \sin\zeta \approx \Lambda^\prime \sin\alpha + \dots
 \end{equation}
 where
-\begin{equation}
-    \Lambda^\prime \equiv \sqrt{\left(\frac{r}{r_L}\right)^2 + \Lambda^2}
-        = \sqrt{1+\left(\frac{r\cos\alpha}{\beta r_L}\right)^2}
-\end{equation}
+\begin{align}
+    \Lambda &\equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}, &
+    \Lambda^\prime &\equiv \sqrt{1+\left(\frac{r\cos\alpha}{\beta r_L}\right)^2}
+\end{align}
 The viewing angle can also be taylor expanded about $r/r_L = 0$, in which case we get
 \begin{equation}
     \cos\zeta \approx
@@ -397,6 +393,18 @@ The phase at which an emission site is viewed is the negative of the phase angle
 \begin{equation}
     \phase_\text{ab} = -\tan^{-1}\left(\frac{V_y}{V_x}\right)
 \end{equation}
+Taylor expanding $\sin\phase_\text{ab}$ about $\theta = 0$ in the magnetic frame yields
+\begin{equation}
+    \sin\phase_\text{ab} \approx
+        -\frac{r}{\beta\Lambda^\prime} -
+            \frac{\beta\Lambda(2(\Lambda^\prime)^2+1)\sin\sigma - r\cos\alpha(3\Lambda^2-1)\cos\sigma}{
+                  2\beta\sin\alpha(\Lambda^\prime)^3}\sin\theta + O(\sin^2\theta)
+\end{equation}
+where
+\begin{align}
+    \Lambda &\equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}, &
+    \Lambda^\prime &\equiv \sqrt{1+\left(\frac{r\cos\alpha}{\beta r_L}\right)^2}
+\end{align}
 
 \subsubsection{Emission Heights}
 
