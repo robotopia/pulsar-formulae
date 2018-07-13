@@ -392,7 +392,7 @@ The viewing angle can also be taylor expanded about $r/r_L = 0$, in which case w
     \label{eqn:viewingangle_taylor}
 \end{equation}
 
-\subsubsection{Viewing Phase}
+\subsubsection{Viewing Phase \linktosage{sage:phase}}
 
 The phase at which an emission site is viewed is the negative of the phase angle of the velocity vector, or
 \begin{equation}
@@ -411,11 +411,18 @@ where
     \Lambda^\prime &\equiv \sqrt{1+\left(\frac{r\cos\alpha}{\beta r_L}\right)^2}
 \end{align}
 
-\subsubsection{Emission Heights}
+\subsubsection{Emission Heights \linktosage{sage:emissionheight}}
 
 From Eq \eqref{eqn:viewingangle_taylor}, one can estimate the emission height by taking the two lowest order terms and solving for $r/R$ (THIS NEEDS TO BE DOUBLE AND TRIPLE CHECKED!!):
 \begin{equation}
     \frac{r}{R} \approx \dots
+\end{equation}
+
+\subsubsection{Curvature \linktosage{sage:curvature}}
+
+The Taylor expansion of the curvature near the magnetic axis ($\theta = 0$)
+\begin{equation}
+    \kappa \approx \frac{\sin\alpha}{\beta r_L}\sqrt{4 + \left(\frac{r\cos\alpha}{\beta r_L}\right)^2} + \dots
 \end{equation}
 
 \section{Magnetic Deutsch/Arendt equations}
@@ -517,7 +524,7 @@ The first order terms are \linktosage{sage:V_taylor}
                \left(\frac32\Lambda\sin\sigma +
                     \frac{r\cos\alpha}{\beta r_L}\cos\sigma \right) \sin\theta + O(\sin^2\theta) \\
     \hat{V}_z &\approx \Lambda - \frac{r\sin\alpha}{\beta r_L\Lambda}\left(\frac32\Lambda\sin\sigma +
-                    \frac{r}{r_L}\cos\sigma\cos\alpha \right) \sin\theta + O(\sin^2\theta)
+                    \frac{r\cos\alpha}{r_L}\cos\sigma \right) \sin\theta + O(\sin^2\theta)
 \end{align}
 where
 \begin{equation}
@@ -909,11 +916,13 @@ Therefore, the apparent direction of the second photon will lag behind the first
 The scripts are in alphabetical order by filename.
 
 \lstsage{3D Rotation}{3Drotation}
+\lstsage{Acceleration}{A}
 \lstsage{Aberration Angle}{aberration}
 \lstsage{Magnetic Dipole}{Bdip}
 \lstsage{Magnetic Dipole---Aligned Rotator}{Bdip_aligned}
 \lstsage{Magnetic Dipole---Inclined Rotator}{Bdip_inclined}
 \lstsage{Coordinates}{coordinates}
+\lstsage{Curvature}{curvature}
 \lstsage{Emission Height}{emissionheight}
 \lstsage{Beam Opening Angle}{Gamma}
 \lstsage{Magnetic $\leftrightarrow$ Observer}{mag2obs}
