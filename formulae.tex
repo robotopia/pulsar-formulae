@@ -366,17 +366,18 @@ When $\alpha = 0$, we have the exact expressions
 \end{align}
 
 \subsubsection{Viewing Inclination \linktosage{sage:zeta}}
+\label{sec:zeta}
 
 Let $\zeta = \cos^{-1}(\hat{V}\cdot\hat{z})$ be the angle between the velocity field and the rotation axis\footnote{NB: $\zeta$ is being defined here as what viewing angle any arbitrary emission location would be viewed at, not as the actual viewing angle of a given observer.}.
 If we compute $\zeta$ in the magnetic frame and Taylor expand about $\theta = 0$, we get
 \begin{equation}
-    \cos\zeta \approx \Lambda\cos\alpha -
-        \frac{\sin\alpha}{2\Lambda}\left[\left(3\Lambda^2 + 2\left(\frac{r\cos\alpha}{\beta r_L}\right)^2\right)\cos\sigma +
-            \frac{r\cos\alpha}{\beta r_L}\sin\sigma\right] \sin\theta + O(\sin^2\theta)
-\end{equation}
-or
-\begin{equation}
-    \sin\zeta \approx \Lambda^\prime \sin\alpha + \dots
+    \begin{aligned}
+        \cos\zeta &\approx \Lambda\cos\alpha -
+            \frac{\sin\alpha}{2\Lambda}\left[\left(3\Lambda^2 + 2\left(\frac{r\cos\alpha}{\beta r_L}\right)^2\right)\cos\sigma +
+                \frac{r\cos\alpha}{\beta r_L}\sin\sigma\right] \sin\theta + O(\sin^2\theta) \\
+        \sin\zeta &\approx \Lambda^\prime \sin\alpha + \dots
+    \end{aligned}
+    \label{eqn:zeta_th}
 \end{equation}
 where
 \begin{align}
@@ -413,7 +414,15 @@ where
 
 \subsubsection{Emission Heights \linktosage{sage:emissionheight}}
 
-From Eq \eqref{eqn:viewingangle_taylor}, one can estimate the emission height by taking the two lowest order terms and solving for $r/R$ (THIS NEEDS TO BE DOUBLE AND TRIPLE CHECKED!!):
+From Section \S\ref{sec:zeta}, one can estimate the emission height.
+From the first term of Eq \eqref{eqn:zeta_th}, we get the first order estimate of emission heights
+\begin{equation}
+    \begin{aligned}
+        \frac{r}{\beta r_L} &\approx \frac{1}{\sin\alpha} \sqrt{1 - \frac{\cos^2\zeta}{\cos^2\alpha}} \qquad (\zeta < \alpha) \\
+                            &\approx \frac{1}{\cos\alpha} \sqrt{\frac{\sin^2\zeta}{\sin^2\alpha} - 1} \qquad (\zeta > \alpha)
+    \end{aligned}
+\end{equation}
+From Eq \eqref{eqn:viewingangle_taylor},
 \begin{equation}
     \frac{r}{R} \approx \dots
 \end{equation}
