@@ -342,7 +342,7 @@ where
 \end{equation}
 (NB: There is a weird relationship between the expression for $\sin\Gamma$ above and the equivalent expression for the aligned case, $\alpha = 0$. Not sure what to make of it yet. They kind of match, but not quite.)
 
-\subsubsection{``Aberration'' Angle \linktosage{sage:aberration}}
+\subsubsection{``Aberration'' Angle \linktosage{sage:aberration_dip}}
 
 Let $\eta = \cos^{-1}(\hat{V}\cdot\hat{B})$ be the angle between the local magnetic field and the particle trajectory.
 Without rotation effects, $\hat{V} = \hat{B}$ everywhere, so $\eta = 0$.
@@ -506,7 +506,7 @@ This can be solved for $k$, yielding
 \begin{equation}
     k = -\Omega(\vec{\phase}\cdot\hat{B}) \pm \sqrt{\Omega^2(\vec{\phase}\cdot\hat{B})^2 - (\rho^2\Omega^2-c^2)},
 \end{equation}
-where $\vec{\phase} = \rho\hat{V}_\phase = \{-y,x,0\}$. Hence \linktosage{sage:V},
+where $\vec{\phase} = \rho\hat{V}_\phase = \{-y,x,0\}$. Hence \linktosage{sage:Vdip},
 \begin{equation}
     \hat{V} = \frac{\rho}{r_L}\hat{V}_\phase + \left[-\frac{\vec{\phase}\cdot\hat{B}}{r_L} \pm
               \sqrt{\left(\frac{\vec{\phase}\cdot\hat{B}}{r_L}\right)^2 - \left(\frac{\rho}{r_L}\right)^2 + 1}\right]\,\hat{B},
@@ -926,7 +926,7 @@ The scripts are in alphabetical order by filename.
 
 \lstsage{3D Rotation}{3Drotation}
 \lstsage{Acceleration}{A}
-\lstsage{Aberration Angle}{aberration}
+\lstsage{Aberration Angle}{aberration_dip}
 \lstsage{Magnetic Dipole}{Bdip}
 \lstsage{Magnetic Dipole---Aligned Rotator}{Bdip_aligned}
 \lstsage{Magnetic Dipole---Inclined Rotator}{Bdip_inclined}
@@ -938,9 +938,10 @@ The scripts are in alphabetical order by filename.
 \lstsage{Viewing Phase}{phase}
 \lstsage{Pulsar Angles}{pulsarangles}
 \lstsage{Retardation}{retardation}
-\lstsage{Particle Velocity}{V}
-\lstsage{Particle Velocity---Aligned Rotator}{V_aligned}
-\lstsage{Particle Velocity---Inclined Rotator}{V_taylor}
+\lstsage{Particle Velocity---Dipole}{Vdip}
+\lstsage{Particle Velocity---Arendt}{Vrot}
+\lstsage{Particle Velocity---Aligned Rotator---Dipole}{V_aligned}
+\lstsage{Particle Velocity---Inclined Rotator---Dipole}{V_taylor}
 \lstsage{Viewing Inclination}{zeta}
 
 \end{document}

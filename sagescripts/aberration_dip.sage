@@ -1,5 +1,5 @@
 # Get dipole magnetic field
-load('V.sage')
+load('Vdip.sage')
 
 coseta = (Bnorm.dot_product(Be/be)).simplify_trig()
 coseta_mag = obs2mag_scalar(coseta, al, 0)
