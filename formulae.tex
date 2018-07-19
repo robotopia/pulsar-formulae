@@ -270,16 +270,24 @@ Taylor series expansions (about $\theta = 0$):
 
 \paragraph{With rotation effects:}
 \begin{equation}
-    \cos\Gamma = \frac{\sqrt{r^2\cos^2\theta-r^2+r_L^2}(3\cos^2\theta-1)}{r_L\sqrt{3\cos^2\theta+1}}
+    \cos\Gamma = \frac{\Lambda_\theta(3\cos^2\theta-1)}{\sqrt{3\cos^2\theta+1}}
+\end{equation}
+where
+\begin{equation}
+    \Lambda_\theta = \sqrt{1 - \left(\frac{r\sin\theta}{r_L}\right)^2}
 \end{equation}
 Taylor series expansions (about $\theta = 0$):
 \begin{equation}
     \begin{aligned}
         \cos\Gamma &\approx 1 - \frac{4r^2+9r_L^2}{8r_L^2}\,\theta^2 -
                             \frac{48r^4 - 280r^2r_L^2 - 9r_L^4}{384r_L^4}\,\theta^4 + O(\theta^6) \\
-        \Gamma &\approx \frac{\sqrt{4r^2+9r_L^2}}{2r_L}\,\theta +
-                        \frac{8r^4 - 26r^2r_L^2 + 9r_L^4}{24r_L^3\sqrt{4r^2+9r_L^2}}\,\theta^3 + O(\theta^5)
+        \Gamma &\approx \sqrt{(r^\prime)^2 + \frac94}\,\theta +
+                        \frac{8(r^\prime)^4 - 26(r^\prime)^2 + 9}{48\sqrt{(r^\prime)^2 + \frac94}}\,\theta^3 + O(\theta^5)
     \end{aligned}
+\end{equation}
+where
+\begin{equation}
+    r^\prime = \frac{r}{r_L}
 \end{equation}
 
 \subsection{Inclined Rotator}
@@ -669,6 +677,23 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
 [YET TO DO]
 
 \section{Miscellaneous}
+
+\subsection{Taylor Series}
+
+Taylor expansion of $f(x)$ about $x = a$:
+\begin{equation}
+    \begin{aligned}
+        f(x) &= \sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!}(x-a)^n \\
+             &= f(a) + f^\prime(a)(x-a) + \frac12 f^{\prime\prime}(a)(x-a)^2 + \dots
+    \end{aligned}
+\end{equation}
+Taylor expansion of $f(x,y)$ about $(x,y) = (a,b)$
+\begin{equation}
+    \begin{aligned}
+        f(x) &= f(a,b) + [f_x(a,b)(x-a) + f_y(a,b)(y-b)] + \\
+             &\qquad \frac12 [f_{xx}(a,b)(x-a)^2 + 2f_{xy}(a,b)(x-a)(y-b) + f_{yy}(a,b)(y-b)^2] + \dots
+    \end{aligned}
+\end{equation}
 
 \subsection{Curvature}
 

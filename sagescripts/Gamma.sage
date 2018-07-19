@@ -1,5 +1,5 @@
 # Get dipole magnetic field
-load('V.sage')
+load('Vdip.sage')
 
 cosGamma = mu(mu0=1,ph=0).dot_product(Be/be).simplify_trig()
 cosGamma_mag = obs2mag_scalar(cosGamma, al, 0)

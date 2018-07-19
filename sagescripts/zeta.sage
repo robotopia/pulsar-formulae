@@ -1,5 +1,5 @@
 # Get dipole magnetic field
-load('V.sage')
+load('Vdip.sage')
 
 coszeta = (Be[2]/be).simplify_trig() # Choosing the z-component = dotting with zhat
 coszeta_mag = obs2mag_scalar(coszeta, al, 0)
