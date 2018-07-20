@@ -348,9 +348,16 @@ where
 \begin{equation}
     \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}
 \end{equation}
-(NB: There is a weird relationship between the expression for $\sin\Gamma$ above and the equivalent expression for the aligned case, $\alpha = 0$. Not sure what to make of it yet. They kind of match, but not quite.)
+Taylor expanding about both $r = 0$ and $\theta = 0$ gives:
+\begin{equation}
+    \cos\Gamma \approx 1 - \frac12(r^\prime\sin\alpha)^2 -
+        \frac32\theta r^\prime\sin\alpha\sin\sigma -
+        \frac98\theta^2 - (r^\prime)^2\theta\sin\alpha\cos\alpha\cos\sigma +
+        O(\text{4th order terms in $r$ and $\theta$})
+\end{equation}
 
-\subsubsection{``Aberration'' Angle \linktosage{sage:aberration_dip}}
+
+\subsubsection{Deflection Angle \linktosage{sage:aberration_dip}}
 
 Let $\eta = \cos^{-1}(\hat{V}\cdot\hat{B})$ be the angle between the local magnetic field and the particle trajectory.
 Without rotation effects, $\hat{V} = \hat{B}$ everywhere, so $\eta = 0$.
@@ -372,6 +379,10 @@ When $\alpha = 0$, we have the exact expressions
     \cos\eta &= \sqrt{1-\left(\frac{r\sin\theta}{\beta r_L}\right)^2}, &
     \sin\eta &= \frac{r\sin\theta}{\beta r_L}
 \end{align}
+Expanding about both $r = 0$ and $\theta = 0$ gives:
+\begin{equation}
+    \cos\eta \approx 1 - \frac12(r^\prime\sin\alpha)^2 - (r^\prime)^2\theta\sin\alpha\cos\alpha\cos\sigma + O(\text{4rd order terms in $r$ and $\theta_m$})
+\end{equation}
 
 \subsubsection{Viewing Inclination \linktosage{sage:zeta}}
 \label{sec:zeta}
@@ -399,6 +410,18 @@ The viewing angle can also be taylor expanded about $r/r_L = 0$, in which case w
         \left[1 + \frac{\sin\sigma\sin\theta}{\sqrt{3\cos^2\theta+1}} \frac{r\sin\alpha}{\beta r_L}\right] +
         O\left(\left(\frac{r}{r_L}\right)^2\right)
     \label{eqn:viewingangle_taylor}
+\end{equation}
+Expanding about both $r = 0$ and $\theta = 0$ gives:
+\begin{equation}
+    \begin{aligned}
+        \cos\zeta &\approx \cos\alpha - \frac32\theta\sin\alpha\cos\sigma -
+            \frac94\theta^2\cos\alpha - (r^\prime\sin\alpha)^2\cos\alpha -
+            \frac12\theta(r^\prime\sin\alpha)\cos\alpha\sin\sigma +
+            \frac{7}{16}\theta^3\sin\alpha\cos\sigma + \\
+            &\qquad \frac34 \theta^2 r^\prime\sin^2\alpha\sin\sigma\cos\sigma -
+            \frac14 \theta (r^\prime)^2(7\cos^2\alpha-3)\sin\alpha\cos\sigma +
+            O(\text{4rd order terms in $r$ and $\theta_m$})
+    \end{aligned}
 \end{equation}
 
 \subsubsection{Viewing Phase \linktosage{sage:phase}}
