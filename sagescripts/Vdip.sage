@@ -7,9 +7,17 @@ R   = var('R')
 rL  = var('rL')
 be  = var('be')
 
+assume(c,'real')
+assume(R,'real')
+assume(rL,'real')
+
+assume(c > 0)
+assume(R > 0)
+assume(rL > 0)
+
 Om = c/rL
 #be = sqrt(1 - 1/ga^2)
-#be = 1
+be = 1
 
 assume(det,'real')
 assume(rh,'real')

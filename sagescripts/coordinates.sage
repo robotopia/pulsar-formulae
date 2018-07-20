@@ -2,6 +2,17 @@ var('x y z')    # Cartesian coordinates
 var('r th ph')  # Spherical coordinates
 var('rh')       # Cylindrical coordinates
 
+assume(x,'real')
+assume(y,'real')
+assume(z,'real')
+assume(r,'real')
+assume(th,'real')
+assume(ph,'real')
+assume(rh,'real')
+
+assume(r > 0)
+assume(rh > 0)
+
 xhat = vector([1,0,0])
 yhat = vector([0,1,0])
 zhat = vector([0,0,1])
