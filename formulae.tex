@@ -381,7 +381,7 @@ When $\alpha = 0$, we have the exact expressions
 \end{align}
 Expanding about both $r = 0$ and $\theta = 0$ gives:
 \begin{equation}
-    \cos\eta \approx 1 - \frac12(r^\prime\sin\alpha)^2 - (r^\prime)^2\theta\sin\alpha\cos\alpha\cos\sigma + O(\text{4rd order terms in $r$ and $\theta_m$})
+    \cos\eta \approx 1 - \frac12(r^\prime\sin\alpha)^2 - (r^\prime)^2\theta\sin\alpha\cos\alpha\cos\sigma + O(\text{4th order terms in $r$ and $\theta$})
 \end{equation}
 
 \subsubsection{Viewing Inclination \linktosage{sage:zeta}}
@@ -420,7 +420,7 @@ Expanding about both $r = 0$ and $\theta = 0$ gives:
             \frac{7}{16}\theta^3\sin\alpha\cos\sigma + \\
             &\qquad \frac34 \theta^2 r^\prime\sin^2\alpha\sin\sigma\cos\sigma -
             \frac14 \theta (r^\prime)^2(7\cos^2\alpha-3)\sin\alpha\cos\sigma +
-            O(\text{4rd order terms in $r$ and $\theta_m$})
+            O(\text{4th order terms in $r$ and $\theta$})
     \end{aligned}
 \end{equation}
 
@@ -442,6 +442,15 @@ where
     \Lambda &\equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}, &
     \Lambda^\prime &\equiv \sqrt{1+\left(\frac{r\cos\alpha}{\beta r_L}\right)^2}
 \end{align}
+
+Expanding about both $r = 0$ and $\theta = 0$ gives:
+\begin{equation}
+    \sin\phase_\text{ab} \approx
+        -r^\prime - \frac{3\theta\sin\sigma}{2\sin\alpha} +
+        \frac{9\theta^2\cos\alpha\sin\sigma\cos\sigma}{4\sin^2\alpha} +
+        \frac{r^\prime\theta\cos\alpha\cos\sigma}{2\sin\alpha} +
+        O(\text{3rd order terms in $r$ and $\theta$})
+\end{equation}
 
 \subsubsection{Emission Heights \linktosage{sage:emissionheight}}
 
@@ -522,6 +531,15 @@ When $\alpha = 0$, the exact expression is
 \begin{equation}
     \Delta\phase_\text{ret} = -\frac{2r\cos\theta}{r_L\sqrt{3\cos^2\theta+1}}
         \sqrt{1 - \left(\frac{r\sin\theta}{\beta r_L}\right)^2}
+\end{equation}
+Expanding about both $r = 0$ and $\theta = 0$ gives:
+\begin{equation}
+    \Delta\phase_\text{ret} \approx
+        -r^\prime +
+        \frac12(r^\prime)^3\sin^2\alpha +
+        \frac12(r^\prime)^2\theta\sin\alpha\sin\sigma +
+        \frac18 r^\prime\theta^2 +
+        O(\text{4th order terms in $r$ and $\theta$})
 \end{equation}
 
 \section{Velocity Field}
