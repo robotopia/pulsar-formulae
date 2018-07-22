@@ -39,18 +39,18 @@ def taylor2d_r_th(expr,r_val,th_val):
     tmp = taylor2d_subst_r_th(diff(diff(expr,th),th),r_val,th_val)/2
     if not tmp == 0:
         result.append([tmp,0,2])
-    tmp = taylor2d_subst_r_th(diff(diff(diff(expr,r),r),r),r_val,th_val)/6
-    if not tmp == 0:
-        result.append([tmp,3,0])
-    tmp = taylor2d_subst_r_th(diff(diff(diff(expr,r),r),th),r_val,th_val)/2
-    if not tmp == 0:
-        result.append([tmp,2,1])
-    tmp = taylor2d_subst_r_th(diff(diff(diff(expr,r),th),th),r_val,th_val)/2
-    if not tmp == 0:
-        result.append([tmp,1,2])
-    tmp = taylor2d_subst_r_th(diff(diff(diff(expr,th),th),th),r_val,th_val)/6
-    if not tmp == 0:
-        result.append([tmp,0,3])
+    #tmp = taylor2d_subst_r_th(diff(diff(diff(expr,r),r),r),r_val,th_val)/6
+    #if not tmp == 0:
+    #    result.append([tmp,3,0])
+    #tmp = taylor2d_subst_r_th(diff(diff(diff(expr,r),r),th),r_val,th_val)/2
+    #if not tmp == 0:
+    #    result.append([tmp,2,1])
+    #tmp = taylor2d_subst_r_th(diff(diff(diff(expr,r),th),th),r_val,th_val)/2
+    #if not tmp == 0:
+    #    result.append([tmp,1,2])
+    #tmp = taylor2d_subst_r_th(diff(diff(diff(expr,th),th),th),r_val,th_val)/6
+    #if not tmp == 0:
+    #    result.append([tmp,0,3])
     return result
 
 def acos_taylor2d_r_th(expr,r_val,th_val):

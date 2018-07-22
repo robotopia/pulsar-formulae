@@ -447,7 +447,7 @@ where
 Expanding about both $r = 0$ and $\theta = 0$ gives:
 \begin{equation}
     \begin{aligned}
-        \phase \approx \sin\phase_\text{ab} &\approx
+        \phase_\text{ab} \approx \sin\phase_\text{ab} &\approx
             -r^\prime - \frac{3\theta\sin\sigma}{2\sin\alpha} +
             \frac{9\theta^2\cos\alpha\sin\sigma\cos\sigma}{4\sin^2\alpha} +
             \frac{r^\prime\theta\cos\alpha\cos\sigma}{2\sin\alpha} + \\
@@ -475,6 +475,10 @@ From Eq \eqref{eqn:viewingangle_taylor},
 The Taylor expansion of the curvature near the magnetic axis ($\theta = 0$)
 \begin{equation}
     \kappa \approx \frac{\sin\alpha}{\beta r_L}\sqrt{4 + \left(\frac{r\cos\alpha}{\beta r_L}\right)^2} + \dots
+\end{equation}
+Expanding around both $r = 0$ and $\theta = 0$:
+\begin{equation}
+   \kappa \approx \frac{2\sin\alpha}{r_L} + 0r + ?\theta
 \end{equation}
 
 \section{Magnetic Deutsch/Arendt equations}
@@ -1010,7 +1014,7 @@ Therefore, the apparent direction of the second photon will lag behind the first
 The scripts are in alphabetical order by filename.
 
 \lstsage{3D Rotation}{3Drotation}
-\lstsage{Acceleration}{A}
+\lstsage{Acceleration}{Adip}
 \lstsage{Aberration Angle}{aberration_dip}
 \lstsage{Magnetic Dipole}{Bdip}
 \lstsage{Magnetic Dipole---Aligned Rotator}{Bdip_aligned}
