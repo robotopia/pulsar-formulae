@@ -39,29 +39,44 @@ def taylor2d_r_th(expr,r_val,th_val):
     tmp = taylor2d_subst_r_th(diff(diff(expr,th),th),r_val,th_val)/2
     if not tmp == 0:
         result.append([tmp,0,2])
+    tmp = taylor2d_subst_r_th(diff(diff(diff(expr,r),r),r),r_val,th_val)/6
+    if not tmp == 0:
+        result.append([tmp,3,0])
+    tmp = taylor2d_subst_r_th(diff(diff(diff(expr,r),r),th),r_val,th_val)/2
+    if not tmp == 0:
+        result.append([tmp,2,1])
+    tmp = taylor2d_subst_r_th(diff(diff(diff(expr,r),th),th),r_val,th_val)/2
+    if not tmp == 0:
+        result.append([tmp,1,2])
+    tmp = taylor2d_subst_r_th(diff(diff(diff(expr,th),th),th),r_val,th_val)/6
+    if not tmp == 0:
+        result.append([tmp,0,3])
     return result
 
 def acos_taylor2d_r_th(expr,r_val,th_val):
     result = []
-    expr00 = expr
-    expr10 = diff(expr,r)
-    expr01 = diff(expr,th)
-    expr20 = diff(diff(expr,r),r)
-    expr02 = diff(diff(expr,th),th)
-    expr11 = diff(diff(expr,r),th)
+    f     = expr
+    fr    = diff(expr,r)
+    fth   = diff(expr,th)
+    frr   = diff(fr,r)
+    fthth = diff(fth,th)
+    frth  = diff(fr,th)
 
-    tmp = acos(taylor2d_subst_r_th(expr00,r_val,th_val))
-    if not tmp == 0:
-        result.append([tmp,0,0])
-    tmp = taylor2d_subst_r_th(diff(-expr10/sin(expr00),r), r_val,th_val)
-    if not tmp == 0:
-        result.append([tmp,1,0])
-    tmp = taylor2d_subst_r_th(diff(-expr01/sin(expr00),th),r_val,th_val)
-    if not tmp == 0:
-        result.append([tmp,0,1])
-    tmp = taylor2d_subst_r_th(diff(diff((-expr20 - cos(expr00)*expr10^2)/sin(expr00),r),r),  r_val,th_val)/2
-    if not tmp == 0:
-        result.append([tmp,2,0])
+    cosz  = taylor2d_subst_r_th(f, r_val, th_val)
+    sinz  = sqrt(1 - cosz^2)
+
+    z     = acos(cosz)
+    zr    = -taylor2d_subst_r_th(fr,  r_val, th_val) / sinz
+    zth   = -taylor2d_subst_r_th(fth, r_val, th_val) / sinz
+
+    if not z == 0:
+        result.append([z,0,0])
+    if not zr == 0:
+        result.append([zr,1,0])
+    if not zth == 0:
+        result.append([zth,0,1])
+    #if not tmp == 0:
+    #    result.append([tmp,2,0])
     #tmp = taylor2d_subst_r_th(diff(diff(expr,r),th), r_val,th_val) 
     #if not tmp == 0:
     #    result.append([tmp,1,1])

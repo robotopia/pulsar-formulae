@@ -14,6 +14,8 @@
 \newcommand{\deriv}[2]{\frac{d{#1}}{d{#2}}}
 \newcommand{\derivn}[3]{\frac{d^{#3}{#1}}{d{#2}^{#3}}}
 \newcommand{\pd}[2]{\frac{\partial {#1}}{\partial {#2}}}
+\newcommand{\ppd}[2]{\frac{\partial^2{#1}}{\partial {#2}^2}}
+\newcommand{\pdpd}[3]{\frac{\partial^2{#1}}{\partial {#2} \partial {#3}}}
 \newcommand{\F}[1]{\bm{F}_{#1}}
 \newcommand{\ph}{\phi_\ast}
 
@@ -442,14 +444,15 @@ where
     \Lambda &\equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}, &
     \Lambda^\prime &\equiv \sqrt{1+\left(\frac{r\cos\alpha}{\beta r_L}\right)^2}
 \end{align}
-
 Expanding about both $r = 0$ and $\theta = 0$ gives:
 \begin{equation}
-    \sin\phase_\text{ab} \approx
-        -r^\prime - \frac{3\theta\sin\sigma}{2\sin\alpha} +
-        \frac{9\theta^2\cos\alpha\sin\sigma\cos\sigma}{4\sin^2\alpha} +
-        \frac{r^\prime\theta\cos\alpha\cos\sigma}{2\sin\alpha} +
-        O(\text{3rd order terms in $r$ and $\theta$})
+    \begin{aligned}
+        \phase \approx \sin\phase_\text{ab} &\approx
+            -r^\prime - \frac{3\theta\sin\sigma}{2\sin\alpha} +
+            \frac{9\theta^2\cos\alpha\sin\sigma\cos\sigma}{4\sin^2\alpha} +
+            \frac{r^\prime\theta\cos\alpha\cos\sigma}{2\sin\alpha} + \\
+            &\qquad O(\text{3rd order terms in $r$ and $\theta$})
+    \end{aligned}
 \end{equation}
 
 \subsubsection{Emission Heights \linktosage{sage:emissionheight}}
@@ -733,6 +736,22 @@ Taylor expansion of $f(x,y)$ about $(x,y) = (a,b)$
     \begin{aligned}
         f(x) &= f(a,b) + [f_x(a,b)(x-a) + f_y(a,b)(y-b)] + \\
              &\qquad \frac12 [f_{xx}(a,b)(x-a)^2 + 2f_{xy}(a,b)(x-a)(y-b) + f_{yy}(a,b)(y-b)^2] + \dots
+    \end{aligned}
+\end{equation}
+
+\subsubsection{Taylor expanding $z$ when it's in the form $\cos z = f(x,y)$}
+
+This was in hope of getting expressions that don't ``divide by zero'' in Sagemath, but it doesn't seem to be doing any better than before, so I think I'll drop this line of attack.
+\begin{equation}
+    \begin{aligned}
+        \cos z &= f(x,y) \\
+        \sin z &= \sqrt{1-f(x,y)^2} \\
+        -\sin z \pd{z}{x} &= \pd{f(x,y)}{x} \\
+        \pd{z}{x} &= -\frac{\partial f(x,y)/\partial{x}}{\sin z} \\
+        -\sin z \ppd{z}{x} - \cos z \left(\pd{z}{x}\right)^2 &= \ppd{f(x,y)}{x} \\
+        \ppd{z}{x} &= -\frac{\cos z \left(\pd{z}{x}\right)^2 + \ppd{f(x,y)}{x}}{\sin z} \\
+        -\sin z \pdpd{z}{x}{y} - \cos z \pd{z}{x}\pd{z}{y} &= \pdpd{f(x,y)}{x}{y} \\
+        \pdpd{z}{x}{y} &= -\frac{\cos z \pd{z}{x}\pd{z}{y} + \pdpd{f(x,y)}{x}{y}}{\sin z}
     \end{aligned}
 \end{equation}
 

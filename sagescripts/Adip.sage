@@ -11,21 +11,9 @@ Bnorm_t = (Bdip_t/ Blen_t)(mu0=1) # The mu0's should cancel anyway
 # Reproduce the velocity field
 
 #be = sqrt(1 - 1/ga^2)
-#be = 1
+be = 1
 
 assume(det,'real')
-assume(rh,'real')
-assume(c,'real')
-#assume(c > 0)
-assume(r,'real')
-#assume(r >= 0)
-assume(rL,'real')
-#assume(rL >= 0)
-assume(x,'real')
-assume(y,'real')
-assume(z,'real')
-assume(t,'real')
-assume(al,'real')
 
 Ph = vector([-y,x,0])
 rh = sqrt(x^2+y^2)
