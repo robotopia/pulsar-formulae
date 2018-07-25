@@ -352,10 +352,13 @@ where
 \end{equation}
 Taylor expanding about both $r = 0$ and $\theta = 0$ gives:
 \begin{equation}
-    \cos\Gamma \approx 1 - \frac12(r^\prime\sin\alpha)^2 -
-        \frac32\theta r^\prime\sin\alpha\sin\sigma -
-        \frac98\theta^2 - (r^\prime)^2\theta\sin\alpha\cos\alpha\cos\sigma +
-        O(\text{4th order terms in $r$ and $\theta$})
+    \begin{aligned}
+        \cos\Gamma &\approx 1 - \frac12(r^\prime\sin\alpha)^2 -
+            \frac32\theta r^\prime\sin\alpha\sin\sigma -
+            \frac98\theta^2 - (r^\prime)^2\theta\sin\alpha\cos\alpha\cos\sigma +
+            O(\text{4th order terms in $r$ and $\theta$}) \\
+        \sin\Gamma &\approx r^\prime\sin\alpha + \frac32\theta_m\sin\phi_m + r^\prime\cos\alpha\cos\phi_m + \dots
+    \end{aligned}
 \end{equation}
 
 

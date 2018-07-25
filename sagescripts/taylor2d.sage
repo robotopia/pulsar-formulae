@@ -8,13 +8,13 @@ def taylor2d_subst_r_th(expr,r_val,th_val):
         result = expr(th=th_val,r=r_val).simplify_trig()
     except:
         try:
-            result = expr(th=th_val).simplify_trig()(r=r_val).simplify_trig()
+            result = expr(th=th_val).simplify_trig().expand()(r=r_val).simplify_trig()
         except:
             try:
-                result = expr(r=r_val).simplify_trig()(th=th_val).simplify_trig()
+                result = expr(r=r_val).simplify_trig().expand()(th=th_val).simplify_trig()
             except:
                 try:
-                    result = expr.simplify_trig()(th=th_val).simplify_trig()(r=r_val).simplify_trig()
+                    result = expr.simplify_trig()(th=th_val).simplify_trig().expand()(r=r_val).simplify_trig()
                 except:
                     raise RuntimeError("Couldn't substitute values into expression")
     return result
