@@ -14,3 +14,9 @@ coszeta_taylor = taylor(coszeta_sph, th, 0, 1)
 #coszeta_taylor_r = taylor(coszeta_sph, r, 0, 1)
 #sinzeta_taylor_r = taylor(sinzeta_sph, r, 0, 1)
 
+# For a fixed s, taking a Taylor expansion around r=0, then solving for r:
+load('footpoints.sage')
+var('a')
+assume(a,'real')
+assume(a > 0)
+hgt = solve((taylor(fixed_s_elim_th(coszeta_sph),r,0,1)-cos(ze))(r=a^2),a)[0].rhs()^2
