@@ -166,6 +166,7 @@ A Taylor series expansion of $\ell_0$ about $r=0$ gives
 in agreement with Eq \eqref{eqn:arclengthth} above.
 
 \subsubsection{Footpoints}
+\label{sec:footpoints}
 
 Let $r_p$ be the pulsar's radius, and $\theta_p$ by the angle the footpoint makes with the magnetic axis.
 \begin{align}
@@ -194,6 +195,10 @@ To convert from a given $s$ to $R$:
 Given the $s$ and $r$ of an arbitrary point in the magnetosphere, the point's colatitude is
 \begin{equation}
     \theta = \sin^{-1}\sqrt{\frac{r}{r_p}\sin^2\left(s \sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)}
+\end{equation}
+and its height is
+\begin{equation}
+    r = \frac{r_p\sin^2\theta}{\sin^2\left(s \sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)}
 \end{equation}
 
 \subsubsection{Curvature}
@@ -389,7 +394,7 @@ Expanding about both $r = 0$ and $\theta = 0$ gives:
     \cos\eta \approx 1 - \frac12(r^\prime\sin\alpha)^2 - (r^\prime)^2\theta\sin\alpha\cos\alpha\cos\sigma + O(\text{4th order terms in $r$ and $\theta$})
 \end{equation}
 
-\subsubsection{Viewing Inclination \linktosage{sage:zeta}}
+\subsubsection{Viewing Inclination \linktosage{sage:zeta} and Derived Emission Heights}
 \label{sec:zeta}
 
 Let $\zeta = \cos^{-1}(\hat{V}\cdot\hat{z})$ be the angle between the velocity field and the rotation axis\footnote{NB: $\zeta$ is being defined here as what viewing angle any arbitrary emission location would be viewed at, not as the actual viewing angle of a given observer.}.
@@ -428,6 +433,37 @@ Expanding about both $r = 0$ and $\theta = 0$ gives:
             O(\text{4th order terms in $r$ and $\theta$})
     \end{aligned}
 \end{equation}
+If a fixed $s$ is chosen (i.e. the colatitude of the footpoint normalised to the polar cap radius; see \S\ref{sec:footpoints}), then one can either express the above in terms of $(\theta,s)$ and expand about $\theta$, or one can express the above in terms of $(r,s)$ and expand about $r$.
+The former gives
+\begin{equation}
+    \cos\zeta \approx \cos\alpha - \frac32\theta\sin\alpha\cos\sigma - \frac98\theta^2\cos\alpha + O(\theta^3),
+\end{equation}
+where apparently the terms involving $s$ don't appear until the third order terms in $\theta$.
+The latter gives
+\begin{equation}
+    \cos\zeta \approx
+        \cos\alpha -
+        \frac32\sqrt{\frac{r}{r_p}}\sin\alpha\cos\sigma\sin\left(s\sin^{-1}\sqrt{\frac{r_p}{r_L}}\right) -
+        \frac98\frac{r}{r_p}\cos\alpha\sin^2\left(s\sin^{-1}\sqrt{\frac{r_p}{r_L}}\right) +
+        O(r^{3/2})
+    \label{eqn:zeta_in_r_and_s}
+\end{equation}
+I'm not sure if it adds up to anything meaningful yet, but one can take the first few terms in Eq. \eqref{eqn:zeta_in_r_and_s} and solve for $r$, which gives:
+\begin{equation}
+    r \approx \frac{4r_p\left(\sin\alpha\cos\sigma \pm \sqrt{\sin^2\alpha\cos^2\sigma + 2\cos^2\alpha - 2\cos\alpha\cos\zeta}\right)^2}{
+        9\cos^2\alpha\sin^2\left(s\sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)}
+\end{equation}
+If $s=1$, then this becomes
+\begin{equation}
+    r^\prime \approx \frac{4\left(\sin\alpha\cos\sigma \pm \sqrt{\sin^2\alpha\cos^2\sigma + 2\cos^2\alpha - 2\cos\alpha\cos\zeta}\right)^2}{
+        9\cos^2\alpha}
+\end{equation}
+where, as usual, $r^\prime \equiv r/r_L$.
+If $\zeta > \alpha$, then we can expect the lowest height to occur at the fiducial point, or when $\sigma = 0$. In that case, the lowest height estimate for last open field line emission happens at the approximate height\footnote{NB: When I plot this up as a heat map function of $\alpha$ and $\zeta$, it only appears to make sense (i.e. $r^\prime < 1$ and lowest heights when $\zeta \approx \alpha$) if I choose the negative sign.}
+\begin{equation}
+    r^\prime \approx \frac{8\left(1 - \cos\alpha\cos\zeta \pm \sin\alpha\sqrt{1 - 2\cos\alpha\cos\zeta + \cos^2\alpha}\right)}{
+        9\cos^2\alpha}
+\end{equation}
 
 \subsubsection{Viewing Phase \linktosage{sage:phase}}
 
@@ -456,21 +492,6 @@ Expanding about both $r = 0$ and $\theta = 0$ gives:
             \frac{r^\prime\theta\cos\alpha\cos\sigma}{2\sin\alpha} + \\
             &\qquad O(\text{3rd order terms in $r$ and $\theta$})
     \end{aligned}
-\end{equation}
-
-\subsubsection{Emission Heights \linktosage{sage:emissionheight}}
-
-From Section \S\ref{sec:zeta}, one can estimate the emission height for a given viewing geometry.
-From the first term of Eq \eqref{eqn:zeta_th}, we get the first order estimate of emission heights (I don't think these can be correct, for several reasons.)
-\begin{equation}
-    \begin{aligned}
-        \frac{r}{\beta r_L} &\approx \frac{1}{\sin\alpha} \sqrt{1 - \frac{\cos^2\zeta}{\cos^2\alpha}} \\
-                            &\approx \frac{1}{\cos\alpha} \sqrt{\frac{\sin^2\zeta}{\sin^2\alpha} - 1}
-    \end{aligned}
-\end{equation}
-From Eq \eqref{eqn:viewingangle_taylor},
-\begin{equation}
-    \frac{r}{R} \approx \dots
 \end{equation}
 
 \subsubsection{Curvature \linktosage{sage:curvature}}
