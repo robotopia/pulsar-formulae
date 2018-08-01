@@ -1,6 +1,15 @@
 load('Bdip.sage')
 
 var('det c R rL be t')
+
+assume(c,'real')
+assume(R,'real')
+assume(rL,'real')
+
+assume(c > 0)
+assume(R > 0)
+assume(rL > 0)
+
 Om = c/rL
 
 Bdip_t  = Bdip(ph = Om*t)
