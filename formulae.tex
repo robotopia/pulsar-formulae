@@ -6,6 +6,7 @@
 \usepackage{bm}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{graphicx}
 
 \title{Formulas relating to pulsar geometry}
 \author{Sam McSweeney}
@@ -37,6 +38,107 @@
 \maketitle
 
 \tableofcontents
+
+\newpage
+
+\section{Notation and definitions}
+
+The ``viewing geometry'' refers to the angles $\alpha$ (the angle between the pulsar's rotation axis and its magnetic axis) and $\zeta$ (the angle between the rotation axis and the line of sight), both of which are assumed constant over observing timescales. When the pulsar is at some rotation phase $\phase$, the spherical triangle defined by the rotation axis ($\hat{\omega}$), the magnetic axis ($\hat{\mu}$), and the line of sight ($\hat{n}$) is shown in Fig \ref{fig:pulsarangles}. The common names for these angles are listed in Table \ref{tbl:pulsarangles}.
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.3]{images/pulsarangles.png}
+    \caption{The spherical triangle defined by $\hat{\omega}$, $\hat{\mu}$, and $\hat{n}$. The common names of all the angles in the diagram are given in Table \ref{tbl:pulsarangles}.}
+    \label{fig:pulsarangles}
+\end{figure}
+
+\begin{table}[!ht]
+    \centering
+    \caption{The fundamental triangle of the pulsar viewing geometry.}
+    \label{tbl:pulsarangles}
+    \begin{tabular}{c|l}
+        \hline
+        Angle & Common name \\
+        \hline
+        $\alpha$ & Inclination angle \\
+        $\zeta$  & Observer angle \\
+        $\beta$  & Impact angle \\
+        $\Gamma$ & Beam opening angle \\
+        $\phase$ & Rotation phase \\
+        $\psi$   & Polarisation angle \\
+        $\sigma$ & Magnetic azimuth \\
+        $\sigma^\prime$ & Supplementary angle to $\sigma$ \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Identities of the fundamental triangle}
+
+Supplementary angles:
+\begin{align}
+    \sin\sigma^\prime &= \sin\sigma, &
+    \cos\sigma^\prime &= -\cos\sigma, &
+    \tan\sigma^\prime &= -\tan\sigma
+\end{align}
+From the spherical law of sines:
+\begin{equation}
+    \begin{aligned}
+    \sin\zeta  &= \frac{\sin\Gamma \sin\sigma}{\sin\phase}
+                = \frac{\sin\alpha \sin\sigma}{\sin\psi} &
+    \sin\sigma &= \frac{\sin\phase \sin\zeta}{\sin\Gamma}
+                = \frac{\sin\psi \sin\zeta}{\sin\alpha} \\
+    \sin\alpha &= \frac{\sin\Gamma \sin\psi}{\sin\phase}
+                = \frac{\sin\zeta \sin\psi}{\sin\sigma} &
+    \sin\psi   &= \frac{\sin\sigma\sin\alpha}{\sin\zeta}
+                = \frac{\sin\phase \sin\alpha}{\sin\Gamma} \\
+    \sin\Gamma &= \frac{\sin\alpha \sin\phase}{\sin\psi}
+                = \frac{\sin\zeta \sin\phase}{\sin\sigma} &
+    \sin\phase &= \frac{\sin\sigma \sin\Gamma}{\sin\zeta}
+                = \frac{\sin\psi \sin\alpha}{\sin\alpha}
+    \end{aligned}
+\end{equation}
+From the spherical law of cosines:
+\begin{equation}
+    \begin{aligned}
+        \cos\zeta  &= \cos\alpha \cos\Gamma - \sin\alpha \sin\Gamma \cos\sigma, &\hspace{1cm}
+        \cos\sigma &= \cos\phase \cos\psi   - \sin\phase \sin\psi   \cos\zeta,  \\[5pt]
+        \cos\alpha &= \cos\zeta  \cos\Gamma + \sin\zeta  \sin\Gamma \cos\psi,   &
+        \cos\psi   &= \cos\phase \cos\sigma + \sin\phase \sin\sigma \cos\alpha, \\[5pt]
+        \cos\Gamma &= \cos\zeta  \cos\alpha + \sin\zeta  \sin\alpha \cos\phase, &
+        \cos\phase &= \cos\sigma \cos\psi   + \sin\sigma \sin\psi   \cos\Gamma
+    \end{aligned}
+\end{equation}
+Each of the angles in terms of $\alpha$, $\zeta$, and $\phase$:
+\begin{equation}
+    \begin{aligned}
+        \tan\psi   &= \frac{\sin\alpha \sin\phase}{\sin\zeta \cos\alpha - \cos\zeta \sin\alpha \cos\phase}, \\[5pt]
+        \tan\sigma &= \frac{\sin\zeta  \sin\phase}{\sin\alpha \cos\zeta - \cos\alpha \sin\zeta \cos\phase}, \\[5pt]
+        \cos\Gamma &= \cos\zeta  \cos\alpha + \sin\zeta  \sin\alpha \cos\phase
+    \end{aligned}
+\end{equation}
+Holding $\alpha$ and $\zeta$ constant, we also have the rate of change with respect to $\phase$:
+\begin{equation}
+    \begin{aligned}
+        \deriv{\psi}{\phase}
+            &= \frac{\sin\alpha \cos\sigma}{\sin\Gamma}
+             = \frac{\sin\psi \cos\sigma}{\sin\phase} \\[5pt]
+        \deriv{\sigma}{\phase}
+            &= \frac{\sin\zeta \cos\psi}{\sin\Gamma}
+             = \frac{\sin\sigma \cos\psi}{\sin\phase} \\[5pt]
+        \deriv{\Gamma}{\phase}
+            &= \sin\alpha \sin\sigma
+             = \sin\zeta  \sin\psi
+    \end{aligned}
+\end{equation}
+The following relations also hold:
+\begin{equation}
+    \begin{aligned}
+        \deriv{\sigma}{\phase} - \deriv{\psi}{\phase}\cos\Gamma &= \cos\alpha \\[5pt]
+        \deriv{\sigma}{\phase}\cos\Gamma - \deriv{\psi}{\phase} &= \cos\zeta \\[5pt]
+        \left(\deriv{\sigma}{\phase}\right)^2 - \left(\deriv{\psi}{\phase}\right)^2
+            &= \deriv{\sigma}{\phase}\cos\alpha + \deriv{\psi}{\phase}\cos\zeta
+    \end{aligned}
+\end{equation}
 
 \section{Magnetic dipole equations}
 
