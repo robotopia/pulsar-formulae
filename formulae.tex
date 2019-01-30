@@ -301,9 +301,21 @@ Given the $s$ and $r$ of an arbitrary point in the magnetosphere, the point's co
 \begin{equation}
     \theta = \sin^{-1}\sqrt{\frac{r}{r_p}\sin^2\left(s \sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)}
 \end{equation}
-and its height is
+and its (normalised) height is
 \begin{equation}
-    r = \frac{r_p\sin^2\theta}{\sin^2\left(s \sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)}
+    \begin{aligned}
+        r^\prime &= \frac{\frac{r_p}{r_L}\sin^2\theta}{\sin^2\left(s \sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)} \\
+        \frac{r^\prime}{\sin^2\theta} &\approx \frac{1}{s^2} - \frac{\frac{r_p}{r_L}}{3s^2} + O\left[\left(\frac{r_p}{r_L}\right)^2\right]
+    \end{aligned}
+\end{equation}
+where the Taylor expansion was taken about $\frac{r_p}{r_L} = 0$.
+Its partial derivative with respect to $s$ is
+\begin{equation}
+    \begin{aligned}
+        \pd{r^\prime}{s} &= -\frac{2\frac{r_p}{r_L} \cos\left(s\,\sin^{-1}\sqrt{\frac{r_p}{r_L}}\right) \sin^{-1}\sqrt{\frac{r_p}{r_L}} \sin^2\theta}{
+                                   \sin^3\left(s\,\sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)} \\
+        \frac{1}{\sin^2\theta} \pd{r^\prime}{s} &\approx -\frac{2}{s^3} + \frac{2\frac{r_p}{r_L}}{3s^3} + O\left[\left(\frac{r_p}{r_L}\right)^2\right]
+    \end{aligned}
 \end{equation}
 
 \subsubsection{Curvature}
@@ -369,13 +381,15 @@ The relationship between $\theta$ and $\Gamma$ (and its inverse) is given by\foo
 \begin{equation}
     \begin{aligned}
         \cos(2\theta) &= \frac13\left(\cos\Gamma\sqrt{8 + \cos^2\Gamma} - \sin^2\Gamma\right) \\
+        \sin^2\theta  &= -\frac16\left(\cos\Gamma\sqrt{8 + \cos^2\Gamma} + \cos^2\Gamma - 4\right) \\
         \tan\Gamma &= \frac{3\sin\theta\cos\theta}{3\cos^2\theta - 1}
     \end{aligned}
 \end{equation}
-Taylor series expansions (about $\theta = 0$):
+Taylor series expansions (about $\theta = 0$ or $\Gamma = 0$):
 \begin{equation}
     \begin{aligned}
         \theta &\approx \frac23 \Gamma - \frac2{81} \Gamma^3 + O(\Gamma^7) \\
+        \sin^2\theta &\approx \frac{484}{729} - \frac{112}{243}\cos\Gamma - \frac{44}{243}\cos^2\Gamma + O(\cos^3\Gamma) \\
         \Gamma &\approx \frac32 \theta + \frac18 \theta^3 + \frac1{32} \theta^5 + O(\theta^7)
     \end{aligned}
 \end{equation}
