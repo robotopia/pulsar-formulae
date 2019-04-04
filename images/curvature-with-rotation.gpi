@@ -2,7 +2,7 @@ reset
 
 # Draw lines of constant curvature over magnetic field lines and lines of constant tangent
 
-curv_r(rh,th) = rh*(3*sin(th)*(cos(th)**2+1))/(3*cos(th)**2+1)**1.5
+curv_r(rh,th) = rh*sqrt(3)*sin(th)*sqrt(12*cos(th)**8 + 96*cos(th)**6 + 71*cos(th)**4 + 14*cos(th)**2 + 1)/(3*cos(th)**2+1)**1.5
 dipole_r(R,th) = R*sin(th)**2
 
 rp = 0.005 # of light cylinder radius
