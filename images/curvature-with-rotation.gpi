@@ -1,40 +1,5 @@
 reset
 
-# Draw lines of constant curvature over magnetic field lines and lines of constant tangent
-
 curv_r(rh,th) = rh*sqrt(3)*sin(th)*sqrt(12*cos(th)**8 + 96*cos(th)**6 + 71*cos(th)**4 + 14*cos(th)**2 + 1)/(3*cos(th)**2+1)**1.5
-dipole_r(R,th) = R*sin(th)**2
 
-rp = 0.005 # of light cylinder radius
-
-X(r,th) = r*sin(th)
-Y(r,th) = r*cos(th)
-
-set samples 1000
-
-set parametric
-
-set trange [0:pi/2]
-set xrange [0:0.1]
-set yrange [0:0.1]
-
-set size square
-
-set xlabel "r_⟂/r_L"
-set ylabel "r_∥/r_L"
-
-unset key
-
-set ls 1 lc rgb "black" lw 2 # magnetic field lines
-set ls 2 dt 2 lw 2 # lines of constant curvature
-set ls 3 lc rgb "black" dt 3 # lines of constant tangent
-
-Rs   = "0.025 0.05 0.1 0.2 0.4 1.0 8.0"
-rhs  = "0.0125 0.025 0.05 0.1 0.2 0.4 0.8"
-colors = "purple dark-blue blue dark-green dark-yellow dark-orange red"
-
-plot for [i=1:words(Rs)] X(dipole_r(word(Rs,i), t),t), Y(dipole_r(word(Rs,i), t),t) ls 1, \
-     for [i=1:words(rhs)] X(curv_r(word(rhs,i),t),t), Y(curv_r(word(rhs,i),t),t) ls 2 lc rgb word(colors, i), \
-     for [i=1:5] X(t,i/pi), Y(t,i/pi) ls 3, \
-     X(rp,t),Y(rp,t) with filledcurve xy=0,0 lc rgb "gray", \
-     X(rp,t),Y(rp,t) ls 1
+load('curvature-common.gpi')
