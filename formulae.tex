@@ -230,10 +230,19 @@ The relations between the various coordinates are found in Table \ref{tbl:dipola
         \hline
         $r^\prime =$ & --- & $R^\prime\sin^2\theta$ & $\sqrt[3]{R^\prime (x^\prime)^2}$ & ? \\[8pt]
         $\theta =$   & $\sin^{-1}\sqrt{\dfrac{r^\prime}{R^\prime}}$ & --- & $\sin^{-1}\sqrt[3]{\dfrac{x^\prime}{R^\prime}}$ & ? \\[8pt]
-        $x^\prime =$ & $\left(\dfrac{r^\prime}{R^\prime}\right)^{3/2}$ & $R^\prime\sin^3\theta$ & --- & ? \\[8pt]
+        $x^\prime =$ & $r^\prime\sqrt{\dfrac{r^\prime}{R^\prime}}$ & $R^\prime\sin^3\theta$ & --- & (see below) \\[8pt]
         $z^\prime =$ & $r^\prime\sqrt{1-\dfrac{r^\prime}{R^\prime}}$ & $R^\prime\sin^2\theta\cos\theta$ & $(x^\prime)^{2/3} \sqrt{(R^\prime)^{2/3} - (x^\prime)^{2/3}}$ & ---
     \end{tabular}
 \end{table}
+
+Getting the formulas in terms of $z$ involves solving high-order polynomial equations.
+For instance, points on the line characterised by $R^\prime$ satisfy:
+\begin{equation}
+    0 = x^6 + (3z^2 - R^2)x^4 + 3z^4x^2 + z^6,
+\end{equation}
+where I have omitted the primes for brevity.
+The roots (in $x$) are expressible as closed-form functions of $R$ and $z$, but I do not them include here.
+The formulas for the other variables can be found similarly.
 
 \subsection{Derivatives}
 
