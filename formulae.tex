@@ -150,7 +150,19 @@ The following relations also hold:
 In this section, unless otherwise specified, $\theta$ refers to the angle a given point makes with the magnetic axis (i.e. the magnetic colatitude).
 The magnetic field, in coordinate-free notation \linktosage{sage:Bdip}:
 \begin{equation}
-    \vec{B}(\vec{r}) = \frac{1}{r^3}\left[3(\vec{\mu}\cdot\hat{r})\hat{r} - \vec{\mu}\right]
+    \begin{aligned}
+        \vec{B} &= \frac{1}{4\pi r^3}\left[3(\vec{\mu}\cdot\hat{r})\hat{r} - \vec{\mu}\right] \\
+                &= \frac{1}{4\pi r^3}\left[3\cos\theta\,\hat{r} - \vec{\mu}\right]
+    \end{aligned}
+\end{equation}
+Its magnitude is
+\begin{equation}
+    |\vec{B}| = \frac{1}{4\pi r^3}\sqrt{3\cos^2\theta + 1},
+\end{equation}
+and the normalised field is therefore
+\begin{equation}
+    \hat{B} = \frac{\vec{B}}{|\vec{B}|}
+            = \frac{3\cos\theta\,\hat{r} - \vec{\mu}}{\sqrt{3\cos^2\theta + 1}}
 \end{equation}
 
 \subsection{Aligned Rotator}
