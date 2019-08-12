@@ -60,5 +60,7 @@ A = dV_dt + V_t[0](t=0)*(dV_dx + dV_dr*x/r) + \
             V_t[1](t=0)*(dV_dy + dV_dr*y/r) + \
             V_t[2](t=0)*(dV_dz + dV_dr*z/r)
 
+
 A_mag = obs2mag_field(A, al, 0)
 A_sph = xyz2sph(A_mag, r, th, si)
+

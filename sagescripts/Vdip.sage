@@ -36,3 +36,7 @@ Vneg = VBneg*Bnorm + Om*Ph
 # Declare Vpos to be the one we're interested in
 V = Vpos
 Be = V / c
+
+V_mag = obs2mag_scalar(V, al, 0)
+V_sph = xyz2sph(V_mag, r, th, si)
+

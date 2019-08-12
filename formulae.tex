@@ -145,14 +145,16 @@ The following relations also hold:
     \end{aligned}
 \end{equation}
 
-\section{Magnetic dipole equations}
+\section{Magnetic Vector Field}
 
-In this section, unless otherwise specified, $\theta$ refers to the angle a given point makes with the magnetic axis (i.e. the magnetic colatitude).
-The magnetic field, in coordinate-free notation \linktosage{sage:Bdip}:
+\subsection{Dipole}
+
+The magnetic field, in coordinate-free notation, centred at the origin \linktosage{sage:Bdip}:
 \begin{equation}
     \begin{aligned}
-        \vec{B} &= \frac{1}{4\pi r^3}\left[3(\vec{\mu}\cdot\hat{r})\hat{r} - \vec{\mu}\right] \\
-                &= \frac{1}{4\pi r^3}\left[3\cos\theta\,\hat{r} - \vec{\mu}\right]
+        \vec{B}(\vec{r})
+            &= \frac{\mu}{4\pi r^3}\left[3(\hat{\mu}\cdot\hat{r})\hat{r} - \hat{\mu}\right] \\
+            &= \frac{\mu}{4\pi r^3}\left[3(\cos\theta)\hat{r} - \hat{\mu}\right]
     \end{aligned}
 \end{equation}
 Its magnitude is
@@ -164,71 +166,127 @@ and the normalised field is therefore
     \hat{B} = \frac{\vec{B}}{|\vec{B}|}
             = \frac{3\cos\theta\,\hat{r} - \vec{\mu}}{\sqrt{3\cos^2\theta + 1}}
 \end{equation}
-
-\subsection{Aligned Rotator}
-
-The magnetic field, aligned with the $z$-axis, in Cartesian coordinates \linktosage{sage:Bdip_aligned}:
+Its magnitude is:
+\begin{equation}
+    |\vec{B}(\vec{r})| = \frac{\mu}{4\pi r^3}\sqrt{3\cos^2\theta + 1}
+\end{equation}
+And the normalised field is:
+\begin{equation}
+    \hat{B}(\vec{r}) = \frac{3(\cos\theta) \hat{r} - \hat{\mu}}{\sqrt{3\cos^2\theta + 1}}
+\end{equation}
+When the magnetic dipole is aligned with the $z$-axis (i.e. $\hat{\mu} = \hat{z}$), in Cartesian coordinates \linktosage{sage:Bdip_aligned}:
 \begin{equation}
     \vec{B}(\vec{r}) = \frac{\mu}{r^5}
         \begin{bmatrix}
             3xz \\ 3yz \\ 3z^2 - r^2
         \end{bmatrix}
 \end{equation}
-However, in the rest of this section we treat the aligned rotator as a 2D problem, with the magnetic axis aligned with the $y$-axis.
+When the magnetic dipole is tilted in the $xz$-plane by angle $\alpha$ \linktosage{sage:Bdip_inclined}:
+\begin{equation}
+    \vec{B}(\vec{r}) =
+    \frac{\mu\cos\alpha}{r^5}\begin{bmatrix}
+        3xz \\
+        3yz \\
+        3z^2 - r^2
+    \end{bmatrix} + 
+    \frac{\mu\sin\alpha}{r^5}\begin{bmatrix}
+        3x^2 - r^2 \\
+        3xy \\
+        3xz
+    \end{bmatrix}
+\end{equation}
 
-\subsubsection{Field lines}
+\subsection{Deutsch-Arendt equations}
 
-Consider a single field line with maximum extent $R$.
-It can be expressed in either Cartesian or polar coordinates.
+\begin{equation}
+\begin{aligned}
+    \vec{B}(\vec{r}) &= \mu \cos{\alpha} \F{1} \frac{1}{r^5} + \\
+                   &\hspace{13pt} \mu \sin{\alpha} \F{2} \frac{\cos(\ph)}{r^3 r_L^2} +
+                                  \mu \sin{\alpha} \F{3} \bigg(\frac{\cos(\ph)}{r^5} + \frac{\sin(\ph)}{r^4 r_L}\bigg) - \\
+                   &\hspace{13pt} \mu \sin{\alpha} \F{4} \frac{\sin(\ph)}{r^3 r_L^2} -
+                                  \mu \sin{\alpha} \F{5} \bigg(\frac{\sin(\ph)}{r^5} - \frac{\cos(\ph)}{r^4 r_L}\bigg)
+\end{aligned}
+\end{equation}
+where
+\begin{equation}
+\begin{aligned}
+    \F{1} &= 3xz\,\hat{x} + 3yz\,\hat{y} + (3z^2-r^2)\,\hat{z} \\
+    \F{2} &= (r^2-x^2)\,\hat{x} - xy\,\hat{y} - xz\,\hat{z} \\
+    \F{3} &= (3x^2-r^2)\,\hat{x} + 3xy\,\hat{y} + 3xz\,\hat{z} \\
+    \F{4} &= -xy\,\hat{x} + (r^2-y^2)\,\hat{y} - yz\,\hat{z} \\
+    \F{5} &= 3xy\,\hat{x} + (3y^2-r^2)\,\hat{y} + 3yz\,\hat{z}
+\end{aligned}
+\end{equation}
+and
+\begin{equation}
+    \ph = \frac{r - r_p}{r_L}
+\end{equation}
+
+
+\section{Field Lines}
+
+Consider a single field line in a plane, whose coordinates are chosen (without loss of generality) so that the magnetic moment is aligned with the $z$-axis.
+Also, let distances be normalised to some characteristic length, $r_L$, so that $r^\prime = r/r_L$.
+Let the maximum distance of the field line from the origin be $R^\prime = R/r_L$.
+One can write down the equation for the line in either Cartesian or polar coordinates.
 The relations between the various coordinates are found in Table \ref{tbl:dipolar}.
 \begin{table}[!ht]
     \centering
     \caption{Each coordinate in terms of the others}
     \label{tbl:dipolar}
     \begin{tabular}{c|cccc}
-        & $r$ & $\theta$ & $x$ & $y$ \\[5pt]
+        & $r$ & $\theta$ & $x$ & $z$ \\[5pt]
         \hline
-        $r =$      & --- & $R\sin^2\theta$ & $\sqrt[3]{Rx^2}$ & ? \\[8pt]
-        $\theta =$ & $\sin^{-1}\sqrt{\dfrac{r}{R}}$ & --- & $\sin^{-1}\sqrt[3]{\dfrac{r}{R}}$ & ? \\[8pt]
-        $x =$      & $\sqrt{\dfrac{r^3}{R}}$ & $R\sin^3\theta$ & --- & ? \\[8pt]
-        $y =$      & $r\sqrt{1-\dfrac{r}{R}}$ & $R\sin^2\theta\cos\theta$ & $x^{2/3} \sqrt{R^{2/3} - x^{2/3}}$ & ---
+        $r^\prime =$ & --- & $R^\prime\sin^2\theta$ & $\sqrt[3]{R^\prime (x^\prime)^2}$ & ? \\[8pt]
+        $\theta =$   & $\sin^{-1}\sqrt{\dfrac{r^\prime}{R^\prime}}$ & --- & $\sin^{-1}\sqrt[3]{\dfrac{x^\prime}{R^\prime}}$ & ? \\[8pt]
+        $x^\prime =$ & $r^\prime\sqrt{\dfrac{r^\prime}{R^\prime}}$ & $R^\prime\sin^3\theta$ & --- & (see below) \\[8pt]
+        $z^\prime =$ & $r^\prime\sqrt{1-\dfrac{r^\prime}{R^\prime}}$ & $R^\prime\sin^2\theta\cos\theta$ & $(x^\prime)^{2/3} \sqrt{(R^\prime)^{2/3} - (x^\prime)^{2/3}}$ & ---
     \end{tabular}
 \end{table}
 
-\subsubsection{Derivatives}
+Getting the formulas in terms of $z$ involves solving high-order polynomial equations.
+For instance, points on the line characterised by $R^\prime$ satisfy:
+\begin{equation}
+    0 = x^6 + (3z^2 - R^2)x^4 + 3z^4x^2 + z^6,
+\end{equation}
+where I have omitted the primes for brevity.
+The roots (in $x$) are expressible as closed-form functions of $R$ and $z$, but I do not them include here.
+The formulas for the other variables can be found similarly.
+
+\subsection{Derivatives}
 
 See Table \ref{tbl:dipolarderiv}.
-We use the definition $d\ell = \sqrt{dx^2+dy^2}$.
+We use the definition $d\ell = \sqrt{dx^2+dz^2}$.
 
 \begin{table}[!p]
     \centering
     \caption{The derivatives of the expressions in Table \ref{tbl:dipolar}}
     \label{tbl:dipolarderiv}
     \begin{tabular}{c|cccc}
-        & $r$ & $\theta$ & $x$ & $y$ \\[5pt]
+        & $r$ & $\theta$ & $x$ & $z$ \\[5pt]
         \hline
         $dr/d\theta =$ & $2\sqrt{r(R-r)}$ & $2R\sin\theta\cos\theta$ & $2R^{1/3}x^{1/3}\sqrt{R^{2/3}-x^{2/3}}$ & ? \\[8pt]
         $dr/dx =$      & $\dfrac23\sqrt{\dfrac{R}{r}}$ & $\dfrac{2}{3\sin\theta}$ & $\dfrac23\sqrt[3]{\dfrac{R}{x}}$ & \\[8pt]
-        $dr/dy =$      & & & & \\[8pt]
+        $dr/dz =$      & & & & \\[8pt]
         \hline
         $d\theta/dr =$ & & & & \\[8pt]
         $d\theta/dx =$ & & & & \\[8pt]
-        $d\theta/dy =$ & & & & \\[8pt]
+        $d\theta/dz =$ & & & & \\[8pt]
         \hline
         $dx/dr =$      & $\dfrac32\sqrt{\dfrac{r}{R}}$ & & & \\[8pt]
-        $dx/d\theta =$ & & $3R\sin^2\theta\cos\theta$ & $3x^{2/3} \sqrt{R^{2/3} - x^{2/3}}$ & $3y$ \\[8pt]
-        $dx/dy =$      & & $\dfrac{3\sin\theta\cos\theta}{3\cos^2\theta-1}$ & $\dfrac{3x^{1/3}\sqrt{R^{2/3} - x^{2/3}}}{2R^{2/3} - 3x^{2/3}}$ & \\[8pt]
+        $dx/d\theta =$ & & $3R\sin^2\theta\cos\theta$ & $3x^{2/3} \sqrt{R^{2/3} - x^{2/3}}$ & $3z$ \\[8pt]
+        $dx/dz =$      & & $\dfrac{3\sin\theta\cos\theta}{3\cos^2\theta-1}$ & $\dfrac{3x^{1/3}\sqrt{R^{2/3} - x^{2/3}}}{2R^{2/3} - 3x^{2/3}}$ & \\[8pt]
         \hline
-        $dy/dr =$      & $\dfrac{2R-3r}{2\sqrt{R(R-r)}}$ & & & \\[8pt]
-        $dy/d\theta =$ & $\sqrt{\dfrac{r}{R}}\left(2R-3r\right)$ & $R\sin\theta(3\cos^2\theta - 1)$ & $x^{1/3}(2R^{2/3} - 3x^{2/3})$ & \\[8pt]
-        $dy/dx =$      & & $\dfrac{3\cos^2\theta-1}{3\sin\theta\cos\theta}$ & $\dfrac{2R^{2/3} - 3x^{2/3}}{3x^{1/3}\sqrt{R^{2/3} - x^{2/3}}}$ & \\[8pt]
+        $dz/dr =$      & $\dfrac{2R-3r}{2\sqrt{R(R-r)}}$ & & & \\[8pt]
+        $dz/d\theta =$ & $\sqrt{\dfrac{r}{R}}\left(2R-3r\right)$ & $R\sin\theta(3\cos^2\theta - 1)$ & $x^{1/3}(2R^{2/3} - 3x^{2/3})$ & \\[8pt]
+        $dz/dx =$      & & $\dfrac{3\cos^2\theta-1}{3\sin\theta\cos\theta}$ & $\dfrac{2R^{2/3} - 3x^{2/3}}{3x^{1/3}\sqrt{R^{2/3} - x^{2/3}}}$ & \\[8pt]
         \hline
         $d\ell/dr =$ & $\dfrac12 \sqrt{\dfrac{4R-3r}{R-r}}$ & & & \\[8pt]
         $d\ell/d\theta =$ & & $R\sin\theta \sqrt{3\cos^2\theta + 1}$ & &
     \end{tabular}
 \end{table}
 
-\subsubsection{Arc Length}
+\subsection{Arc Length}
 The arc length of a field line, as a function of $\theta$:
 \begin{equation}
     \begin{aligned}
@@ -284,24 +342,18 @@ A Taylor series expansion of $\ell_0$ about $r=0$ gives
 \end{equation}
 in agreement with Eq \eqref{eqn:arclengthth} above.
 
-\subsubsection{Footpoints}
+\section{Footpoints}
 \label{sec:footpoints}
 
 Let $r_p$ be the pulsar's radius, and $\theta_p$ by the angle the footpoint makes with the magnetic axis.
 \begin{align}
-    r_p &= R\sin^2\theta_p \\
-    \theta_p &= \sin^{-1}\sqrt{\frac{r_p}{R}} = \sin^{-1}\sqrt{\frac{r_p\sin^2\theta}{r}} \\
-    \theta   &= \sin^{-1}\left[\sqrt{\frac{r}{r_p}}\sin\theta_p\right] \label{eqn:thp_to_th}
-\end{align}
-The $x$- and $y$-coordinates of the footpoint, $(x_p,y_p)$:
-\begin{align}
-    x_p &= r_p\sqrt{\frac{r_p}{R}} \\
-    y_p &= r_p \sqrt{1 - \frac{r_p}{R}}
+    r_p^\prime &= R^\prime\sin^2\theta_p \\
+    \theta_p &= \sin^{-1}\sqrt{\frac{r_p^\prime}{R^\prime}} = \sin^{-1}\sqrt{\frac{r_p^\prime\sin^2\theta}{r^\prime}} \\
+    \theta   &= \sin^{-1}\left[\sqrt{\frac{r^\prime}{r_p^\prime}}\sin\theta_p\right] \label{eqn:thp_to_th}
 \end{align}
 To normalise a footpoint with respect to the footpoint of the last open field lines ($R = r_L \equiv \frac{cP}{2\pi}$), we define
 \begin{equation}
-    \theta_L \equiv \sin^{-1}\sqrt{\frac{r_p}{r_L}}
-             =      \sin^{-1}\sqrt{\frac{2\pi r_p}{cP}}
+    \theta_L \equiv \sin^{-1}\sqrt{r_p^\prime}
 \end{equation}
 and then
 \begin{equation}
@@ -309,38 +361,38 @@ and then
 \end{equation}
 To convert from a given $s$ to $R$:
 \begin{equation}
-    R = \frac{r_p}{\sin^2\left(s\sin^{-1}\sqrt{\frac{2\pi r_p}{cP}}\right)}
+    R^\prime = \frac{r_p^\prime}{\sin^2\left(s\sin^{-1}\sqrt{r_p^\prime}\right)}
 \end{equation}
 Given the $s$ and $r$ of an arbitrary point in the magnetosphere, the point's colatitude is
 \begin{equation}
-    \theta = \sin^{-1}\sqrt{\frac{r}{r_p}\sin^2\left(s \sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)}
+    \theta = \sin^{-1}\sqrt{\frac{r^\prime}{r_p^\prime}\sin^2\left(s \sin^{-1}\sqrt{r_p^\prime}\right)}
 \end{equation}
-and its (normalised) height is
+and its height is
 \begin{equation}
     \begin{aligned}
-        r^\prime &= \frac{\frac{r_p}{r_L}\sin^2\theta}{\sin^2\left(s \sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)} \\
-        \frac{r^\prime}{\sin^2\theta} &\approx \frac{1}{s^2} - \frac{\frac{r_p}{r_L}}{3s^2} + O\left[\left(\frac{r_p}{r_L}\right)^2\right]
+        r^\prime &= \frac{r_p^\prime\sin^2\theta}{\sin^2\left(s \sin^{-1}\sqrt{r_p^\prime}\right)} \\
+        \frac{r^\prime}{\sin^2\theta} = R^\prime &\approx \frac{1}{s^2} - \frac{r_p^\prime}{3s^2} + O\left[(r_p^\prime)^2\right]
     \end{aligned}
 \end{equation}
-where the Taylor expansion was taken about $\frac{r_p}{r_L} = 0$.
+where the Taylor expansion was taken about $r_p^\prime = 0$.
 Its partial derivative with respect to $s$ is
 \begin{equation}
     \begin{aligned}
-        \pd{r^\prime}{s} &= -\frac{2\frac{r_p}{r_L} \cos\left(s\,\sin^{-1}\sqrt{\frac{r_p}{r_L}}\right) \sin^{-1}\sqrt{\frac{r_p}{r_L}} \sin^2\theta}{
-                                   \sin^3\left(s\,\sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)} \\
-        \frac{1}{\sin^2\theta} \pd{r^\prime}{s} &\approx -\frac{2}{s^3} + \frac{2\frac{r_p}{r_L}}{3s^3} + O\left[\left(\frac{r_p}{r_L}\right)^2\right]
+        \pd{r^\prime}{s} &= -\frac{2r_p^\prime \cos\left(s\,\sin^{-1}\sqrt{r_p^\prime}\right) \sin^{-1}\sqrt{r_p^\prime} \sin^2\theta}{
+                                   \sin^3\left(s\,\sin^{-1}\sqrt{r_p^\prime}\right)} \\
+        \frac{1}{\sin^2\theta} \pd{r^\prime}{s} &\approx -\frac{2}{s^3} + \frac{2r_p^\prime}{3s^3} + O\left[\left(r_p^\prime\right)^2\right]
     \end{aligned}
 \end{equation}
 
-\subsubsection{Curvature}
+\section{Curvature}
 
-\paragraph{Without rotation effects:}
+\subsection{Aligned rotator, without rotation effects}
 From Eq \eqref{eqn:curvature_polar},
 \begin{equation}
     \begin{aligned}
-        \kappa &= \frac{3(\cos^2\theta + 1)}{R\sin\theta(3\cos^2\theta + 1)^{3/2}} \\
-        \rho = \frac{1}{\kappa}
-            &= \frac{R\sin\theta(3\cos^2\theta + 1)^{3/2}}{3(\cos^2\theta + 1)}
+        \kappa^\prime &= \frac{3\sin\theta(\cos^2\theta + 1)}{r^\prime(3\cos^2\theta + 1)^{3/2}} \\
+        \rho^\prime = \frac{1}{\kappa^\prime}
+            &= \frac{r^\prime(3\cos^2\theta + 1)^{3/2}}{3\sin\theta(\cos^2\theta + 1)}
     \end{aligned}
 \end{equation}
 \cite{Gangadhara2004} gives it in this form (see their Eq. (4)):
@@ -350,15 +402,8 @@ From Eq \eqref{eqn:curvature_polar},
 Taylor expansions about $\theta = 0$:
 \begin{equation}
     \begin{aligned}
-        \kappa R &\approx \frac34 \theta^{-1} + \frac{19}{32} \theta + \frac{2347}{7680} \theta^3 + O(\theta^5) \\
-        \frac{\rho}{R} &\approx \frac43 \theta - \frac{19}{18}\theta^3 + \frac{421}{1440}\theta^5 + O(\theta^7)
-    \end{aligned}
-\end{equation}
-Substituting $R = r/\sin^2\theta$ yields
-\begin{equation}
-    \begin{aligned}
-        \kappa r &\approx \frac34 \theta + \frac{11}{32} \theta^3 + \frac{361}{2560} \theta^5 + O(\theta^7) \\
-        \frac{\rho}{r} &\approx \frac43 \theta^{-1} - \frac{11}{18}\theta + \frac{127}{4320}\theta^3 + O(\theta^5)
+        \kappa^\prime r^\prime &\approx \frac34 \theta + \frac{11}{32} \theta^3 + \frac{361}{2560} \theta^5 + O(\theta^7) \\
+        \frac{\rho^\prime}{r^\prime} &\approx \frac43 \theta^{-1} - \frac{11}{18}\theta + \frac{127}{4320}\theta^3 + O(\theta^5)
     \end{aligned}
 \end{equation}
 \begin{figure}[!p]
@@ -368,25 +413,23 @@ Substituting $R = r/\sin^2\theta$ yields
     \label{fig:curvature-no-rotation}
 \end{figure}
 
-\paragraph{With rotation effects:}
-Let $a \equiv R/r_L$, where $R$ is the distance of maximum extent for a given field lines, and $r_L = c/\Omega$ is the light cylinder radius.
-Let $B \equiv \sin^2\theta = \frac{r}{R}$.
+\subsection{Aligned rotator, with rotation effects}
 \begin{equation}
     \begin{aligned}
-        \kappa &= \frac{\sqrt{3}\sin\theta(12\cos^8\theta + 96\cos^6\theta + 71\cos^4\theta + 14\cos^2\theta + 1)^{1/2}}{
-                        r(3\cos^2\theta+1)^{3/2}} \\
-        \rho   &= \frac{r(3\cos^2\theta+1)^{3/2}}{
-                        \sqrt{3}\sin\theta(12\cos^8\theta + 96\cos^6\theta + 71\cos^4\theta + 14\cos^2\theta + 1)^{1/2}}
+        \kappa^\prime &= \frac{\sqrt{3}\sin\theta(12\cos^8\theta + 96\cos^6\theta + 71\cos^4\theta + 14\cos^2\theta + 1)^{1/2}}{
+                               r^\prime(3\cos^2\theta+1)^{3/2}} \\
+                           \rho^\prime   &= \frac{r^\prime(3\cos^2\theta+1)^{3/2}}{
+                               \sqrt{3}\sin\theta(12\cos^8\theta + 96\cos^6\theta + 71\cos^4\theta + 14\cos^2\theta + 1)^{1/2}}
     \end{aligned}
 \end{equation}
 A Taylor expansion about $\theta = 0$ gives
 \begin{equation}
     \begin{aligned}
-            \kappa &\approx \frac{3\sqrt{4r^2+r_L^2}}{4rr_L}\,\theta -
-                            \frac{52r^2 - 11r_L^2}{32rr_L\sqrt{4r^2+r_L^2}}\,\theta^3 +
+        \kappa^\prime &\approx \frac{3\sqrt{4(r^\prime)^2+1}}{4r^\prime}\,\theta -
+                            \frac{52(r^\prime)^2 - 11}{32r^\prime\sqrt{4(r^\prime)^2+1}}\,\theta^3 +
                             O(\theta^5) \\
-            \rho &\approx \frac{4rr_L}{3\sqrt{4r^2+r_L^2}}\,\theta^{-1} +
-                          \frac{rr_L(52r^2 - 11r_L^2)}{18(4r^2+r_L^2)^{3/2}}\,\theta +
+        \rho^\prime &\approx \frac{4r^\prime}{3\sqrt{4(r^\prime)^2+1}}\,\theta^{-1} +
+                          \frac{r^\prime(52(r^\prime)^2 - 11)}{18(4(r^\prime)^2+1)^{3/2}}\,\theta +
                           O(\theta^3)
     \end{aligned}
 \end{equation}
@@ -397,11 +440,25 @@ A Taylor expansion about $\theta = 0$ gives
     \label{fig:curvature-with-rotation}
 \end{figure}
 
-\subsubsection{Beam Opening Angles}
+\subsection{Inclined rotator \linktosage{sage:curvature}}
+
+The Taylor expansion of the curvature near the magnetic axis ($\theta = 0$)
+\begin{equation}
+    \kappa^\prime \approx \frac{\sin\alpha}{\beta}\sqrt{4 + \left(\frac{r^\prime\cos\alpha}{\beta}\right)^2} + \dots
+\end{equation}
+Expanding around both $r = 0$ and $\theta = 0$:
+\begin{equation}
+   \kappa^\prime \approx 2\sin\alpha + 0r^\prime + ?\theta
+\end{equation}
+Note that this is in agreement with the expression ($\rho \approx r_L/(2\sin\alpha)$) stated in \cite{Thomas2007}.
+
+\section{Beam Opening Angles}
 \label{sec:beamopeningangles}
 
-\paragraph{Without rotation effects:}
-The relationship between $\theta$ and $\Gamma$ (and its inverse) is given by\footnote{Gangadhara (2004)}
+Let $\Gamma = \cos^{-1}(\hat{V}\cdot\hat{\mu})$ be the (half) opening angle of the beam.
+
+\subsection{Aligned rotator, without rotation effects}
+The relationship between $\theta$ and $\Gamma$ (and its inverse) is given by \cite{Gangadhara2004}
 \begin{equation}
     \begin{aligned}
         \cos(2\theta) &= \frac13\left(\cos\Gamma\sqrt{8 + \cos^2\Gamma} - \sin^2\Gamma\right) \\
@@ -418,50 +475,61 @@ Taylor series expansions (about $\theta = 0$ or $\Gamma = 0$):
     \end{aligned}
 \end{equation}
 
-\paragraph{With rotation effects:}
+\subsection{Aligned rotator, with rotation effects}
 \begin{equation}
     \cos\Gamma = \frac{\Lambda_\theta(3\cos^2\theta-1)}{\sqrt{3\cos^2\theta+1}}
 \end{equation}
 where
 \begin{equation}
-    \Lambda_\theta = \sqrt{1 - \left(\frac{r\sin\theta}{r_L}\right)^2}
+    \Lambda_\theta = \sqrt{1 - (r^\prime\sin\theta)^2}
 \end{equation}
 Taylor series expansions (about $\theta = 0$):
 \begin{equation}
     \begin{aligned}
-        \cos\Gamma &\approx 1 - \frac{4r^2+9r_L^2}{8r_L^2}\,\theta^2 -
-                            \frac{48r^4 - 280r^2r_L^2 - 9r_L^4}{384r_L^4}\,\theta^4 + O(\theta^6) \\
+        \cos\Gamma &\approx 1 - \frac{4(r^\prime)^2+9}{8}\,\theta^2 -
+                            \frac{48(r^\prime)^4 - 280(r^\prime)^2 - 9}{384}\,\theta^4 + O(\theta^6) \\
         \Gamma &\approx \sqrt{(r^\prime)^2 + \frac94}\,\theta +
                         \frac{8(r^\prime)^4 - 26(r^\prime)^2 + 9}{48\sqrt{(r^\prime)^2 + \frac94}}\,\theta^3 + O(\theta^5)
     \end{aligned}
 \end{equation}
+
+\subsection{Inclined rotator, with rotation effects \linktosage{sage:Gamma}}
+
+The Taylor expansion of $\Gamma$ about $\theta = 0$ (in the magnetic frame) is
+\begin{equation}
+    \begin{aligned}
+        \cos\Gamma &\approx \Lambda - r^\prime\sin\alpha
+            \left(\frac{r^\prime\cos\alpha}{\Lambda}\cos\sigma +
+                  \frac32\sin\sigma\right)\sin\theta + O(\sin^2\theta) \\
+        \sin\Gamma &\approx r^\prime\sin\alpha +
+            \left(r^\prime\cos\alpha\cos\sigma + \frac{3\Lambda}{2}\sin\sigma\right)\sin\theta +
+            O(\sin^2\theta)
+    \end{aligned}
+\end{equation}
 where
 \begin{equation}
-    r^\prime = \frac{r}{r_L}
+    \Lambda \equiv \sqrt{1-(r^\prime\sin\alpha)^2}
 \end{equation}
-
-\subsection{Inclined Rotator}
-
-In the following, $\alpha$ is the angle that the magnetic axis makes with the rotation axis, and $\zeta$ is the angle between the rotation axis and the line of sight.
-The rotation axis is aligned with the $z$-axis, and unless otherwise specified, the formulas pertain to the time when the magnetic axis $\vec{\mu}$ is instantaneously in the $xz$-plane (and where $\vec{\mu}\cdot\hat{x}$ is positive).
-
-\subsubsection{Magnetic Field in Cartesian Coordinates \linktosage{sage:Bdip_inclined}}
-
+Taylor expanding about both $r = 0$ and $\theta = 0$ gives:
 \begin{equation}
-    \vec{B}(\vec{r}) =
-    \frac{\mu\cos\alpha}{r^5}\begin{bmatrix}
-        3xz \\
-        3yz \\
-        3z^2 - r^2
-    \end{bmatrix} + 
-    \frac{\mu\sin\alpha}{r^5}\begin{bmatrix}
-        3x^2 - r^2 \\
-        3xy \\
-        3xz
-    \end{bmatrix}
+    \begin{aligned}
+        \cos\Gamma &\approx 1 - \frac12(r^\prime\sin\alpha)^2 -
+            \frac32\theta r^\prime\sin\alpha\sin\sigma -
+            \frac98\theta^2 - (r^\prime)^2\theta\sin\alpha\cos\alpha\cos\sigma +
+            O(\text{4th order terms in $r$ and $\theta$}) \\
+        \sin\Gamma &\stackrel{?}{\approx} r^\prime\sin\alpha + \frac32\theta\sin\sigma + r^\prime\cos\alpha\cos\sigma + \dots
+    \end{aligned}
 \end{equation}
 
-\subsubsection{Rotating Vector Model (RVM)}
+\section{Pulse Width}
+
+The pulse width, $W$, is related to the beam opening angle, $\Gamma$, as follows (from \cite{Lorimer2005}):
+\begin{equation}
+    \cos\Gamma = \cos\alpha\cos\zeta + \sin\alpha\sin\zeta\cos\left(\frac{W}{2}\right)
+    \tag{H3.27}
+\end{equation}
+
+\section{Rotating Vector Model (RVM)}
 
 \begin{equation}
     \tan{\psi} = \frac{\sin\alpha \sin\phase}{\sin\zeta\cos\alpha - \cos\zeta\sin\alpha\cos\phase}
@@ -471,46 +539,7 @@ The rotation axis is aligned with the $z$-axis, and unless otherwise specified, 
     \left.\frac{d\psi}{d\phase}\right|_{\phase=0} = \frac{\sin\alpha}{\sin(\zeta-\alpha)}
 \end{equation}
 
-\subsubsection{Pulse Width}
-
-The pulse width, $W$, is related to the beam opening angle, $\Gamma$, as follows (from the \emph{Handbook}):
-\begin{equation}
-    \cos\Gamma = \cos\alpha\cos\zeta + \sin\alpha\sin\zeta\cos\left(\frac{W}{2}\right)
-    \tag{H3.27}
-\end{equation}
-
-\subsubsection{Beam Opening Angle \linktosage{sage:Gamma}}
-
-In this and the following sections, $(r,\theta,\sigma)$ are the spherical coordinates in the magnetic frame.
-Let $\Gamma = \cos^{-1}(\hat{V}\cdot\hat{\mu})$ be the (half) opening angle of the beam.
-The Taylor expansion of $\Gamma$ about $\theta = 0$ (in the magnetic frame), including rotation effects, is
-\begin{equation}
-    \begin{aligned}
-        \cos\Gamma &\approx \Lambda - \frac{r\sin\alpha}{\beta r_L}
-            \left(\frac{1}{\Lambda}\frac{r\cos\alpha}{\beta r_L}\cos\sigma +
-                  \frac32\sin\sigma\right)\sin\theta + O(\sin^2\theta) \\
-        \sin\Gamma &\approx \frac{r\sin\alpha}{\beta r_L} +
-            \left(\frac{r\cos\alpha}{\beta r_L}\cos\sigma + \frac{3\Lambda}{2}\sin\sigma\right)\sin\theta +
-            O(\sin^2\theta)
-    \end{aligned}
-\end{equation}
-where
-\begin{equation}
-    \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}
-\end{equation}
-Taylor expanding about both $r = 0$ and $\theta = 0$ gives:
-\begin{equation}
-    \begin{aligned}
-        \cos\Gamma &\approx 1 - \frac12(r^\prime\sin\alpha)^2 -
-            \frac32\theta r^\prime\sin\alpha\sin\sigma -
-            \frac98\theta^2 - (r^\prime)^2\theta\sin\alpha\cos\alpha\cos\sigma +
-            O(\text{4th order terms in $r$ and $\theta$}) \\
-        \sin\Gamma &\approx r^\prime\sin\alpha + \frac32\theta_m\sin\phi_m + r^\prime\cos\alpha\cos\phi_m + \dots
-    \end{aligned}
-\end{equation}
-
-
-\subsubsection{Deflection Angle \linktosage{sage:aberration_dip}}
+\section{Deflection Angle \linktosage{sage:aberration_dip}}
 
 Let $\eta = \cos^{-1}(\hat{V}\cdot\hat{B})$ be the angle between the local magnetic field and the particle trajectory.
 Without rotation effects, $\hat{V} = \hat{B}$ everywhere, so $\eta = 0$.
@@ -537,7 +566,7 @@ Expanding about both $r = 0$ and $\theta = 0$ gives:
     \cos\eta \approx 1 - \frac12(r^\prime\sin\alpha)^2 - (r^\prime)^2\theta\sin\alpha\cos\alpha\cos\sigma + O(\text{4th order terms in $r$ and $\theta$})
 \end{equation}
 
-\subsubsection{Viewing Inclination \linktosage{sage:zeta} and Derived Emission Heights}
+\section{Viewing Inclination \linktosage{sage:zeta} and Derived Emission Heights}
 \label{sec:zeta}
 
 Let $\zeta = \cos^{-1}(\hat{V}\cdot\hat{z})$ be the angle between the velocity field and the rotation axis\footnote{NB: $\zeta$ is being defined here as what viewing angle any arbitrary emission location would be viewed at, not as the actual viewing angle of a given observer.}.
@@ -608,7 +637,7 @@ If $\zeta > \alpha$, then we can expect the lowest height to occur at the fiduci
         9\cos^2\alpha}
 \end{equation}
 
-\subsubsection{Viewing Phase \linktosage{sage:phase}}
+\section{Viewing Phase \linktosage{sage:phase}}
 
 The phase at which an emission site is viewed is the negative of the phase angle of the velocity vector, or
 \begin{equation}
@@ -635,44 +664,6 @@ Expanding about both $r = 0$ and $\theta = 0$ gives:
             \frac{r^\prime\theta\cos\alpha\cos\sigma}{2\sin\alpha} + \\
             &\qquad O(\text{3rd order terms in $r$ and $\theta$})
     \end{aligned}
-\end{equation}
-
-\subsubsection{Curvature \linktosage{sage:curvature}}
-
-The Taylor expansion of the curvature near the magnetic axis ($\theta = 0$)
-\begin{equation}
-    \kappa \approx \frac{\sin\alpha}{\beta r_L}\sqrt{4 + \left(\frac{r\cos\alpha}{\beta r_L}\right)^2} + \dots
-\end{equation}
-Expanding around both $r = 0$ and $\theta = 0$:
-\begin{equation}
-   \kappa \approx \frac{2\sin\alpha}{r_L} + 0r + ?\theta
-\end{equation}
-Note that this is in agreement with the expression ($\rho \approx r_L/(2\sin\alpha)$) stated in Thomas \& Gangadhara (2007).
-
-\section{Magnetic Deutsch/Arendt equations}
-
-\begin{equation}
-\begin{aligned}
-    \vec{B}(\vec{r}) &= \mu \cos{\alpha} \F{1} \frac{1}{r^5} + \\
-                   &\hspace{13pt} \mu \sin{\alpha} \F{2} \frac{\cos(\ph)}{r^3 r_L^2} +
-                                  \mu \sin{\alpha} \F{3} \bigg(\frac{\cos(\ph)}{r^5} + \frac{\sin(\ph)}{r^4 r_L}\bigg) - \\
-                   &\hspace{13pt} \mu \sin{\alpha} \F{4} \frac{\sin(\ph)}{r^3 r_L^2} -
-                                  \mu \sin{\alpha} \F{5} \bigg(\frac{\sin(\ph)}{r^5} - \frac{\cos(\ph)}{r^4 r_L}\bigg)
-\end{aligned}
-\end{equation}
-where
-\begin{equation}
-\begin{aligned}
-    \F{1} &= 3xz\,\hat{x} + 3yz\,\hat{y} + (3z^2-r^2)\,\hat{z} \\
-    \F{2} &= (r^2-x^2)\,\hat{x} - xy\,\hat{y} - xz\,\hat{z} \\
-    \F{3} &= (3x^2-r^2)\,\hat{x} + 3xy\,\hat{y} + 3xz\,\hat{z} \\
-    \F{4} &= -xy\,\hat{x} + (r^2-y^2)\,\hat{y} - yz\,\hat{z} \\
-    \F{5} &= 3xy\,\hat{x} + (3y^2-r^2)\,\hat{y} + 3yz\,\hat{z}
-\end{aligned}
-\end{equation}
-and
-\begin{equation}
-    \ph = \frac{r - r_p}{r_L}
 \end{equation}
 
 \section{Retardation}
