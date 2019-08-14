@@ -34,7 +34,7 @@
     keywordstyle=\color{mygreen}
 }
 
-\bibliographystyle{plain}
+\bibliographystyle{chicago}
 
 \begin{document}
 
@@ -395,7 +395,7 @@ From Eq \eqref{eqn:curvature_polar},
             &= \frac{r^\prime(3\cos^2\theta + 1)^{3/2}}{3\sin\theta(\cos^2\theta + 1)}
     \end{aligned}
 \end{equation}
-\cite{Gangadhara2004} gives it in this form (see their Eq. (4)):
+\citet{Gangadhara2004} gives it in this form (see their Eq. (4)):
 \begin{equation}
     \rho = \frac{R\sin\theta(5 + 3\cos(2\theta))^{3/2}}{3\sqrt{2}(3 + \cos(2\theta))}
 \end{equation}
@@ -450,7 +450,7 @@ Expanding around both $r = 0$ and $\theta = 0$:
 \begin{equation}
    \kappa^\prime \approx 2\sin\alpha + 0r^\prime + ?\theta
 \end{equation}
-Note that this is in agreement with the expression ($\rho \approx r_L/(2\sin\alpha)$) stated in \cite{Thomas2007}.
+Note that this is in agreement with the expression ($\rho \approx r_L/(2\sin\alpha)$) stated in \citet{Thomas2007}.
 
 \section{Beam Opening Angles}
 \label{sec:beamopeningangles}
@@ -458,7 +458,7 @@ Note that this is in agreement with the expression ($\rho \approx r_L/(2\sin\alp
 Let $\Gamma = \cos^{-1}(\hat{V}\cdot\hat{\mu})$ be the (half) opening angle of the beam.
 
 \subsection{Aligned rotator, without rotation effects}
-The relationship between $\theta$ and $\Gamma$ (and its inverse) is given by \cite{Gangadhara2004}
+The relationship between $\theta$ and $\Gamma$ (and its inverse) is given by \citet{Gangadhara2004}
 \begin{equation}
     \begin{aligned}
         \cos(2\theta) &= \frac13\left(\cos\Gamma\sqrt{8 + \cos^2\Gamma} - \sin^2\Gamma\right) \\
@@ -523,7 +523,7 @@ Taylor expanding about both $r = 0$ and $\theta = 0$ gives:
 
 \section{Pulse Width}
 
-The pulse width, $W$, is related to the beam opening angle, $\Gamma$, as follows (from \cite{Lorimer2005}):
+The pulse width, $W$, is related to the beam opening angle, $\Gamma$, as follows \citep{Lorimer2005}:
 \begin{equation}
     \cos\Gamma = \cos\alpha\cos\zeta + \sin\alpha\sin\zeta\cos\left(\frac{W}{2}\right)
     \tag{H3.27}
@@ -1080,13 +1080,22 @@ If the observer corotates with the particle (i.e. with angular velocity $\Omega 
     \label{eqn:angular_rate_CF}
 \end{equation}
 
+\subsection{Goldreich-Julian Charge Density}
+
+In SI units,
+\begin{equation}
+    \rho_\text{GJ} \approx 4\pi\varepsilon_0\Omega B,
+\end{equation}
+where $\Omega = 2\pi/P$ is the angular velocity of the neutron star and $B$ is the magnetic field strength.
+Its units are C/m$^3$.
+
 \section{Strong Magnetic Fields}
 
 \subsection{Quantum Critical Magnetic Field}
 
-The ``quantum critical magnetic field'' (e.g. Diachenko 2017):
+The ``quantum critical magnetic field'' \citep[translated to SI units from][]{Diachenko2017}:
 \begin{equation}
-    B_c = \frac{m^2c^3}{e\hbar}
+    B_c = \frac{m^2c^2}{e\hbar}
 \end{equation}
 For electrons, $B_c = 4.413\times10^{13}\,$ G.
 
