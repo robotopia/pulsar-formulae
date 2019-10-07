@@ -133,6 +133,19 @@ Holding $\alpha$ and $\zeta$ constant, we also have the rate of change with resp
              = \sin\zeta  \sin\psi
     \end{aligned}
 \end{equation}
+A perhaps slightly more convenient formulation of the above (in order to avoid square roots and related sign ambiguities):
+\begin{equation}
+    \begin{aligned}
+        \deriv{\psi}{\phase}
+            &= -\frac{\sin\psi\cos\sigma}{\sin\phase}
+             = -\frac{\tan\psi\cos^2\sigma}{\sin\phase}\frac{\cos\psi}{\cos\sigma}
+             = \frac{\tan\psi}{1 + \tan^2\sigma}\bigg(\frac{1}{\tan\phase} - \tan\sigma\cos\alpha\bigg) \\
+        \deriv{\sigma}{\phase}
+            &= -\frac{\sin\sigma\cos\psi}{\sin\phase}
+             = -\frac{\tan\sigma\cos^2\psi}{\sin\phase}\frac{\cos\sigma}{\cos\psi}
+             = \frac{\tan\sigma}{1 + \tan^2\psi}\bigg(\frac{1}{\tan\phase} - \tan\psi\cos\zeta\bigg)
+    \end{aligned}
+\end{equation}
 The following relations also hold:
 \begin{equation}
     \begin{aligned}
