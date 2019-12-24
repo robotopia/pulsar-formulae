@@ -1,4 +1,4 @@
-formulae.pdf: formulae.tex images/pulsarangles.png
+formulae.pdf: formulae.tex biblio.bib images/pulsarangles.png
 	pdflatex $<
 	bibtex $(basename $<)
 	pdflatex $<
