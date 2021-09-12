@@ -157,6 +157,23 @@ The following relations also hold:
         \derivn{\psi}{\phase}{2} &= -\frac{\sin\alpha\sin\zeta}{\sin^2\Gamma}(\sin\sigma\cos\psi - \sin\psi\cos\sigma\cos\Gamma)
     \end{aligned}
 \end{equation}
+At the fiducial point ($\phase = 0^\circ$):
+\begin{equation}
+    \chi_0 \equiv \left.\deriv{\psi}{\phase}\right|_{\phase = 0^\circ}
+        = -\frac{\sin\alpha}{\sin\zeta\cos\alpha - \cos\zeta\sin\alpha}
+        = -\frac{\sin\alpha}{\sin(\zeta - \alpha)}
+        \equiv -\frac{\sin\alpha}{\sin\beta}
+\end{equation}
+At the anti-fiducial point ($\phase = 180^\circ$):
+\begin{equation}
+    \chi_{180} \equiv \left.\deriv{\psi}{\phase}\right|_{\phase = 180^\circ}
+        = \frac{\sin\alpha}{\sin\zeta\cos\alpha + \cos\zeta\sin\alpha}
+        = \frac{\sin\alpha}{\sin(\zeta + \alpha)}
+\end{equation}
+Consequently,
+\begin{equation}
+    \cos\zeta = -\frac{1}{2}\left(\frac{1}{\chi_0} + \frac{1}{\chi_{180}}\right)
+\end{equation}
 
 \section{Magnetic Vector Field}
 
