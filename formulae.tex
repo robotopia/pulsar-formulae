@@ -9,7 +9,7 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 
-\title{Formulas relating to pulsar geometry}
+\title{Formulas relating to pulsars}
 \author{Sam McSweeney}
 
 \newcommand{\phase}{\varphi}
@@ -818,6 +818,33 @@ Then the spark profile is defined as
     H_\text{sp}(\theta_\text{fp},\sigma_\text{fp},t) \equiv e^{-9D^2/2\theta_\text{sp}}
 \end{equation}
 where the spark radius is identified with $3\sigma$ of a standard normal profile.
+
+\section{Dedispersion}
+
+\subsection{Incoherent dedispersion}
+
+\begin{equation}
+    \Delta t
+        = \mathcal{D} \times
+          \left(\frac{\text{DM}}{\text{pc/cm}^3}\right) \times \left[
+              \left(\frac{f_\text{ref}}{\text{MHz}}\right)^{-2} -
+              \left(\frac{f_\text{chan}}{\text{MHz}}\right)^{-2} \right]
+\end{equation}
+where $\mathcal{D} = 4.148808 \times 10^6\,$ms.
+
+\subsection{Transfer functions}
+
+\subsubsection{Coherent dedispersion}
+
+\begin{equation}
+    H(f_0 + f) = e^{-2\pi i \mathcal{D}\times\text{DM}\frac{f^2}{(f+f_0) f_0^2}}
+\end{equation}
+
+If in the circular basis\footnote{Not yet verified whether or not this also applies to the linear basis.}, the effect of Faraday rotation can be included:
+
+\begin{equation}
+    H_\pm(f_0 + f) = e^{-i \left(2\pi\mathcal{D}\times\text{DM}\frac{f^2}{(f+f_0) f_0^2} \mp \frac{c^2\text{RM}}{(f_0+f)^2}\right)}
+\end{equation}
 
 \chapter{Coordinate Systems}
 
