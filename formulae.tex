@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{book}
 
 \usepackage{amsmath}
 \usepackage{fullpage}
@@ -42,7 +42,7 @@
 
 \tableofcontents
 
-\newpage
+\chapter{Pulsars}
 
 \section{Notation and definitions}
 
@@ -819,11 +819,11 @@ Then the spark profile is defined as
 \end{equation}
 where the spark radius is identified with $3\sigma$ of a standard normal profile.
 
-\section{Coordinate Systems}
+\chapter{Coordinate Systems}
 
 In this section (unless otherwise specified), $\theta$ is the colatitude (measured from the $z$-axis) and $\phase$ is the longitude (measured from the $x$-axis).
 
-\subsection{Spherical $\leftrightarrow$ Cartesian}
+\section{Spherical $\leftrightarrow$ Cartesian}
 
 \subsubsection{Spherical $(r,\theta,\phase)$ $\rightarrow$ Cartesian $(x,y,z)$}
 \begin{equation}
@@ -842,9 +842,9 @@ In this section (unless otherwise specified), $\theta$ is the colatitude (measur
     \end{aligned}
 \end{equation}
 
-\subsection{Euler rotations}
+\section{Euler rotations}
 
-\subsubsection{2D Rotation}
+\subsection{2D Rotation}
 
 \begin{equation}
     R(\theta) = \begin{bmatrix}
@@ -853,7 +853,7 @@ In this section (unless otherwise specified), $\theta$ is the colatitude (measur
     \end{bmatrix}
 \end{equation}
 
-\subsubsection{3D Rotation \linktosage{sage:3Drotation}}
+\subsection{3D Rotation \linktosage{sage:3Drotation}}
 
 \begin{equation}
     R_x(\theta) = \begin{bmatrix}
@@ -877,13 +877,13 @@ In this section (unless otherwise specified), $\theta$ is the colatitude (measur
     \end{bmatrix}
 \end{equation}
 
-\subsection{Magnetic $\leftrightarrow$ Observer \linktosage{sage:mag2obs}}
+\section{Magnetic $\leftrightarrow$ Observer \linktosage{sage:mag2obs}}
 
 In the magnetic coordinate system, the $z$-axis is identified with the magnetic moment, and the $x$-axis is chosen to be in the plane containing both the rotation and magnetic axes.
 The angle between the rotation and magnetic axes is, as usual, denoted by $\alpha$.
 At rotation phase $\phase$, the relations between magnetic and observer coordinates are therefore defined as follows.
 
-\subsubsection{Magnetic to Observer coordinates}
+\subsection{Magnetic to Observer coordinates}
 \begin{equation}
     R_z(\phase) R_y(\alpha) =
     \begin{bmatrix}
@@ -893,7 +893,7 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
     \end{bmatrix}
 \end{equation}
 
-\subsubsection{Observer to Magnetic coordinates}
+\subsection{Observer to Magnetic coordinates}
 \begin{equation}
     R_y(-\alpha) R_z(-\phase) =
     \begin{bmatrix}
@@ -903,11 +903,11 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
     \end{bmatrix}
 \end{equation}
 
-\subsection{Spark $\leftrightarrow$ Magnetic coordinates}
+\section{Spark $\leftrightarrow$ Magnetic coordinates}
 
 (See \S\ref{sec:carousel} for the meaning of the notation in the following formulas.)
 
-\subsubsection{Spark to Magnetic coordinates}
+\subsection{Spark to Magnetic coordinates}
 \begin{equation}
     \begin{bmatrix}
         \cos\phase_n(t)\cos\sigma & -\sin\phase_n(t) & \cos\phase_n(t)\sin\sigma \\
@@ -916,13 +916,13 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
     \end{bmatrix}
 \end{equation}
 
-\subsubsection{Magnetic to Spark coordinates}
+\subsection{Magnetic to Spark coordinates}
 
 [YET TO DO]
 
-\section{Miscellaneous}
+\chapter{Miscellaneous}
 
-\subsection{Taylor Series}
+\section{Taylor Series}
 
 Taylor expansion of $f(x)$ about $x = a$:
 \begin{equation}
@@ -939,7 +939,7 @@ Taylor expansion of $f(x,y)$ about $(x,y) = (a,b)$
     \end{aligned}
 \end{equation}
 
-\subsubsection{Taylor expanding $z$ when it's in the form $\cos z = f(x,y)$}
+\subsection{Taylor expanding $z$ when it's in the form $\cos z = f(x,y)$}
 
 This was in hope of getting expressions that don't ``divide by zero'' in Sagemath, but it doesn't seem to be doing any better than before, so I think I'll drop this line of attack.
 \begin{equation}
@@ -955,38 +955,38 @@ This was in hope of getting expressions that don't ``divide by zero'' in Sagemat
     \end{aligned}
 \end{equation}
 
-\subsection{Curvature}
+\section{Curvature}
 
-\subsubsection{Curvature of arbitrarily accelerated particle}
+\subsection{Curvature of arbitrarily accelerated particle}
 
 \begin{equation}
     \kappa = \frac{|\vec{v}\times\vec{a}|}{|\vec{v}|^3}
 \end{equation}
 
-\subsubsection{Curvature of polar function $r = f(\theta)$}
+\subsection{Curvature of polar function $r = f(\theta)$}
 
 \begin{equation}
     \kappa = \frac{|2(f^\prime(\theta))^2 + (f(\theta))^2 - f(\theta)f^{\prime\prime}(\theta)|}{\left[(f^\prime(\theta))^2 + (f(\theta))^2\right]^{3/2}}
     \label{eqn:curvature_polar}
 \end{equation}
 
-\subsection{Acceleration}
+\section{Acceleration}
 
 The material derivative of a time-dependent velocity field is
 \begin{equation}
     \vec{A} = \pd{\vec{V}}{t} + V_x\pd{\vec{V}}{x} + V_y\pd{\vec{V}}{y} + V_z\pd{\vec{V}}{z}
 \end{equation}
 
-\subsubsection{Normalised acceleration vector of an inclined dipole at the origin}
+\subsection{Normalised acceleration vector of an inclined dipole at the origin}
 
 The acceleration vector itself blows up at the origin, but after normalisation, one gets:
 \begin{equation}
     \left.\hat{A}\right|_{r=0} = \frac{1}{\sqrt{3\cos^2\alpha+1}}\begin{bmatrix} -2\cos\alpha \\ 0 \\ \sin\alpha \end{bmatrix}
 \end{equation}
 
-\subsection{Bessel functions}
+\section{Bessel functions}
 
-\subsubsection{Expansions at $x=0$:}
+\subsection{Expansions at $x=0$:}
 
 \begin{equation}
     \lim_{x\rightarrow0} K_\nu(x)
@@ -1007,7 +1007,7 @@ The acceleration vector itself blows up at the origin, but after normalisation, 
         \approx \frac{3^{1/2}2^{2/3}\pi}{\Gamma\left(-\frac23\right)x^{2/3}} = 2.149528241534478\,x^{-2/3}
 \end{equation}
 
-\subsubsection{Expansions at $x=\infty$:}
+\subsection{Expansions at $x=\infty$:}
 
 \begin{equation}
     \lim_{x\rightarrow\infty} K_\nu(x)
@@ -1019,7 +1019,7 @@ The acceleration vector itself blows up at the origin, but after normalisation, 
         \approx \sqrt{\frac{\pi}{2}}x^{-1/2}e^{-x}
 \end{equation}
 
-\subsubsection{Special values}
+\subsection{Special values}
 
 In practice, I often only evaluate the $K_\nu(x)$ family of functions (above) up to $x = 10$.
 Therefore, in order to get accurate numerical upper integrals of the form $F_\nu(x) = \int_x^\infty K_\nu(x^\prime)\,dx^\prime$, it is useful to have some values of $F_\nu(10)$.
@@ -1029,7 +1029,7 @@ Therefore, in order to get accurate numerical upper integrals of the form $F_\nu
     F_{5/3}(10) &= \int_{10}^\infty K_{5/3}(x)\,dx = 0.0000192238
 \end{align}
 
-\subsubsection{Approximating functions}
+\subsection{Approximating functions}
 
 This is only a very rough approximation and should not be used.
 \begin{equation}
@@ -1060,9 +1060,21 @@ The column named ``numerical'' is the result of numerically integrating $K_{5/3}
     \end{tabular}
 \end{table}
 
-\subsection{Stokes Parameters}
+\section{Stokes Parameters}
 
-\subsubsection{From circularly polarised fields}
+\subsection{Linear basis}
+
+Let $E_X$ and $E_Y$ be the amplitudes of the electric field in an orthogonal linear basis, and let $\delta$ be the phase angle between them.
+\begin{equation}
+    \begin{aligned}
+        I &= \left\langle E_X^2 \right\rangle + \left\langle E_Y^2 \right\rangle \\
+        Q &= \left\langle E_X^2 \right\rangle - \left\langle E_Y^2 \right\rangle \\
+        U &= 2\left\langle E_X E_Y \cos\delta \right\rangle \\
+        V &= 2\left\langle E_X E_Y \sin\delta \right\rangle \\
+    \end{aligned}
+\end{equation}
+
+\subsection{Circular basis}
 
 Let $E_L$ and $E_R$ be the amplitudes of the left and right circularly polarized electric field respectively, and let $\delta$ be the phase angle between them.
 \begin{equation}
@@ -1082,7 +1094,64 @@ In terms of \emph{intensity}, $I_\pm \equiv \frac{d^2I_\pm}{d\omega\,d\Omega} = 
     \end{aligned}
 \end{equation}
 
-\subsection{Spherical distance}
+\subsection{Converting from circular to linear basis}
+
+\begin{equation}
+    \begin{aligned}
+        E_X &=  \frac{1}{\sqrt{2}}(E_L + E_R) \\
+        E_Y &= -\frac{i}{\sqrt{2}}(E_L - E_R)
+    \end{aligned}
+    \qquad\Leftrightarrow\qquad
+    \begin{bmatrix} E_X \\ E_Y \end{bmatrix}
+        = \frac{1}{\sqrt{2}}
+          \begin{bmatrix} 1 & 1 \\ -i & i \end{bmatrix}
+          \begin{bmatrix} E_L \\ E_R \end{bmatrix}
+\end{equation}
+
+\subsection{Converting from linear to circular basis}
+
+\begin{equation}
+    \begin{aligned}
+        E_L &= \frac{1}{\sqrt{2}}(E_X + iE_Y) \\
+        E_R &= \frac{1}{\sqrt{2}}(E_X - iE_Y)
+    \end{aligned}
+    \qquad\Leftrightarrow\qquad
+    \begin{bmatrix} E_L \\ E_R \end{bmatrix}
+        = \frac{1}{\sqrt{2}}
+          \begin{bmatrix} 1 & i \\ 1 & -i \end{bmatrix}
+          \begin{bmatrix} E_X \\ E_Y \end{bmatrix}
+\end{equation}
+
+\subsection{Decomposition of Jones vectors into orthogonal linear components}
+
+Let $\psi_1$ be a given angle of linear polarisation, and let $\psi_2 = \psi_1 - \pi/2$ be orthogonal to it.
+(For pulsars, these might represent the angles of the two orthogonal polarisation modes.)
+Then any Jones vector in the circular basis,
+\[
+    {\bf E} = \begin{bmatrix} E_L \\ E_R \end{bmatrix},
+\]
+can be uniquely decomposed into two purely linear (i.e. $V=0$) Jones vectors in the orthogonal basis defined by $\psi_1$ and $\psi_2$:
+\begin{align}
+    {\bf E}_1
+         = \begin{bmatrix} E_{L,1} \\ E_{R,1} \end{bmatrix}
+        &= \frac{E_L - E_R e^{2i\psi_2}}{2} \begin{bmatrix} 1 \\ e^{2i\psi_1} \end{bmatrix}, \\
+    {\bf E}_2
+         = \begin{bmatrix} E_{L,2} \\ E_{R,2} \end{bmatrix}
+        &= \frac{E_L - E_R e^{2i\psi_1}}{2} \begin{bmatrix} 1 \\ e^{2i\psi_2} \end{bmatrix}
+\end{align}
+The equivalent decomposition expressed in a linear basis is
+\begin{align}
+    {\bf E}_1
+         = \begin{bmatrix} E_{X,1} \\ E_{Y,1} \end{bmatrix}
+        &= \frac{E_X(1 - e^{2i\psi_2} + iE_Y(1 + e^{2i\psi_2})}{4}
+           \begin{bmatrix} 1 + e^{-2i\psi_1} \\ -i(1 - e^{2i\psi_1}) \end{bmatrix}, \\
+    {\bf E}_2
+         = \begin{bmatrix} E_{X,2} \\ E_{Y,2} \end{bmatrix}
+        &= \frac{E_X(1 - e^{2i\psi_1} + iE_Y(1 + e^{2i\psi_1})}{4}
+           \begin{bmatrix} 1 + e^{-2i\psi_2} \\ -i(1 - e^{2i\psi_2}) \end{bmatrix}
+\end{align}
+
+\section{Spherical distance}
 
 Let $(\theta_1,\phase_1)$ and $(\theta_2,\phase_2)$ be two points on the unit sphere, where $\theta$ denotes colatitude and $\phase$ denotes longitude.
 The great-circle angle between the two points is\footnote{According to Wikipedia (``Great-circle distance'', accessed 2018-06-23), this formula becomes inaccurate on computer systems with low floating-point precision if the distance is small. However, for 64-bit floating point numbers, it ``does not have serious rounding errors for distances larger than a few meters on the surface of the Earth.''}
@@ -1090,7 +1159,7 @@ The great-circle angle between the two points is\footnote{According to Wikipedia
     \delta = \cos^{-1}(\cos\theta_1 \cos\theta_2 + \sin\theta_1 \sin\theta_2 \cos(\phase_1 - \phase_2))
 \end{equation}
 
-\subsection{Thomas precession}
+\section{Thomas precession}
 
 (From Wikipedia:) Consider the motion of a particle.
 Introduce a lab frame in which an observer can measure the relative motion of the particle.
@@ -1104,7 +1173,7 @@ As a result of the Wigner rotation at every instant, the particle's frame preces
     \vec{\omega}_T = \frac{1}{c^2}\left(\frac{\gamma^2}{\gamma + 1}\right)\vec{a}\times\vec{v}.
 \end{equation}
 
-\subsection{Apparent angular speed}
+\section{Apparent angular speed}
 
 A non-rotating observer will consider a particle at $(r,\theta)$ (2D polar coordinates), moving with velocity $\vec{\beta}$ at an angle $\eta$ to its radial vector to have angular velocity
 \begin{equation}
@@ -1117,7 +1186,7 @@ If the observer corotates with the particle (i.e. with angular velocity $\Omega 
     \label{eqn:angular_rate_CF}
 \end{equation}
 
-\subsection{Goldreich-Julian Charge Density}
+\section{Goldreich-Julian Charge Density}
 
 In SI units,
 \begin{equation}
@@ -1126,9 +1195,9 @@ In SI units,
 where $\Omega = 2\pi/P$ is the angular velocity of the neutron star and $B$ is the magnetic field strength.
 Its units are C/m$^3$.
 
-\section{Strong Magnetic Fields}
+\chapter{Strong Magnetic Fields}
 
-\subsection{Quantum Critical Magnetic Field}
+\section{Quantum Critical Magnetic Field}
 
 The ``quantum critical magnetic field'' \citep[translated to SI units from][]{Diachenko2017}:
 \begin{equation}
@@ -1136,7 +1205,7 @@ The ``quantum critical magnetic field'' \citep[translated to SI units from][]{Di
 \end{equation}
 For electrons, $B_c = 4.413\times10^{13}\,$ G.
 
-\subsection{Landau levels}
+\section{Landau levels}
 
 Electrons in a magnetic field occupy discrete energy levels (Diachenko 2017):
 \begin{equation}
@@ -1146,7 +1215,7 @@ Electrons in a magnetic field occupy discrete energy levels (Diachenko 2017):
 \end{equation}
 where $p_z$ is parallel to the field momentum, $l$ is the level number and $b$ is the magnetic field strength in units of the quantum critical field $B_c$.
 
-\subsection{Pair Cascades}
+\section{Pair Cascades}
 
 The maximum multiplicity, the number of secondary particles for each primary particle, of an ideal cascade initiated by a single primary particle with energy $\epsilon_p$ would be (Timokhin \& Harding, 2015)
 \begin{equation}
@@ -1154,7 +1223,7 @@ The maximum multiplicity, the number of secondary particles for each primary par
 \end{equation}
 where $\epsilon_{\gamma,\text{esc}}$ is the maximum energy of photons escaping from the cascade (or the minimum energy of pair producing photons).
 
-\section{Jackson's Classical Electrodynamics}
+\chapter{Jackson's Classical Electrodynamics}
 
 A convenient reparameterisation:
 \begin{equation}
@@ -1194,10 +1263,9 @@ Critical frequency:
 
 \appendix
 
-\newpage
-\section{Derivations}
+\chapter{Derivations}
 
-\subsection{Eqs. \eqref{eqn:angular_rate_IF} and \eqref{eqn:angular_rate_CF}}
+\section{Eqs. \eqref{eqn:angular_rate_IF} and \eqref{eqn:angular_rate_CF}}
 
 Let a particle have radial position $\vec{r} = (r,\theta)$ (polar coordinates), and let it have a velocity, $\vec{\beta}$, which makes an angle $\eta$ with the radial vector.
 Let the particle emit two photons at two consecutive times $t$ and $t+dt$, both directed towards the origin.
@@ -1220,7 +1288,7 @@ Therefore, the apparent direction of the second photon will lag behind the first
 \end{equation}
 
 \newpage
-\section{Sage Scripts}
+\chapter{Sage Scripts}
 
 \newcommand{\lstsage}[2]{\subsection*{#1}\label{sage:#2}\lstinputlisting{sagescripts/#2.sage}}
 
