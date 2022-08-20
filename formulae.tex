@@ -13,8 +13,8 @@
 \author{Sam McSweeney}
 
 \newcommand{\phase}{\varphi}
-\newcommand{\deriv}[2]{\frac{d{#1}}{d{#2}}}
-\newcommand{\derivn}[3]{\frac{d^{#3}{#1}}{d{#2}^{#3}}}
+\newcommand{\deriv}[2]{\frac{\text{d}{#1}}{\text{d}{#2}}}
+\newcommand{\derivn}[3]{\frac{\text{d}^{#3}{#1}}{\text{d}{#2}^{#3}}}
 \newcommand{\pd}[2]{\frac{\partial {#1}}{\partial {#2}}}
 \newcommand{\ppd}[2]{\frac{\partial^2{#1}}{\partial {#2}^2}}
 \newcommand{\pdpd}[3]{\frac{\partial^2{#1}}{\partial {#2} \partial {#3}}}
@@ -1305,8 +1305,12 @@ then that timescale is
 \begin{equation}
     \tau = \frac{3\pi\varepsilon_0 c^3 m^3}{q^4 B^2}.
 \end{equation}
+For an electron in a pulsar magnetosphere, this is
+\begin{equation}
+    \tau = 2.58 \times 10^{-16}\,\text{s} \times \left(\frac{B}{10^{12}\,\text{G}}\right)^{-2}.
+\end{equation}
 
-\subsubsection{Relativistic generalisation}
+\subsubsection{Relativistic generalisation [check me!]}
 
 Let the initial energy of the particle be $E$, as before.
 Then its Lorentz factor is
@@ -1330,41 +1334,63 @@ Putting this in the relativistic Larmor formula,
 \begin{equation}
 \begin{aligned}
     \deriv{E}{t}
-        &= \frac{q^2\gamma^4\dot{\beta}^2}{6\pi\varepsilon_0 c} \\
-        &= \frac{q^2\gamma^4}{6\pi\varepsilon_0 c} \left[\frac{q^2B^2}{m^2}
+        &= -\frac{q^2\gamma^4\dot{\beta}^2}{6\pi\varepsilon_0 c} \\
+        &= -\frac{q^2\gamma^4}{6\pi\varepsilon_0 c} \left[\frac{q^2B^2}{m^2}
             (\gamma^2 - 1)\left(\frac{\gamma^4}{\gamma^6 + \gamma^2 - 1}\right)^2\right] \\
-        &= \frac{q^4B^2}{6\pi\varepsilon_0 c m^2}
-            \frac{(\gamma^2 - 1)\gamma^4}{(\gamma^6 + \gamma^2 - 1)^2}
+        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c m^2}
+            \frac{\gamma^{12}(\gamma^2 - 1)}{(\gamma^6 + \gamma^2 - 1)^2} \\
+        &\approx -\frac{q^4B^2\gamma^2}{6\pi\varepsilon_0 c m^2}, \qquad \gamma \gg 1.
 \end{aligned}
 \end{equation}
-Even if the particle is mildly relativistic, the leading $\gamma$ terms will dominate, giving
+Clearly, this differs from the non-relativistic case by an extra factor of ``energy'' on the right hand side of this differential equation.
+This means that the solution to this equation will no longer be an exponential, and the notion of a characteristic timescale is a bit harder to define.
+However, we may still define an ``instantaneous'' characteristic timescale as the inverse of the coefficient of the $E$ term.
+To \emph{get} an $E$ term, we may ``use up'' one of the $\gamma$ factors to get
 \begin{equation}
-    \deriv{E}{t} \approx \frac{q^4B^2}{6\pi\varepsilon_0 c m^2}\frac{1}{\gamma^6}
-        = \frac{q^4B^2m^4c^{11}}{6\pi\varepsilon_0}\frac{1}{E^6}
+    \deriv{E}{t}
+        \approx -\frac{q^4B^2\gamma}{6\pi\varepsilon_0 c^3 m^3} E,
 \end{equation}
-To avoid excessive powers of $m$ and $c$, we may do everything in terms of $\gamma$ (instead of $E$).
-Then,
-\begin{equation}
-    \deriv{\gamma}{t} \approx \frac{q^4B^2}{6\pi\varepsilon_0 c^3 m^3}\frac{1}{\gamma^6}
-\end{equation}
-Separating variables and integrating,
+in which case the instantaneous characteristic timescale is
 \begin{equation}
 \begin{aligned}
-    \gamma(t)^7 &\approx \frac{7q^4B^2}{6\pi\varepsilon_0 c^3 m^3}t \\
-    \gamma(t) &\approx \left(\frac{7q^4B^2}{6\pi\varepsilon_0 c^3 m^3}\,t\right)^{1/7}.
+    \tau &\equiv \frac{6\pi\varepsilon_0 c^3 m^3}{q^4B^2\gamma} \\
+        &= 5.16 \times 10^{-18}\,\text{s}
+            \times \left(\frac{B}{10^8\,\text{T}}\right)^{-2}
+            \times \left(\frac{\gamma}{100}\right)^{-1}.
 \end{aligned}
 \end{equation}
-Actually, the full analytic solution is possible.
-From,
+Compare this with the timescale of \citet{Luo1998}:
+\begin{equation}
+    \tau \sim 10^{-14}\,\text{s}
+        \times \left(\frac{B}{10^8\,\text{T}}\right)^{-2}
+        \times \left(\frac{\gamma}{100}\right)
+\end{equation}
+
+The full solution (albeit still only valid for $\gamma \gg 1$) is
 \begin{equation}
 \begin{aligned}
-    \deriv{\gamma}{t} &= \frac{q^4B^2}{6\pi\varepsilon_0 c^3 m^3}
-        \frac{(\gamma^2 - 1)\gamma^4}{(\gamma^6 + \gamma^2 - 1)^2} \\
-    \int \frac{q^4B^2}{6\pi\varepsilon_0 c^3 m^3}\,\text{d}t &=
-        \int \frac{(\gamma^6 + \gamma^2 - 1)^2}{(\gamma^2 - 1)\gamma^4}\,\text{d}\gamma,
+    \deriv{E}{t}
+        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c m^2}\left(\frac{E}{mc^2}\right)^2 \\
+        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c^5 m^4} E^2 \\
+    \int_{E_0}^{E} \frac{1}{E^2}\,\text{d}E
+        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c^5 m^4} \int_0^t\,\text{d}t \\
+    -\frac{1}{E} + \frac{1}{E_0}
+        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c^5 m^4}\,t \\
+    \frac{E_0}{E}
+        &= E_0 \frac{q^4B^2}{6\pi\varepsilon_0 c^5 m^4}\,t + 1 \\
+    \frac{\gamma_0}{\gamma}
+        &= \frac{q^4B^2\gamma_0}{6\pi\varepsilon_0 c^3 m^3}\,t + 1,
 \end{aligned}
 \end{equation}
-the RHS integrand can be solved by means of partial fractions.
+where $E_0$ and $\gamma_0$ represent the initial energies.
+Now we make a more precise estimate of the ``time required for the energy to fall to $1/e$ of its original value'' (which is the usual definition of a characteristic timescale):
+\begin{equation}
+\begin{aligned}
+    \frac{\gamma_0}{\gamma} = e &= \frac{q^4B^2\gamma_0}{6\pi\varepsilon_0 c^3 m^3}\,\tau + 1 \\
+    \tau &= (e - 1)\frac{6\pi\varepsilon_0 c^3 m^3}{q^4B^2\gamma_0},
+\end{aligned}
+\end{equation}
+which differs from the above by a constant factor of $\sim2$.
 
 \section{Pair Cascades}
 
