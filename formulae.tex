@@ -1222,6 +1222,35 @@ In SI units,
 where $\Omega = 2\pi/P$ is the angular velocity of the neutron star and $B$ is the magnetic field strength.
 Its units are C/m$^3$.
 
+\section{Larmor Formula}
+
+These are all in SI units.
+
+\subsection{Non-relativistic}
+
+The radiated power is
+\begin{equation}
+    \deriv{E}{t} = \frac{q^2a^2}{6\pi\varepsilon_0 c^3}
+\end{equation}
+
+\subsection{Relativistic}
+
+\begin{equation}
+    \deriv{E}{t} = \frac{q^2\gamma^6}{6\pi\varepsilon_0 c}
+        \left[\dot{\bm{\beta}}^2 - (\bm{\beta}\times\dot{\bm{\beta}})^2\right]
+\end{equation}
+When $\bm{\beta}$ is perpendicular to $\dot{\bm{\beta}}$,
+\begin{equation}
+\begin{aligned}
+    \deriv{E}{t}
+        &= \frac{q^2\gamma^6}{6\pi\varepsilon_0 c}
+            \left[\dot{\beta}^2 - (\beta\dot{\beta})^2\right] \\
+        &= \frac{q^2\gamma^6\dot{\beta}^2}{6\pi\varepsilon_0 c}
+            \left[1 - \beta^2\right] \\
+        &= \frac{q^2\gamma^4\dot{\beta}^2}{6\pi\varepsilon_0 c}
+\end{aligned}
+\end{equation}
+
 \chapter{Strong Magnetic Fields}
 
 \section{Quantum Critical Magnetic Field}
@@ -1241,6 +1270,101 @@ Electrons in a magnetic field occupy discrete energy levels (Diachenko 2017):
     \tilde{m} = m\sqrt{1 + 2lb},
 \end{equation}
 where $p_z$ is parallel to the field momentum, $l$ is the level number and $b$ is the magnetic field strength in units of the quantum critical field $B_c$.
+
+\subsection{Derivation for timescales for dropping to lowest Landau level}
+
+\subsubsection{Purely classical scenario: non-relativistic particle in a uniform magnetic field}
+
+A particle of mass $m$ and charge $q$ is placed in a uniform magnetic field of strength $B$.
+Let it have initial (kinetic) energy $E$, and let its velocity be perpendicular to $\vec{B}$.
+Then its velocity is $v = \sqrt{2E/m}$, and its acceleration is
+\begin{equation}
+\begin{aligned}
+    F = ma &= qvB = qB\sqrt{\frac{2E}{m}} \\
+    a &= qB\sqrt{\frac{2E}{m^3}},
+\end{aligned}
+\end{equation}
+since $\vec{v}$ is always perpendicular to $\vec{B}$.
+The Larmor formula predicts that the rate of power loss to radiation is
+\begin{equation}
+\begin{aligned}
+    \deriv{E}{t} &= -\frac{q^2a^2}{6\pi\varepsilon_0 c^3} \\
+    &= -\frac{q^2}{6\pi\varepsilon_0 c^3} q^2 B^2 \frac{2E}{m^3} \\
+    &= -\frac{q^4 B^2 E}{3\pi\varepsilon_0 c^3 m^3}
+\end{aligned}
+\end{equation}
+Integrating,
+\begin{equation}
+    E(t) = K e^{-\frac{q^4 B^2}{3\pi\varepsilon_0 c^3 m^3}t},
+\end{equation}
+where $K$ is the constant of integration. Thus, if we define the timescale of the inward spiral as the quantity $\tau$ such that
+\begin{equation}
+    E(t) = Ke^{-t/\tau},
+\end{equation}
+then that timescale is
+\begin{equation}
+    \tau = \frac{3\pi\varepsilon_0 c^3 m^3}{q^4 B^2}.
+\end{equation}
+
+\subsubsection{Relativistic generalisation}
+
+Let the initial energy of the particle be $E$, as before.
+Then its Lorentz factor is
+\begin{equation}
+    \gamma = \frac{E}{mc^2}.
+\end{equation}
+The relativistic generalisation of the Lorentz force (still for $\vec{\beta}$ perpendicular to $\vec{B}$) is
+\begin{equation}
+\begin{aligned}
+    \deriv{}{t}(\gamma m \beta) &= q \beta B \\
+    m\left(\dot{\gamma}\beta + \gamma\dot{\beta}\right) &= q \beta B \\
+    m\left(\frac{\beta^2\dot{\beta}}{\gamma^3} + \gamma\dot{\beta}\right) &= q \beta B \\
+    m\dot{\beta}\left(\frac{\beta^2}{\gamma^2} + \gamma^2\right) &= q \gamma \beta B \\
+    m\dot{\beta}\left(\frac{\gamma^2 - 1}{\gamma^4} + \gamma^2\right) &= q \gamma \beta B \\
+    m\dot{\beta}\left(\frac{\gamma^6 + \gamma^2 - 1}{\gamma^4}\right) &= q \gamma \beta B \\
+    \dot{\beta} &= \frac{qB}{m}\gamma\beta\left(\frac{\gamma^4}{\gamma^6 + \gamma^2 - 1}\right) \\
+    \dot{\beta}^2 &= \frac{q^2B^2}{m^2}(\gamma^2 - 1)\left(\frac{\gamma^4}{\gamma^6 + \gamma^2 - 1}\right)^2
+\end{aligned}
+\end{equation}
+Putting this in the relativistic Larmor formula,
+\begin{equation}
+\begin{aligned}
+    \deriv{E}{t}
+        &= \frac{q^2\gamma^4\dot{\beta}^2}{6\pi\varepsilon_0 c} \\
+        &= \frac{q^2\gamma^4}{6\pi\varepsilon_0 c} \left[\frac{q^2B^2}{m^2}
+            (\gamma^2 - 1)\left(\frac{\gamma^4}{\gamma^6 + \gamma^2 - 1}\right)^2\right] \\
+        &= \frac{q^4B^2}{6\pi\varepsilon_0 c m^2}
+            \frac{(\gamma^2 - 1)\gamma^4}{(\gamma^6 + \gamma^2 - 1)^2}
+\end{aligned}
+\end{equation}
+Even if the particle is mildly relativistic, the leading $\gamma$ terms will dominate, giving
+\begin{equation}
+    \deriv{E}{t} \approx \frac{q^4B^2}{6\pi\varepsilon_0 c m^2}\frac{1}{\gamma^6}
+        = \frac{q^4B^2m^4c^{11}}{6\pi\varepsilon_0}\frac{1}{E^6}
+\end{equation}
+To avoid excessive powers of $m$ and $c$, we may do everything in terms of $\gamma$ (instead of $E$).
+Then,
+\begin{equation}
+    \deriv{\gamma}{t} \approx \frac{q^4B^2}{6\pi\varepsilon_0 c^3 m^3}\frac{1}{\gamma^6}
+\end{equation}
+Separating variables and integrating,
+\begin{equation}
+\begin{aligned}
+    \gamma(t)^7 &\approx \frac{7q^4B^2}{6\pi\varepsilon_0 c^3 m^3}t \\
+    \gamma(t) &\approx \left(\frac{7q^4B^2}{6\pi\varepsilon_0 c^3 m^3}\,t\right)^{1/7}.
+\end{aligned}
+\end{equation}
+Actually, the full analytic solution is possible.
+From,
+\begin{equation}
+\begin{aligned}
+    \deriv{\gamma}{t} &= \frac{q^4B^2}{6\pi\varepsilon_0 c^3 m^3}
+        \frac{(\gamma^2 - 1)\gamma^4}{(\gamma^6 + \gamma^2 - 1)^2} \\
+    \int \frac{q^4B^2}{6\pi\varepsilon_0 c^3 m^3}\,\text{d}t &=
+        \int \frac{(\gamma^6 + \gamma^2 - 1)^2}{(\gamma^2 - 1)\gamma^4}\,\text{d}\gamma,
+\end{aligned}
+\end{equation}
+the RHS integrand can be solved by means of partial fractions.
 
 \section{Pair Cascades}
 
