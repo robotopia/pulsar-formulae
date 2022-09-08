@@ -186,17 +186,26 @@ The magnetic field, in coordinate-free notation, centred at the origin \linktosa
 \begin{equation}
     \begin{aligned}
         \bm{B}(\bm{r})
-            &= \frac{\mu}{4\pi r^3}\left(3(\unitvec{\mu}\cdot\unitvec{r})\unitvec{r} - \unitvec{\mu}\right) \\
-            &= \frac{\mu}{4\pi r^3}\left(3(\cos\theta)\unitvec{r} - \unitvec{\mu}\right)
+            &= B_0\left(\frac{r_0}{r}\right)^3\frac{3(\unitvec{\mu}\cdot\unitvec{r})\unitvec{r} - \unitvec{\mu}}{2} \\
+            &= B_0\left(\frac{r_0}{r}\right)^3\frac{3\cos\theta\,\unitvec{r} - \unitvec{\mu}}{2},
     \end{aligned}
 \end{equation}
+where $B_0$ is the magnetic field strength at the poles at distance $r_0$ from the origin.
 Its magnitude is:
 \begin{equation}
-    B({\bm{r}}) = |\bm{B}(\bm{r})| = \frac{\mu}{4\pi r^3}\sqrt{3\cos^2\theta + 1}
+\begin{aligned}
+    B({\bm{r}}) = |\bm{B}(\bm{r})|
+        &= B_0\left(\frac{r_0}{r}\right)^3 \frac{\sqrt{(3\cos\theta\,\unitvec{r} - \unitvec{\mu}) \cdot (3\cos\theta\,\unitvec{r} - \unitvec{\mu}) }}{2} \\
+        &= B_0\left(\frac{r_0}{r}\right)^3 \frac{\sqrt{ 9\cos^2\theta\,\unitvec{r}\cdot\unitvec{r} - 6\cos\theta\,\unitvec{r}\cdot\unitvec{\mu} + \unitvec{\mu}\cdot\unitvec{\mu} }}{2} \\
+        &= B_0\left(\frac{r_0}{r}\right)^3 \frac{\sqrt{ 9\cos^2\theta - 6\cos^2\theta + 1 }}{2} \\
+        &= B_0\left(\frac{r_0}{r}\right)^3 \frac{\sqrt{3\cos^2\theta + 1}}{2}
+\end{aligned}
 \end{equation}
-And the normalised field is:
+and the normalised field is:
 \begin{equation}
-    \unitvec{B}(\bm{r}) = \frac{3(\cos\theta) \unitvec{r} - \unitvec{\mu}}{\sqrt{3\cos^2\theta + 1}}
+    \unitvec{B}(\bm{r})
+        = \frac{\bm{B}(\bm{r})}{B(\bm{r})}
+        = \frac{3\cos\theta \, \unitvec{r} - \unitvec{\mu}}{\sqrt{3\cos^2\theta + 1}}
 \end{equation}
 
 \subsubsection{Cartesian coordinates}
@@ -204,9 +213,10 @@ And the normalised field is:
 When the magnetic dipole is aligned with the $z$-axis (i.e. $\unitvec{\mu} = \unitvec{z}$), in Cartesian coordinates (but still using the shorthand $r = \sqrt{x^2 + y^2 + z^2}$) \linktosage{sage:Bdip_aligned}:
 \begin{equation}
 \begin{aligned}
-    \vec{B}(\vec{r})
-        &= \frac{\mu}{4\pi r^3}\left(3\cos\theta\,\unitvec{r} - \unitvec{\mu}\right) \\
+    \bm{B}(\bm{r})
+        &= \frac{\mu_0}{4\pi r^3}\left(3\cos\theta\,\unitvec{r} - \unitvec{\mu}\right) \\
         &= \frac{\mu}{4\pi r^3}\left(3\cos\theta\frac{x\unitvec{x} + y\unitvec{y} + z\unitvec{z}}{r} - \unitvec{z}\right) \\
+        &= \frac{\mu}{4\pi r^3}\left(3z(x\unitvec{x} + y\unitvec{y} + z\unitvec{z}) - \unitvec{z}\right) \\
         &= \frac{\mu}{r^5}\left( 3xz\,\unitvec{x} + 3yz\,\unitvec{y} + (3z^2 - r^2)\,\unitvec{z} \right)
 \end{aligned}
 \end{equation}
