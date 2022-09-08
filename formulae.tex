@@ -9,6 +9,10 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 
+\hypersetup{
+    citecolor = {blue}
+}
+
 \title{Formulas relating to pulsars}
 \author{Sam McSweeney}
 
@@ -256,6 +260,18 @@ When the magnetic dipole is tilted in the $xz$-plane by angle $\alpha$ \linktosa
 \end{equation}
 
 \subsubsection{Spherical coordinates}
+
+To translate from Cartesian to spherical, we need the identity $\unitvec{z} = \cos\theta \,\unitvec{r} - \sin\theta\,\unitvec{\theta}$.
+For the aligned case ($\unitvec{\mu} = \unitvec{z}$),
+\begin{equation}
+\begin{aligned}
+    \bm{B}(\bm{r})
+        &= B_0\left(\frac{r_0}{r}\right)^3\frac{3\cos\theta\,\unitvec{r} - \unitvec{\mu}}{2} \\
+        &= B_0\left(\frac{r_0}{r}\right)^3\frac{3\cos\theta\,\unitvec{r} - \cos\theta \,\unitvec{r} + \sin\theta\,\unitvec{\theta}}{2} \\
+        &= B_0\left(\frac{r_0}{r}\right)^3\left(\cos\theta\,\unitvec{r} + \frac12 \sin\theta\,\unitvec{\theta}\right),
+\end{aligned}
+\end{equation}
+which is the form given in Eq. (1) of \citet{Davis1947}, except for a difference in sign.
 
 \subsection{Deutsch-Arendt equations}
 
