@@ -20,6 +20,7 @@
 \newcommand{\pdpd}[3]{\frac{\partial^2{#1}}{\partial {#2} \partial {#3}}}
 \newcommand{\F}[1]{\bm{F}_{#1}}
 \newcommand{\ph}{\phi_\ast}
+\newcommand{\unitvec}[1]{\hat{\bm{#1}}}
 
 \newcommand{\linktosage}[1]{\hyperref[#1]{[Sage script]}}
 
@@ -179,37 +180,35 @@ Consequently,
 
 \subsection{Dipole}
 
+\subsubsection{Coordinate-free expression}
+
 The magnetic field, in coordinate-free notation, centred at the origin \linktosage{sage:Bdip}:
 \begin{equation}
     \begin{aligned}
-        \vec{B}(\vec{r})
-            &= \frac{\mu}{4\pi r^3}\left[3(\hat{\mu}\cdot\hat{r})\hat{r} - \hat{\mu}\right] \\
-            &= \frac{\mu}{4\pi r^3}\left[3(\cos\theta)\hat{r} - \hat{\mu}\right]
+        \bm{B}(\bm{r})
+            &= \frac{\mu}{4\pi r^3}\left(3(\unitvec{\mu}\cdot\unitvec{r})\unitvec{r} - \unitvec{\mu}\right) \\
+            &= \frac{\mu}{4\pi r^3}\left(3(\cos\theta)\unitvec{r} - \unitvec{\mu}\right)
     \end{aligned}
-\end{equation}
-Its magnitude is
-\begin{equation}
-    |\vec{B}| = \frac{1}{4\pi r^3}\sqrt{3\cos^2\theta + 1},
-\end{equation}
-and the normalised field is therefore
-\begin{equation}
-    \hat{B} = \frac{\vec{B}}{|\vec{B}|}
-            = \frac{3\cos\theta\,\hat{r} - \vec{\mu}}{\sqrt{3\cos^2\theta + 1}}
 \end{equation}
 Its magnitude is:
 \begin{equation}
-    |\vec{B}(\vec{r})| = \frac{\mu}{4\pi r^3}\sqrt{3\cos^2\theta + 1}
+    B({\bm{r}}) = |\bm{B}(\bm{r})| = \frac{\mu}{4\pi r^3}\sqrt{3\cos^2\theta + 1}
 \end{equation}
 And the normalised field is:
 \begin{equation}
-    \hat{B}(\vec{r}) = \frac{3(\cos\theta) \hat{r} - \hat{\mu}}{\sqrt{3\cos^2\theta + 1}}
+    \unitvec{B}(\bm{r}) = \frac{3(\cos\theta) \unitvec{r} - \unitvec{\mu}}{\sqrt{3\cos^2\theta + 1}}
 \end{equation}
-When the magnetic dipole is aligned with the $z$-axis (i.e. $\hat{\mu} = \hat{z}$), in Cartesian coordinates \linktosage{sage:Bdip_aligned}:
+
+\subsubsection{Cartesian coordinates}
+
+When the magnetic dipole is aligned with the $z$-axis (i.e. $\unitvec{\mu} = \unitvec{z}$), in Cartesian coordinates (but still using the shorthand $r = \sqrt{x^2 + y^2 + z^2}$) \linktosage{sage:Bdip_aligned}:
 \begin{equation}
-    \vec{B}(\vec{r}) = \frac{\mu}{r^5}
-        \begin{bmatrix}
-            3xz \\ 3yz \\ 3z^2 - r^2
-        \end{bmatrix}
+\begin{aligned}
+    \vec{B}(\vec{r})
+        &= \frac{\mu}{4\pi r^3}\left(3\cos\theta\,\unitvec{r} - \unitvec{\mu}\right) \\
+        &= \frac{\mu}{4\pi r^3}\left(3\cos\theta\frac{x\unitvec{x} + y\unitvec{y} + z\unitvec{z}}{r} - \unitvec{z}\right) \\
+        &= \frac{\mu}{r^5}\left( 3xz\,\unitvec{x} + 3yz\,\unitvec{y} + (3z^2 - r^2)\,\unitvec{z} \right)
+\end{aligned}
 \end{equation}
 The corresponding normalised magnetic field is:
 \begin{equation}
@@ -981,6 +980,16 @@ This was in hope of getting expressions that don't ``divide by zero'' in Sagemat
         \pdpd{z}{x}{y} &= -\frac{\cos z \pd{z}{x}\pd{z}{y} + \pdpd{f(x,y)}{x}{y}}{\sin z}
     \end{aligned}
 \end{equation}
+
+\section{Maxwell's Equations}
+
+In SI units:
+\begin{align}
+    \nabla\cdot{\bf E} &= \frac{\rho}{\varepsilon_0} \\
+    \nabla\cdot{\bf B} &= 0 \\
+    \nabla\times{\bf E} &= -\pd{\bf B}{t} \\
+    \nabla\times{\bf B} &= \mu_0\left({\bf J} + \varepsilon_0 \pd{\bf E}{t}\right)
+\end{align}
 
 \section{Curvature}
 
