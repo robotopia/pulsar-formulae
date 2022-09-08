@@ -214,18 +214,31 @@ When the magnetic dipole is aligned with the $z$-axis (i.e. $\unitvec{\mu} = \un
 \begin{equation}
 \begin{aligned}
     \bm{B}(\bm{r})
-        &= \frac{\mu_0}{4\pi r^3}\left(3\cos\theta\,\unitvec{r} - \unitvec{\mu}\right) \\
-        &= \frac{\mu}{4\pi r^3}\left(3\cos\theta\frac{x\unitvec{x} + y\unitvec{y} + z\unitvec{z}}{r} - \unitvec{z}\right) \\
-        &= \frac{\mu}{4\pi r^3}\left(3z(x\unitvec{x} + y\unitvec{y} + z\unitvec{z}) - \unitvec{z}\right) \\
-        &= \frac{\mu}{r^5}\left( 3xz\,\unitvec{x} + 3yz\,\unitvec{y} + (3z^2 - r^2)\,\unitvec{z} \right)
+        &= B_0\left(\frac{r_0}{r}\right)^3\frac{3\cos\theta\,\unitvec{r} - \unitvec{\mu}}{2} \\
+        &= B_0\left(\frac{r_0}{r}\right)^3\frac{3r\cos\theta (x\unitvec{x} + y\unitvec{y} + z\unitvec{z}) - r^2\unitvec{z}}{2r^2} \\
+        &= B_0\left(\frac{r_0}{r}\right)^3\frac{3z(x\unitvec{x} + y\unitvec{y} + z\unitvec{z}) - r^2\unitvec{z}}{2r^2} \\
+        &= B_0\left(\frac{r_0}{r}\right)^3\frac{3xz\,\unitvec{x} + 3yz\,\unitvec{y} + (3z^2 - r^2)\,\unitvec{z}}{2r^2}
 \end{aligned}
 \end{equation}
-The corresponding normalised magnetic field is:
+Or, if you define the reduced quantities:
+\begin{align}
+    x_r &\equiv \frac{x}{r} = \cos\phi\sin\theta, &
+    y_r &\equiv \frac{y}{r} = \sin\phi\sin\theta, &
+    z_r &\equiv \frac{z}{r} = \cos\theta,
+\end{align}
+then it can also be written
 \begin{equation}
-    \vec{B}(\vec{r}) = \frac{1}{r\sqrt{3z^2 + r^2}}
-        \begin{bmatrix}
-            3xz \\ 3yz \\ 3z^2 - r^2
-        \end{bmatrix}
+    \bm{B}(\bm{r})
+        = B_0\left(\frac{r_0}{r}\right)^3\frac{3 x_r z_r \,\unitvec{x} + 3 y_r z_r \,\unitvec{y} + (3 z_r^2 - 1)\,\unitvec{z}}{2}.
+\end{equation}
+The corresponding normalised magnetic field is
+\begin{equation}
+\begin{aligned}
+    \unitvec{B}(\vec{r})
+        &= \frac{3xz\,\unitvec{x} + 3yz\,\unitvec{y} + (3z^2 - r^2)\,\unitvec{z}}{r^2\sqrt{3\cos^2\theta + 1}} \\
+        &= \frac{3xz\,\unitvec{x} + 3yz\,\unitvec{y} + (3z^2 - r^2)\,\unitvec{z}}{r\sqrt{3z^2 + r^2}} \\
+        &= \frac{3 x_r z_r \, \unitvec{x} + 3 y_r z_r \,\unitvec{y} + (3 z_r^2 - 1)\,\unitvec{z}}{\sqrt{3z_r^2 + 1}}
+\end{aligned}
 \end{equation}
 When the magnetic dipole is tilted in the $xz$-plane by angle $\alpha$ \linktosage{sage:Bdip_inclined}:
 \begin{equation}
