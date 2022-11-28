@@ -95,7 +95,7 @@ From the spherical law of sines:
     \sin\Gamma &= \frac{\sin\alpha \sin\phase}{\sin\psi}
                 = \frac{\sin\zeta \sin\phase}{\sin\sigma} &
     \sin\phase &= \frac{\sin\sigma \sin\Gamma}{\sin\zeta}
-                = \frac{\sin\psi \sin\alpha}{\sin\alpha}
+                = \frac{\sin\psi \sin\Gamma}{\sin\alpha}
     \end{aligned}
 \end{equation}
 From the spherical law of cosines:
@@ -534,6 +534,15 @@ Note that this is in agreement with the expression ($\rho \approx r_L/(2\sin\alp
 
 Let $\Gamma = \cos^{-1}(\hat{V}\cdot\hat{\mu})$ be the (half) opening angle of the beam.
 
+\subsection{Beaming fraction}
+
+The beaming fraction is the fractional area of the spherical cap with angular radius $\Gamma$,
+\begin{equation}
+    \frac{2\pi(1 - \cos\Gamma)}{4\pi}
+        = \frac12 (1 - \cos\Gamma)
+        = \sin^2\left(\frac{\Gamma}{2}\right).
+\end{equation}
+
 \subsection{Aligned rotator, without rotation effects}
 The relationship between $\theta$ and $\Gamma$ (and its inverse) is given by \citet{Gangadhara2004}
 \begin{equation}
@@ -596,6 +605,41 @@ Taylor expanding about both $r = 0$ and $\theta = 0$ gives:
             O(\text{4th order terms in $r$ and $\theta$}) \\
         \sin\Gamma &\stackrel{?}{\approx} r^\prime\sin\alpha + \frac32\theta\sin\sigma + r^\prime\cos\alpha\cos\sigma + \dots
     \end{aligned}
+\end{equation}
+
+\section{Characteristic age}
+
+\citep[This same derivation is given briefly in][\S3.2.2.]{Lorimer2005}
+Assume that the pulsar spindown is well described by
+\begin{equation}
+    \dot{\nu} = -K\nu^n,
+\end{equation}
+for some constants $K$ and $n$.
+Expressing this in terms of the period ($\nu = 1/P$), we have
+\begin{equation}
+    \begin{aligned}
+        \dot{\nu} = -\frac{\dot{P}}{P^2}
+            &= -\frac{K}{P^n} \\
+        \dot{P} &= KP^{2-n}.
+    \end{aligned}
+\end{equation}
+This differential equation can be directly integrated by separation of variables.
+We will assume $n \ne 1$ (to avoid an edge case), and also use $P_0$ for the initial period, $P$ for the current period, $P^\prime$ for the dummy variable under the integration, and $T$ for the age of the pulsar.
+Then, integrating over the entire lifetime of the pulsar,
+\begin{equation}
+    \begin{aligned}
+        \int_{P_0}^{P} (P^\prime)^{n-2}\,\text{d}P^\prime
+            &= \int_0^T K\,\text{d}t \\
+        \frac{1}{n-1}\left(P^{n-1} - P_0^{n-1}\right)
+            &= KT \\
+            &= \dot{P} P^{n-2} T \\
+        T   &= \frac{1}{(n-1)\dot{P}P^{n-2}}\left(P^{n-1} - P_0^{n-1}\right) \\
+            &= \frac{P}{(n-1)\dot{P}}\left[1 - \left(\frac{P_0}{P}\right)^{n-1}\right] \\
+    \end{aligned}
+\end{equation}
+The \emph{characteristic age} is the above age evaluated for $n = 3$ (the so-called braking index corresponding to magnetic dipole radiation), and also assuming that $P_0 \ll P$:
+\begin{equation}
+    \tau_c = \frac{P}{2\dot{P}}
 \end{equation}
 
 \section{Pulse Width}
