@@ -180,6 +180,41 @@ Consequently,
     \cos\zeta = -\frac{1}{2}\left(\frac{1}{\chi_0} + \frac{1}{\chi_{180}}\right)
 \end{equation}
 
+\subsection{Example derivations}
+
+Here is a derivation for the identity
+\begin{equation}
+    \deriv{\sigma}{\phase} = -\frac{\sin\sigma \cos\psi}{\sin\phase}.
+\end{equation}
+Starting with
+\begin{equation}
+    \tan\sigma = \frac{\sin\zeta \sin\phase}{\sin\alpha \cos\zeta - \cos\alpha \sin\zeta \cos\phase},
+\end{equation}
+implicit differentiation with respect to $\phase$ (and remembering that $\alpha$ and $\zeta$ are constant) yields:
+\begin{equation}
+    \begin{aligned}
+    \frac{1}{\cos^2\sigma} \deriv{\sigma}{\phase}
+        &= \frac{\sin\zeta \cos\phase}{\sin\alpha \cos\zeta - \cos\alpha \sin\zeta \cos\phase} -
+            \frac{\sin\zeta \sin\phase}{(\sin\alpha \cos\zeta - \cos\alpha \sin\zeta \cos\phase)^2} \cdot (\cos\alpha \sin\zeta \sin\phase) \\
+        &= \frac{\sin\zeta \cos\phase (\sin\alpha \cos\zeta - \cos\alpha \sin\zeta \cos\phase) -
+            \sin\zeta \sin\phase \cos\alpha \sin\zeta \sin\phase}{(\sin\alpha \cos\zeta - \cos\alpha \sin\zeta \cos\phase)^2} \\
+        &= \frac{\sin\zeta \cos\zeta \sin\alpha \cos\phase - \sin^2\zeta \cos\alpha}{(\sin\alpha \cos\zeta - \cos\alpha \sin\zeta \cos\phase)^2} \\
+        &= \frac{\tan^2\sigma (\sin\zeta \cos\zeta \sin\alpha \cos\phase - \sin^2\zeta \cos\alpha)}{\sin^2\zeta \sin^2\phase} \\
+    \end{aligned}
+\end{equation}
+Then,
+\begin{equation}
+    \begin{aligned}
+    \deriv{\sigma}{\phase}
+        &= \frac{\sin^2\sigma (\cos\zeta \sin\alpha \cos\phase - \sin\zeta \cos\alpha)}{\sin\zeta \sin^2\phase} \\
+        &= -\frac{\sin^2\sigma \sin\alpha \sin\phase}{\sin\zeta \sin^2\phase \tan\psi} \\
+        &= -\frac{\sin^2\sigma \sin\alpha}{\sin\zeta \sin\phase \tan\psi} \\
+        &= -\frac{\sin^2\sigma \cos\psi}{\sin\phase} \frac{\sin\alpha}{\sin\zeta \sin\psi} \\
+        &= -\frac{\sin^2\sigma \cos\psi}{\sin\phase} \frac{1}{\sin\sigma} \\
+        &= -\frac{\sin\sigma \cos\psi}{\sin\phase}
+    \end{aligned}
+\end{equation}
+
 \section{Magnetic Vector Field}
 
 \subsection{Dipole}
