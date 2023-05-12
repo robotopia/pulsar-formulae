@@ -1624,12 +1624,12 @@ A source with frequency ($f$) dependent coherency matrix
 \end{equation}
 will appear in baseline $jk$ with visibility
 \begin{equation}
-    {\bf V}_{jk}(f) = {\bf J}_j{\bf E}{\bf J}_k^H e^{2\pi i f {\bf D}\cdot{\bf s}/c},
+    {\bf V}_{jk}({\bf s},f) = {\bf J}_j(f){\bf E}(f){\bf J}_k^H(f) e^{2\pi i f ({\bf D}\cdot{\bf s} + \Delta\ell)/c},
 \end{equation}
-where ${\bf D}$ is the complete\footnote{Including geometric delay and cable lengths.} difference between the signal path lengths for antennas $j$ and $k$; ${\bf s}$ is the vector pointing towards the source; and ${\bf J}_j$ is the Jones matrix for antenna $j$ and includes both direction dependent (DD) and direction independent (DI) effects.
-Separating out the two kinds of effects as ${\bf B}$ (DD) and ${\bf G}$ (DI), and writing out the dependencies on source position ${\bf s}$ explicitly, the above becomes
+where ${\bf D}$ is the baseline vector; ${\bf s}$ is the vector pointing towards the source; $\Delta\ell$ is any other difference between the signal path lengths for antennas $j$ and $k$; and ${\bf J}_j$ is the Jones matrix for antenna $j$ and includes both direction dependent (DD) and direction independent (DI) effects.
+Separating out the two kinds of effects as ${\bf B}$ (DD) and ${\bf G}$ (DI), and keeping the dependencies on source position ${\bf s}$ and frequency ($f$) explicit, the above becomes
 \begin{equation}
-    {\bf V}_{jk} = {\bf G}_j{\bf B}_j({\bf s}){\bf E}{\bf B}_j^H({\bf s}){\bf G}_k^H e^{2\pi i f {\bf D}\cdot{\bf s}/c},
+    {\bf V}_{jk}({\bf s},f) = {\bf G}_j{\bf B}_j({\bf s},f){\bf E}(f){\bf B}_j^H({\bf s},f){\bf G}_k^H e^{2\pi i f ({\bf D}\cdot{\bf s} + \Delta\ell)/c},
 \end{equation}
 
 \chapter{Jackson's Classical Electrodynamics}
