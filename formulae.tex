@@ -1587,7 +1587,7 @@ The relationship between the dispersion constants is $\mathcal{D} = \kappa/c$.
 Note that the above relations assume that $f \gg f_p$, the plasma frequency.
 For MWA frequencies, this appears to be true even for the densest parts of the ionosphere ($n_e \approx 10^{12}\,\text{m}^{-3}$).
 
-\section{Positional displacement}
+\section{Angular displacement}
 
 (My own work; remains to be checked for correctness.)
 
@@ -1611,6 +1611,26 @@ Typically, the TEC gradient doesn't exceed a few TECU/km, so at MWA frequencies 
     \theta \approx 1.0^\circ \times \left(\frac{\text{dTEC}/\text{d}x}{\text{TECU/km}}\right) \left(\frac{f}{150\,\text{MHz}}\right)^{-2}.
 \end{equation}
 A typical(??) gradient of ${\sim}0.01\,$TECU/km yields a positional offset of a ${\sim}37^{\prime\prime}$.
+
+\chapter{Calibration}
+
+\section{Visibilities}
+
+A source with frequency ($f$) dependent coherency matrix
+\begin{equation}
+    {\bf E}(f)
+        = \langle{\bf e}{\bf e}^H\rangle
+        = \begin{bmatrix} I+Q & U-Vi \\ U+Vi & I-Q \end{bmatrix}
+\end{equation}
+will appear in baseline $jk$ with visibility
+\begin{equation}
+    {\bf V}_{jk}(f) = {\bf J}_j{\bf E}{\bf J}_k^H e^{2\pi i f {\bf D}\cdot{\bf s}/c},
+\end{equation}
+where ${\bf D}$ is the complete\footnote{Including geometric delay and cable lengths.} difference between the signal path lengths for antennas $j$ and $k$; ${\bf s}$ is the vector pointing towards the source; and ${\bf J}_j$ is the Jones matrix for antenna $j$ and includes both direction dependent (DD) and direction independent (DI) effects.
+Separating out the two kinds of effects as ${\bf B}$ (DD) and ${\bf G}$ (DI), and writing out the dependencies on source position ${\bf s}$ explicitly, the above becomes
+\begin{equation}
+    {\bf V}_{jk} = {\bf G}_j{\bf B}_j({\bf s}){\bf E}{\bf B}_j^H({\bf s}){\bf G}_k^H e^{2\pi i f {\bf D}\cdot{\bf s}/c},
+\end{equation}
 
 \chapter{Jackson's Classical Electrodynamics}
 
