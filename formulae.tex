@@ -1620,7 +1620,7 @@ A source with frequency ($f$) dependent coherency matrix
 \begin{equation}
     {\bf E}(f)
         = \langle{\bf e}{\bf e}^H\rangle
-        = \begin{bmatrix} I+Q & U-Vi \\ U+Vi & I-Q \end{bmatrix}
+        = \frac12 \begin{bmatrix} I+Q & U-Vi \\ U+Vi & I-Q \end{bmatrix}
 \end{equation}
 will appear in baseline $jk$ with visibility
 \begin{equation}
@@ -1631,6 +1631,19 @@ Separating out the two kinds of effects as ${\bf B}$ (DD) and ${\bf G}$ (DI), an
 \begin{equation}
     {\bf V}_{jk}({\bf s},f) = {\bf G}_j{\bf B}_j({\bf s},f){\bf E}(f){\bf B}_j^H({\bf s},f){\bf G}_k^H e^{2\pi i f ({\bf D}\cdot{\bf s} + \Delta\ell)/c},
 \end{equation}
+
+\section{First order models}
+
+\subsection{Stokes I point sources}
+
+Stokes I point sources with a single spectral index are given by
+\begin{equation}
+    \begin{gathered}
+        I(f) = I_0 \left(\frac{f}{f_0}\right)^\alpha, \\
+        Q(f) = U(f) = V(f) = 0,
+    \end{gathered}
+\end{equation}
+where $I_0$ is the Stokes I flux density at frequency $f_0$.
 
 \chapter{Jackson's Classical Electrodynamics}
 
