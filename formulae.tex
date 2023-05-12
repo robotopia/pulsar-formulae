@@ -1582,6 +1582,32 @@ Comparison between terminology used by the pulsar and ionosphere communities:
         &= 3.24\times10^{-7}\,\text{pc/cm}^3
 \end{align}
 
+The relationship between the dispersion constants is $\mathcal{D} = \kappa/c$.
+
+\section{Positional displacement}
+
+(My own work; remains to be checked for correctness.)
+
+A wavefront hitting the ionosphere will be lag behind an equivalent wavefront that travelled through a vacuum by a distance
+\begin{equation}
+    \tau = -\kappa\frac{\text{TEC}}{f^2}.
+\end{equation}
+If TEC is a function of transverse distance (i.e. TEC varies laterally across the ionosphere), then the change of lag with respect to lateral distance, $x$, is
+\begin{equation}
+    \deriv{\tau}{x} = -\kappa\deriv{\text{TEC}}{x} \frac{1}{f^2}.
+\end{equation}
+Recognising $\text{d}\tau/\text{d}x$ as the tangent of the emerging wavefront, we find that the source will appear to have shifted by
+\begin{align}
+    \tan\theta
+        &= -\kappa\deriv{\text{TEC}}{x} \frac{1}{f^2} \\
+        &= 4\times10^{-4} \left(\frac{\text{dTEC}/\text{d}x}{\text{TECU/km}}\right) \left(\frac{f}{\text{GHz}}\right)^{-2},
+\end{align}
+
+Typically, the TEC gradient doesn't exceed a few TECU/km, so at MWA frequencies the small angle approximation applies, and we have
+\begin{equation}
+    \theta \approx 1.0^\circ \times \left(\frac{\text{dTEC}/\text{d}x}{\text{TECU/km}}\right) \left(\frac{f}{150\,\text{MHz}}\right)^{-2}.
+\end{equation}
+
 \chapter{Jackson's Classical Electrodynamics}
 
 A convenient reparameterisation:
