@@ -940,6 +940,24 @@ where the spark radius is identified with $3\sigma$ of a standard normal profile
 
 \section{Dedispersion}
 
+\subsection{Fundamentals}
+
+\subsubsection{Plasma frequency}
+
+In \citet{Lorimer2005}, the plasma frequency is given in Gaussian units (see Eq. 4.2):
+\begin{equation}
+    f_\text{p} = \sqrt{\frac{e^2 n_\text{e}}{\pi m_\text{e}}}.
+\end{equation}
+In SI units, this becomes
+\begin{equation}
+    f_\text{p} = \sqrt{\frac{e^2 n_\text{e}}{4\pi^2\varepsilon_0 m_\text{e}}}.
+\end{equation}
+In either case, using \texttt{astropy.units} and \texttt{astropy.constants}, it is
+\begin{equation}
+    f_\text{p} = 8.979\,\text{kHz} \left(\frac{n_\text{e}}{\text{cm}^{-3}}\right)^{1/2},
+\end{equation}
+which differs slightly from \citeauthor{Lorimer2005}, who write the constant term as $8.5\,$kHz.
+
 \subsection{Incoherent dedispersion}
 
 \begin{equation}
@@ -1546,6 +1564,23 @@ The maximum multiplicity, the number of secondary particles for each primary par
     \kappa_\text{max} \simeq 2\frac{\epsilon_p}{\epsilon_{\gamma,\text{esc}}}
 \end{equation}
 where $\epsilon_{\gamma,\text{esc}}$ is the maximum energy of photons escaping from the cascade (or the minimum energy of pair producing photons).
+
+\chapter{Ionosphere}
+
+\section{Dispersion effects}
+
+Comparison between terminology used by the pulsar and ionosphere communities:
+
+\begin{align}
+    \Delta t &= \mathcal{D} \frac{\text{DM}}{f^2} &
+        \tau &= -\kappa \frac{\text{TEC}}{f^2} \\
+    \Delta t &= 4.1488\times10^3\,\text{s} \times \left(\frac{\text{DM}}{\text{pc/cm}^3}\right) \left(\frac{f}{\text{MHz}}\right)^{-2} &
+        \tau = c\Delta t &= -40.308\,\text{m} \times \left(\frac{\text{TEC}}{\text{m}^{-2}}\right) \left(\frac{f}{\text{Hz}}\right)^{-2} \\
+    1\,\text{pc/cm}^3 &= 3.09\times10^{22}\,\text{m}^{-2} &
+        1\,\text{TECU} &= 10^{16}\,\text{m}^{-2} \\
+    &= 3.09\times10^6\,\text{TECU} &
+        &= 3.24\times10^{-7}\,\text{pc/cm}^3
+\end{align}
 
 \chapter{Jackson's Classical Electrodynamics}
 
