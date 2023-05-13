@@ -1679,9 +1679,14 @@ In the small angle approximation,
     \begin{aligned}
         \shat^\prime
             &\approx \shat + (\tan\theta) \hat{\bf u} \\
-            &= \shat - \kappa\deriv{\text{TEC}}{x} \frac{1}{f^2} \hat{\bf u}
+            &= \shat - \kappa\deriv{\text{TEC}}{x} \frac{1}{f^2} \hat{\bf u}.
     \end{aligned}
 \end{equation}
+Projecting it onto celestial coordinates:
+\begin{equation}
+    \shat^\prime = \shat - \frac{\kappa}{f^2} \left( \deriv{\text{TEC}}{\alpha}\hat{\bm{\alpha}} + \deriv{\text{TEC}}{\delta}\hat{\bm{\delta}} \right)
+\end{equation}
+(TODO: Correct for angles, etc.)
 
 \chapter{Jackson's Classical Electrodynamics}
 
