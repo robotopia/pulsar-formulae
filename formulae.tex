@@ -25,6 +25,7 @@
 \newcommand{\F}[1]{\bm{F}_{#1}}
 \newcommand{\ph}{\phi_\ast}
 \newcommand{\unitvec}[1]{\hat{\bm{#1}}}
+\newcommand{\shat}{\hat{\bf s}}
 
 \newcommand{\linktosage}[1]{\hyperref[#1]{[Sage script]}}
 
@@ -1624,12 +1625,12 @@ A source with frequency ($f$) dependent coherency matrix
 \end{equation}
 will appear in baseline $jk$ with visibility
 \begin{equation}
-    {\bf V}_{jk}({\bf s},f) = {\bf J}_j(f){\bf E}(f){\bf J}_k^H(f) e^{2\pi i f ({\bf D}\cdot{\bf s} + \Delta\ell_{jk})/c},
+    {\bf V}_{jk}(\shat,f) = {\bf J}_j(f){\bf E}(f){\bf J}_k^H(f) e^{2\pi i f ({\bf d}\cdot\shat + \Delta\ell_{jk})/c},
 \end{equation}
-where ${\bf D}$ is the baseline vector; ${\bf s}$ is the vector pointing towards the source; $\Delta\ell_{jk}$ is any other difference between the signal path lengths for antennas $j$ and $k$; and ${\bf J}_j$ is the Jones matrix for antenna $j$ and includes both direction dependent (DD) and direction independent (DI) effects.
-Separating out the two kinds of effects as ${\bf B}$ (DD) and ${\bf G}(f)$ (DI), and keeping the dependencies on source position ${\bf s}$ and frequency ($f$) explicit, the above becomes
+where ${\bf d}$ is the baseline vector; $\shat$ is the vector pointing towards the source; $\Delta\ell_{jk}$ is any other difference between the signal path lengths for antennas $j$ and $k$; and ${\bf J}_j$ is the Jones matrix for antenna $j$ and includes both direction dependent (DD) and direction independent (DI) effects.
+Separating out the two kinds of effects as ${\bf B}$ (DD) and ${\bf G}(f)$ (DI), and keeping the dependencies on source position $\shat$ and frequency ($f$) explicit, the above becomes
 \begin{equation}
-    {\bf V}_{jk}({\bf s},f) = {\bf G}_j(f){\bf B}_j({\bf s},f){\bf E}(f){\bf B}_k^H({\bf s},f){\bf G}_k^H(f) e^{2\pi i f ({\bf D}\cdot{\bf s} + \Delta\ell_{jk})/c},
+    {\bf V}_{jk}(\shat,f) = {\bf G}_j(f){\bf B}_j(\shat,f){\bf E}(f){\bf B}_k^H(\shat,f){\bf G}_k^H(f) e^{2\pi i f ({\bf d}\cdot\shat + \Delta\ell_{jk})/c},
 \end{equation}
 
 \section{First order models}
@@ -1655,9 +1656,32 @@ To the best of my knowledge, this only includes the frequency response of the ch
 Since the processing steps are known exactly, they can be exactly reproduced in the model visibilities.
 [TODO: write this out analytically.]
 
-\subsection{Joint DD effects}
+\subsection{Ionospheric effects}
 
-All DD effects, such as the beam response and the ionosphere, are lumped together into the matrix ${\bf B}$.
+The first ionospheric effect to model is the apparent shift of a source's position because of a transverse TEC gradient.
+The positional shift is
+\begin{equation}
+    \tan\theta = -\kappa\deriv{\text{TEC}}{x} \frac{1}{f^2}.
+\end{equation}
+In reality, it is a vector quantity which depends on the direction of the gradient.
+Thus, if the TEC gradient is in direction $\hat{\bf u}$ in the sky plane, the shifted source position will be
+\begin{equation}
+    \begin{aligned}
+        \shat^\prime
+            &= (\cos\theta) \shat + (\sin\theta) \hat{\bf u} \\
+            &= \cos\theta(\shat + (\tan\theta) \hat{\bf u}) \\
+            &= \sqrt{\frac{1}{1 + \tan^2\theta}} (\shat + (\tan\theta) \hat{\bf u}) \\
+            &= \sqrt{\frac{1}{1 + \tan^2\theta}} \shat + \sqrt{\frac{\tan^2\theta}{1 + \tan^2\theta}} \hat{\bf u}
+    \end{aligned}
+\end{equation}
+In the small angle approximation,
+\begin{equation}
+    \begin{aligned}
+        \shat^\prime
+            &\approx \shat + (\tan\theta) \hat{\bf u} \\
+            &= \shat - \kappa\deriv{\text{TEC}}{x} \frac{1}{f^2} \hat{\bf u}
+    \end{aligned}
+\end{equation}
 
 \chapter{Jackson's Classical Electrodynamics}
 
