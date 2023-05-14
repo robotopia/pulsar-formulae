@@ -1661,10 +1661,10 @@ Since the processing steps are known exactly, they can be exactly reproduced in 
 The first ionospheric effect to model is the apparent shift of a source's position because of a transverse TEC gradient.
 The positional shift is
 \begin{equation}
-    \tan\theta = -\kappa\deriv{\text{TEC}}{x} \frac{1}{f^2}.
+    \tan\theta = -\kappa\deriv{\text{STEC}}{u} \frac{1}{f^2},
 \end{equation}
-In reality, it is a vector quantity which depends on the direction of the gradient.
-Thus, if the TEC gradient is in direction $\hat{\bf u}$ in the sky plane, the shifted source position will be
+where $u = |{\bf u}|$ is the magnitude of the vector shift in the sky plane ($\shat\cdot{\bf u} = 0$).
+
 \begin{equation}
     \begin{aligned}
         \shat^\prime
@@ -1679,14 +1679,16 @@ In the small angle approximation,
     \begin{aligned}
         \shat^\prime
             &\approx \shat + (\tan\theta) \hat{\bf u} \\
-            &= \shat - \kappa\deriv{\text{TEC}}{x} \frac{1}{f^2} \hat{\bf u}.
+            &= \shat - \kappa\deriv{\text{TEC}}{u} \frac{1}{f^2} \hat{\bf u}.
     \end{aligned}
 \end{equation}
-Projecting it onto celestial coordinates:
+Projecting it onto celestial coordinates,
 \begin{equation}
-    \shat^\prime = \shat - \frac{\kappa}{f^2} \left( \deriv{\text{TEC}}{\alpha}\hat{\bm{\alpha}} + \deriv{\text{TEC}}{\delta}\hat{\bm{\delta}} \right)
+    \shat^\prime = \shat - \frac{\kappa}{f^2} \left( \frac{1}{\cos\zeta} \deriv{\text{TEC}}{\alpha}\hat{\bm{\alpha}} + \deriv{\text{TEC}}{\delta}\hat{\bm{\delta}} \right),
 \end{equation}
-(TODO: Correct for angles, etc.)
+where $\zeta$ is the zenith angle.
+
+It will take a bit more geometry to project the TEC gradients onto a plane parallel to the ionosphere layer itself.
 
 \chapter{Jackson's Classical Electrodynamics}
 
