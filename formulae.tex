@@ -8,6 +8,7 @@
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{natbib}
+\usepackage{cancel}
 
 \hypersetup{
     citecolor = {blue}
@@ -1617,21 +1618,118 @@ A typical(??) gradient of ${\sim}0.01\,$TECU/km yields a positional offset of a 
 
 \section{Visibilities}
 
-A source with frequency ($f$) dependent coherency matrix
+The sky is modelled as a direction ($\shat$) and frequency ($f$) dependent coherency matrix
 \begin{equation}
-    {\bf E}(f)
+    {\bf E}(\shat, f)
         = \langle{\bf e}{\bf e}^H\rangle
         = \frac12 \begin{bmatrix} I+Q & U-Vi \\ U+Vi & I-Q \end{bmatrix}
 \end{equation}
 will appear in baseline $jk$ with visibility
 \begin{equation}
-    {\bf V}_{jk}(\shat,f) = {\bf J}_j(f){\bf E}(f){\bf J}_k^H(f) e^{2\pi i f ({\bf d}\cdot\shat + \Delta\ell_{jk})/c},
+    {\bf V}_{jk}(\shat,f) = {\bf J}_j(\shat, f){\bf E}(\shat, f){\bf J}_k^H(\shat, f) e^{2\pi i f ({\bf d}\cdot\shat + \ell_{jk})/c},
 \end{equation}
-where ${\bf d}$ is the baseline vector; $\shat$ is the vector pointing towards the source; $\Delta\ell_{jk}$ is any other difference between the signal path lengths for antennas $j$ and $k$; and ${\bf J}_j$ is the Jones matrix for antenna $j$ and includes both direction dependent (DD) and direction independent (DI) effects.
-Separating out the two kinds of effects as ${\bf B}$ (DD) and ${\bf G}(f)$ (DI), and keeping the dependencies on source position $\shat$ and frequency ($f$) explicit, the above becomes
+where ${\bf d}$ is the baseline vector; $\ell_{jk}$ is any other difference between the signal path lengths for antennas $j$ and $k$; and ${\bf J}_j$ is the Jones matrix for antenna $j$ and includes both direction dependent (DD) and direction independent (DI) effects.
+In fact, \emph{everything} in the above equation is a function of direction and frequency; re-writing the equation without the explicit dependence gives
 \begin{equation}
-    {\bf V}_{jk}(\shat,f) = {\bf G}_j(f){\bf B}_j(\shat,f){\bf E}(f){\bf B}_k^H(\shat,f){\bf G}_k^H(f) e^{2\pi i f ({\bf d}\cdot\shat + \Delta\ell_{jk})/c},
+    {\bf V}_{jk} = {\bf J}_j{\bf E}{\bf J}_k^H e^{2\pi i f ({\bf d}\cdot\shat + \ell_{jk})/c},
 \end{equation}
+%Separating out the two kinds of effects as ${\bf B}$ (DD) and ${\bf G}(f)$ (DI), and keeping the dependencies on source position $\shat$ and frequency ($f$) explicit, the above becomes
+%\begin{equation}
+%    {\bf V}_{jk}(\shat,f) = {\bf G}_j(f){\bf B}_j(\shat,f){\bf E}(f){\bf B}_k^H(\shat,f){\bf G}_k^H(f) e^{2\pi i f ({\bf d}\cdot\shat + \ell_{jk})/c},
+%\end{equation}
+
+\section{Cost function}
+
+The measured visibilities for a given baseline at a given frequency is the sum of the contributions from the whole sky.
+In the case that the sky is dominated by $N$ point sources, the total measured visibility for baseline $jk$ is
+\begin{equation}
+    {\bf V}_{\text{tot},jk}(f) = \sum_{n=1}^N {\bf J}_j(\shat_n, f){\bf E}(\shat_n, f){\bf J}_k^H(\shat_n, f) e^{2\pi i f ({\bf d}\cdot\shat_n + \ell_{jk})/c}.
+\end{equation}
+
+A common (?) cost function compares model and measured visiblities via the square of the Frobenius norm of the difference\footnote{This cost function treats the (four, complex) visibilities independently. TODO: think of alternative cost functions.}, which is the sum of the squares of the moduli of the four elements of the (complex) $2\times2$ matrix:
+\begin{equation}
+    C_{jk,f} = \lVert {\bf V}_{\text{tot},jk}(f) - \tilde{\bf V}_{jk}(f) \rVert^2,
+\end{equation}
+where $\tilde{\bf V}$ denotes the measured visibilities.
+The total cost function is the sum of the cost function over all baselines and frequencies.
+
+I might try some tensor notation.
+I'll stop writing the $jk$ for the baseline.
+Covariant (superscript) indices indicate that a Hermitian operation has taken place.
+\begin{equation}
+\begin{aligned}
+    V_p^{\cdot q}
+        &= \sum_{n=1}^N J_p^{\cdot \theta} E_\theta^{\cdot \phi} J^q_{\cdot \phi} \exp \left(2\pi i \frac{f}{c} ({\bf d}\cdot\shat_n + \ell)\right) \\
+        &= \exp(ik\ell) \sum_{n=1}^N J_p^{\cdot \theta} E_\theta^{\cdot \phi} J_\phi^{\cdot q} \exp (ik \, {\bf d}\cdot\shat_n) \\
+        &= \exp(ik\ell) T_p^{\cdot q},
+\end{aligned}
+\end{equation}
+where $k = 2\pi f/c$ is the wavenumber, and $T$ denotes the visibilities with zero delay.
+The $J$ and $E$ terms all depend on the source (direction).
+
+The cost function is
+\begin{equation}
+    C = C_1^{\cdot 1} + C_1^{\cdot 2} + C_2^{\cdot 1} + C_2^{\cdot 2}
+\end{equation}
+where
+\begin{equation}
+\begin{aligned}
+    C_p^{\cdot q}
+        &= (V_p^{\cdot q} - \tilde{V}_p^{\cdot q})(V_p^{\cdot q} - \tilde{V}_p^{\cdot q})^\ast \\
+        &= V_p^{\cdot q} (V_p^{\cdot q})^\ast - V_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast -
+           \tilde{V}_p^{\cdot q}(V_p^{\cdot q})^\ast + \tilde{V}_p^{\cdot q}(\tilde{V}_p^{\cdot q})^\ast
+\end{aligned}
+\end{equation}
+For convenience, we can also define
+\begin{equation}
+    V = V_1^{\cdot 1} + V_1^{\cdot 2} + V_2^{\cdot 1} + V_2^{\cdot 2},
+\end{equation}
+etc.
+
+\section{Solving for the delay}
+
+\[
+    \pd{V_p^{\cdot q}}{\ell} = ik \, V_p^{\cdot q}
+\]
+and
+\[
+    \pd{(V_p^{\cdot q})^\ast}{\ell} = -ik \, V_p^{\cdot q},
+\]
+so
+\begin{align*}
+    \pd{C_p^{\cdot q}}{\ell}
+        &= \cancel{ik V_p^{\cdot q} (V_p^{\cdot q})^\ast} - \cancel{ik V_p^{\cdot q} (V_p^{\cdot q})^\ast} -
+           ik V_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast + ik\tilde{V}_p^{\cdot q}(V_p^{\cdot q})^\ast \\
+        &= -ik \bigg(V_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast - \tilde{V}_p^{\cdot q}(V_p^{\cdot q})^\ast\bigg) \\
+        &= -2ik \, \Im \bigg[V_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast\bigg] \\
+    \pd{C}{\ell}
+        &= -2ik \, \Im \bigg[
+               V_1^{\cdot 1} (\tilde{V}_1^{\cdot 1})^\ast +
+               V_1^{\cdot 2} (\tilde{V}_1^{\cdot 2})^\ast +
+               V_2^{\cdot 1} (\tilde{V}_2^{\cdot 1})^\ast +
+               V_2^{\cdot 2} (\tilde{V}_2^{\cdot 2})^\ast
+           \bigg].
+\end{align*}
+For even more shorthand magic, if we define $U_p^{\cdot q} = V_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast$ and also $U = U_1^{\cdot 1} + U_1^{\cdot 2} + U_2^{\cdot 1} + U_2^{\cdot 2}$ as before, then
+\[
+    \pd{C}{\ell} = -2ik \Im \bigg[ U \bigg].
+\]
+The total cost function, however, is the sum over all frequencies and baselines.
+First, note that
+\begin{align*}
+    \pd{C_p^{\cdot q}}{\ell}
+        &= -ik \bigg(\exp(ik\ell) T_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast - \exp(-ik\ell)\tilde{V}_p^{\cdot q}(T_p^{\cdot q})^\ast\bigg) \\
+        &= -\frac{2\pi i f}{c} \bigg(\exp\bigg(2\pi i\frac{\ell}{c}f\bigg) T_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast - \exp\bigg(-2\pi i\frac{\ell}{c} f\bigg)\tilde{V}_p^{\cdot q}(T_p^{\cdot q})^\ast\bigg)
+\end{align*}
+Taking each baseline explicitly, the sum over frequency becomes
+\begin{align*}
+    \pd{(C_p^{\cdot q})_{jk}}{\ell}
+        &= -\frac{2\pi if}{c} \int_0^\infty \bigg[\exp\bigg(2\pi i\frac{\ell}{c}f\bigg) T_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast - \exp\bigg(-2\pi i\frac{\ell}{c} f\bigg)\tilde{V}_p^{\cdot q}(T_p^{\cdot q})^\ast\bigg] \,\text{d}f,
+\end{align*}
+which is the real inverse Fourier transform of the quantity
+\[
+    -\frac{2\pi i f}{c} T_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast.
+\]
 
 \section{First order models}
 
