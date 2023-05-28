@@ -8,6 +8,7 @@
 \usepackage{color}
 \usepackage{graphicx}
 \usepackage{natbib}
+\usepackage{cancel}
 
 \hypersetup{
     citecolor = {blue}
@@ -1650,6 +1651,7 @@ A common (?) cost function compares model and measured visiblities via the squar
     C_{jk,f} = \lVert {\bf V}_{\text{tot},jk}(f) - \tilde{\bf V}_{jk}(f) \rVert^2,
 \end{equation}
 where $\tilde{\bf V}$ denotes the measured visibilities.
+The total cost function is the sum of the cost function over all baselines and frequencies.
 
 I might try some tensor notation.
 I'll stop writing the $jk$ for the baseline.
@@ -1658,10 +1660,12 @@ Covariant (superscript) indices indicate that a Hermitian operation has taken pl
 \begin{aligned}
     V_p^{\cdot q}
         &= \sum_{n=1}^N J_p^{\cdot \theta} E_\theta^{\cdot \phi} J^q_{\cdot \phi} \exp \left(2\pi i \frac{f}{c} ({\bf d}\cdot\shat_n + \ell)\right) \\
-        &= \exp(ik\ell) \sum_{n=1}^N J_p^{\cdot \theta} E_\theta^{\cdot \phi} J_\phi^{\cdot q} \exp (ik \, {\bf d}\cdot\shat_n),
+        &= \exp(ik\ell) \sum_{n=1}^N J_p^{\cdot \theta} E_\theta^{\cdot \phi} J_\phi^{\cdot q} \exp (ik \, {\bf d}\cdot\shat_n) \\
+        &= \exp(ik\ell) T_p^{\cdot q},
 \end{aligned}
 \end{equation}
-where $k = 2\pi f/c$ is the wavenumber.
+where $k = 2\pi f/c$ is the wavenumber, and $T$ denotes the visibilities with zero delay.
+The $J$ and $E$ terms all depend on the source (direction).
 
 The cost function is
 \begin{equation}
@@ -1676,10 +1680,56 @@ where
            \tilde{V}_p^{\cdot q}(V_p^{\cdot q})^\ast + \tilde{V}_p^{\cdot q}(\tilde{V}_p^{\cdot q})^\ast
 \end{aligned}
 \end{equation}
+For convenience, we can also define
+\begin{equation}
+    V = V_1^{\cdot 1} + V_1^{\cdot 2} + V_2^{\cdot 1} + V_2^{\cdot 2},
+\end{equation}
+etc.
 
 \section{Solving for the delay}
 
-\dots Ok, I'm stuck -- does this cost function depend on the delays at all? It doesn't seem too...
+\[
+    \pd{V_p^{\cdot q}}{\ell} = ik \, V_p^{\cdot q}
+\]
+and
+\[
+    \pd{(V_p^{\cdot q})^\ast}{\ell} = -ik \, V_p^{\cdot q},
+\]
+so
+\begin{align*}
+    \pd{C_p^{\cdot q}}{\ell}
+        &= \cancel{ik V_p^{\cdot q} (V_p^{\cdot q})^\ast} - \cancel{ik V_p^{\cdot q} (V_p^{\cdot q})^\ast} -
+           ik V_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast + ik\tilde{V}_p^{\cdot q}(V_p^{\cdot q})^\ast \\
+        &= -ik \bigg(V_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast - \tilde{V}_p^{\cdot q}(V_p^{\cdot q})^\ast\bigg) \\
+        &= -2ik \, \Im \bigg[V_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast\bigg] \\
+    \pd{C}{\ell}
+        &= -2ik \, \Im \bigg[
+               V_1^{\cdot 1} (\tilde{V}_1^{\cdot 1})^\ast +
+               V_1^{\cdot 2} (\tilde{V}_1^{\cdot 2})^\ast +
+               V_2^{\cdot 1} (\tilde{V}_2^{\cdot 1})^\ast +
+               V_2^{\cdot 2} (\tilde{V}_2^{\cdot 2})^\ast
+           \bigg].
+\end{align*}
+For even more shorthand magic, if we define $U_p^{\cdot q} = V_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast$ and also $U = U_1^{\cdot 1} + U_1^{\cdot 2} + U_2^{\cdot 1} + U_2^{\cdot 2}$ as before, then
+\[
+    \pd{C}{\ell} = -2ik \Im \bigg[ U \bigg].
+\]
+The total cost function, however, is the sum over all frequencies and baselines.
+First, note that
+\begin{align*}
+    \pd{C_p^{\cdot q}}{\ell}
+        &= -ik \bigg(\exp(ik\ell) T_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast - \exp(-ik\ell)\tilde{V}_p^{\cdot q}(T_p^{\cdot q})^\ast\bigg) \\
+        &= -\frac{2\pi i f}{c} \bigg(\exp\bigg(2\pi i\frac{\ell}{c}f\bigg) T_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast - \exp\bigg(-2\pi i\frac{\ell}{c} f\bigg)\tilde{V}_p^{\cdot q}(T_p^{\cdot q})^\ast\bigg)
+\end{align*}
+Taking each baseline explicitly, the sum over frequency becomes
+\begin{align*}
+    \pd{(C_p^{\cdot q})_{jk}}{\ell}
+        &= -\frac{2\pi if}{c} \int_0^\infty \bigg[\exp\bigg(2\pi i\frac{\ell}{c}f\bigg) T_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast - \exp\bigg(-2\pi i\frac{\ell}{c} f\bigg)\tilde{V}_p^{\cdot q}(T_p^{\cdot q})^\ast\bigg] \,\text{d}f,
+\end{align*}
+which is the real inverse Fourier transform of the quantity
+\[
+    -\frac{2\pi i f}{c} T_p^{\cdot q} (\tilde{V}_p^{\cdot q})^\ast.
+\]
 
 \section{First order models}
 
