@@ -9,6 +9,7 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 \usepackage{cancel}
+\usepackage{amsthm}
 
 \hypersetup{
     citecolor = {blue}
@@ -40,6 +41,9 @@
     title=\lstname,
     keywordstyle=\color{mygreen}
 }
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
 
 \bibliographystyle{chicago}
 
@@ -1423,6 +1427,27 @@ When $\bm{\beta}$ is perpendicular to $\dot{\bm{\beta}}$,
         &= \frac{q^2\gamma^4\dot{\beta}^2}{6\pi\varepsilon_0 c}
 \end{aligned}
 \end{equation}
+
+\chapter{Statistical Mechanics}
+
+\section{Maxwell-Boltzmann Distribution}
+
+Over three dimensional velocity space,
+\begin{equation}
+    f(v) \, \text{d}^3 v = \left[\frac{m}{2\pi kT}\right]^{3/2} \exp\left(-\frac{mv^2}{2kT}\right) \, \text{d}^3 v.
+\end{equation}
+
+Integrating over solid angle gives the distribution for the speed,
+\begin{equation}
+    f(v) = \sqrt{\frac{2}{\pi}} \left[ \frac{m}{kT} \right]^{3/2} v^2 \exp\left(-\frac{mv^2}{2kT}\right).
+\end{equation}
+
+\section{Maxwell-J\"uttner Distribution}
+
+\begin{equation}
+    f(\gamma) = \frac{\gamma^2 \beta}{\theta K_2(1/\theta)} e^{-\gamma/\theta},
+\end{equation}
+where $\beta = v/c = \sqrt{1 - \frac{1}{\gamma^2}}$, $\theta = \frac{kT}{mc^2}$, and $K_2$ is the modified Bessel function of the second kind.
 
 \chapter{Strong Magnetic Fields}
 
