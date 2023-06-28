@@ -1806,12 +1806,15 @@ where the sum over $i$ is the sum over the matrix elements, and the asterisk mea
 To differentiate $C$, we will need to treat the complex-valued $V_{jk}^i$ as separate real and imaginary parts.
 Letting $V_{jk}^i = a + bi$ and $\tilde{V}_{jk}^i = \tilde{a} + \tilde{b}i$,
 \begin{equation}
+    C = \sum_f \sum_{j,k} \sum_i \left[ (a - \tilde{a})^2 + (b - \tilde{b})^2 \right].
+\end{equation}
+Therefore,
+\begin{equation}
     \begin{aligned}
         \pd{C}{a} &= \sum_f \sum_{j,k} \sum_i 2(a - \tilde{a}) \\
         \pd{C}{b} &= \sum_f \sum_{j,k} \sum_i 2(b - \tilde{b}).
     \end{aligned}
 \end{equation}
-
 How do $a$ and $b$ change with the fittable parameters above?
 \begin{equation}
     \pd{a}{I_0} = \frac{a}{I_0}
@@ -1826,25 +1829,21 @@ and
 \end{equation}
 Therefore,
 \begin{equation}
-    \begin{aligned}
-        \pd{C}{I_0}
-            &= \pd{C}{a} \pd{a}{I_0} + \pd{C}{b} \pd{b}{I_0} \\
-            &= \frac{2}{I_0}\sum_f \sum_{j,k} \sum_i \left[
-                a(a - \tilde{a}) +
-                b(b - \tilde{b})
-                \right]
-    \end{aligned}
+   \pd{C}{I_0}
+       = \pd{C}{a} \pd{a}{I_0} + \pd{C}{b} \pd{b}{I_0} \\
+       = \frac{2}{I_0}\sum_f \sum_{j,k} \sum_i \left[
+           a(a - \tilde{a}) +
+           b(b - \tilde{b})
+           \right]
 \end{equation}
 and
 \begin{equation}
-    \begin{aligned}
-        \pd{C}{\alpha}
-            &= \pd{C}{a} \pd{a}{\alpha} + \pd{C}{b} \pd{b}{\alpha} \\
-            &= 2 \sum_f \ln \left( \frac{f}{f_0} \right) \sum_{j,k} \sum_i \left[
-                a(a - \tilde{a}) +
-                b(b - \tilde{b})
-                \right].
-    \end{aligned}
+   \pd{C}{\alpha}
+       = \pd{C}{a} \pd{a}{\alpha} + \pd{C}{b} \pd{b}{\alpha} \\
+       = 2 \sum_f \ln \left( \frac{f}{f_0} \right) \sum_{j,k} \sum_i \left[
+           a(a - \tilde{a}) +
+           b(b - \tilde{b})
+           \right].
 \end{equation}
 
 \subsection{Gains}
