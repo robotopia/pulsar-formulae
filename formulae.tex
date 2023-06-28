@@ -1782,9 +1782,70 @@ where $I_0$ is the Stokes I flux density at some reference frequency $f_0$.
 
 For a single baseline,
 \begin{equation}
-    {\bf V}_{jk}(f) = {\bf J}_j(\shat, f){\bf E}(\shat, f){\bf J}_k^H(\shat, f) e^{2\pi i f ({\bf d}\cdot\shat + \ell_{jk})/c}.
+    \begin{aligned}
+        {\bf V}_{jk}
+            &= {\bf J}_j{\bf E}{\bf J}_k^H e^{2\pi i f ({\bf d}\cdot\shat + \ell_{jk})/c} \\
+            &= I_0 \left(\frac{f}{f_0}\right)^\alpha {\bf J}_j{\bf J}_k^H e^{2\pi i f ({\bf d}\cdot\shat + \ell_{jk})/c}
+    \end{aligned}
 \end{equation}
 The two fittable parameters are $I_0$ and $\alpha$.
+The objective (cost) function is
+\begin{equation}
+    \begin{aligned}
+        C &= \sum_f \sum_{j,k} \lVert {\bf V}_{jk} - \tilde{\bf V}_{jk} \rVert^2 \\
+          &= \sum_f \sum_{j,k} \sum_i (V_{jk}^i - \tilde{V}_{jk}^i)(V_{jk}^i - \tilde{V}_{jk}^i)^\ast \\
+          &= \sum_f \sum_{j,k} \sum_i \left[
+                V_{jk}^i (V_{jk}^i)^\ast -
+                V_{jk}^i (\tilde{V}_{jk}^i)^\ast -
+                \tilde{V}_{jk}^i (V_{jk}^i)^\ast +
+                \tilde{V}_{jk}^i (\tilde{V}_{jk}^i)^\ast
+             \right],
+    \end{aligned}
+\end{equation}
+where the sum over $i$ is the sum over the matrix elements, and the asterisk means conjugation.
+To differentiate $C$, we will need to treat the complex-valued $V_{jk}^i$ as separate real and imaginary parts.
+Letting $V_{jk}^i = a + bi$ and $\tilde{V}_{jk}^i = \tilde{a} + \tilde{b}i$,
+\begin{equation}
+    \begin{aligned}
+        \pd{C}{a} &= \sum_f \sum_{j,k} \sum_i 2(a - \tilde{a}) \\
+        \pd{C}{b} &= \sum_f \sum_{j,k} \sum_i 2(b - \tilde{b}).
+    \end{aligned}
+\end{equation}
+
+How do $a$ and $b$ change with the fittable parameters above?
+\begin{equation}
+    \pd{a}{I_0} = \frac{a}{I_0}
+    \qquad\text{and}\qquad
+    \pd{b}{I_0} = \frac{b}{I_0}
+\end{equation}
+and
+\begin{equation}
+    \pd{a}{\alpha} = a \ln\left(\frac{f}{f_0}\right)
+    \qquad\text{and}\qquad
+    \pd{b}{\alpha} = b \ln\left(\frac{f}{f_0}\right).
+\end{equation}
+Therefore,
+\begin{equation}
+    \begin{aligned}
+        \pd{C}{I_0}
+            &= \pd{C}{a} \pd{a}{I_0} + \pd{C}{b} \pd{b}{I_0} \\
+            &= \frac{2}{I_0}\sum_f \sum_{j,k} \sum_i \left[
+                a(a - \tilde{a}) +
+                b(b - \tilde{b})
+                \right]
+    \end{aligned}
+\end{equation}
+and
+\begin{equation}
+    \begin{aligned}
+        \pd{C}{\alpha}
+            &= \pd{C}{a} \pd{a}{\alpha} + \pd{C}{b} \pd{b}{\alpha} \\
+            &= 2 \sum_f \ln \left( \frac{f}{f_0} \right) \sum_{j,k} \sum_i \left[
+                a(a - \tilde{a}) +
+                b(b - \tilde{b})
+                \right].
+    \end{aligned}
+\end{equation}
 
 \subsection{Gains}
 
