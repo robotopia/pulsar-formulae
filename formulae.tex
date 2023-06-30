@@ -1793,26 +1793,26 @@ The objective (cost) function is
 \begin{equation}
     \begin{aligned}
         C &= \sum_f \sum_{j,k} \lVert {\bf V}_{jk} - \tilde{\bf V}_{jk} \rVert^2 \\
-          &= \sum_f \sum_{j,k} \sum_i (V_{jk}^i - \tilde{V}_{jk}^i)(V_{jk}^i - \tilde{V}_{jk}^i)^\ast \\
-          &= \sum_f \sum_{j,k} \sum_i \left[
-                V_{jk}^i (V_{jk}^i)^\ast -
-                V_{jk}^i (\tilde{V}_{jk}^i)^\ast -
-                \tilde{V}_{jk}^i (V_{jk}^i)^\ast +
-                \tilde{V}_{jk}^i (\tilde{V}_{jk}^i)^\ast
+          &= \sum_f \sum_{j,k} \sum_p (V_{jk}^p - \tilde{V}_{jk}^p)(V_{jk}^p - \tilde{V}_{jk}^p)^\ast \\
+          &= \sum_f \sum_{j,k} \sum_p \left[
+                V_{jk}^p (V_{jk}^p)^\ast -
+                V_{jk}^p (\tilde{V}_{jk}^p)^\ast -
+                \tilde{V}_{jk}^p (V_{jk}^p)^\ast +
+                \tilde{V}_{jk}^p (\tilde{V}_{jk}^p)^\ast
              \right],
     \end{aligned}
 \end{equation}
-where the sum over $i$ is the sum over the matrix elements, and the asterisk means conjugation.
-To differentiate $C$, we will need to treat the complex-valued $V_{jk}^i$ as separate real and imaginary parts.
-Letting $V_{jk}^i = a + bi$ and $\tilde{V}_{jk}^i = \tilde{a} + \tilde{b}i$,
+where the sum over $p$ is the sum over the matrix elements (the four ``visibility polarisations''), and the asterisk means conjugation.
+To differentiate $C$, we will need to treat the complex-valued $V_{jk}^p$ as separate real and imaginary parts.
+Letting $V_{jk}^p = a + bi$ and $\tilde{V}_{jk}^p = \tilde{a} + \tilde{b}i$,
 \begin{equation}
-    C = \sum_f \sum_{j,k} \sum_i \left[ (a - \tilde{a})^2 + (b - \tilde{b})^2 \right].
+    C = \sum_f \sum_{j,k} \sum_p \left[ (a - \tilde{a})^2 + (b - \tilde{b})^2 \right].
 \end{equation}
 Therefore,
 \begin{equation}
     \begin{aligned}
-        \pd{C}{a} &= \sum_f \sum_{j,k} \sum_i 2(a - \tilde{a}) \\
-        \pd{C}{b} &= \sum_f \sum_{j,k} \sum_i 2(b - \tilde{b}).
+        \pd{C}{a} &= \sum_f \sum_{j,k} \sum_p 2(a - \tilde{a}) \\
+        \pd{C}{b} &= \sum_f \sum_{j,k} \sum_p 2(b - \tilde{b}).
     \end{aligned}
 \end{equation}
 How do $a$ and $b$ change with the fittable parameters above?
@@ -1831,7 +1831,7 @@ Therefore,
 \begin{equation}
    \pd{C}{I_0}
        = \pd{C}{a} \pd{a}{I_0} + \pd{C}{b} \pd{b}{I_0} \\
-       = \frac{2}{I_0}\sum_f \sum_{j,k} \sum_i \left[
+       = \frac{2}{I_0}\sum_f \sum_{j,k} \sum_p \left[
            a(a - \tilde{a}) +
            b(b - \tilde{b})
            \right]
@@ -1840,7 +1840,7 @@ and
 \begin{equation}
    \pd{C}{\alpha}
        = \pd{C}{a} \pd{a}{\alpha} + \pd{C}{b} \pd{b}{\alpha} \\
-       = 2 \sum_f \ln \left( \frac{f}{f_0} \right) \sum_{j,k} \sum_i \left[
+       = 2 \sum_f \ln \left( \frac{f}{f_0} \right) \sum_{j,k} \sum_p \left[
            a(a - \tilde{a}) +
            b(b - \tilde{b})
            \right].
