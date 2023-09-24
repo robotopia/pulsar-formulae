@@ -944,11 +944,146 @@ Then the spark profile is defined as
 \end{equation}
 where the spark radius is identified with $3\sigma$ of a standard normal profile.
 
-\section{Dedispersion}
+\section{Dispersion}
 
 \subsection{Fundamentals}
 
-\subsubsection{Plasma frequency}
+Maxwell's equations in a medium are \citep[e.g.][]{Orfanidis2016}:
+\begin{equation}
+    \begin{aligned}
+        \nabla \times {\bf E} &= -\pd{\bf B}{t}, \\
+        \nabla \times {\bf H} &= {\bf J} + \pd{\bf D}{t}, \\
+        \nabla \cdot {\bf D} &= \rho, \\
+        \nabla \cdot {\bf B} &= 0.
+    \end{aligned}
+\end{equation}
+The \textit{electric displacement}, ${\bf D}$, and the \textit{magnetic field intensity}, ${\bf H}$, are related to the \textit{electric field intensity}, ${\bf E}$, and the \textit{magnetic flux density} (or \textit{magnetic induction}), ${\bf B}$, respectively, via the properties of the medium.
+These relationships are called the \textit{constitutive relations} for the given medium.
+
+\subsubsection{Solution to Maxwell's equations in a vacuum}
+
+In a vacuum, the constitutive relations are
+\begin{equation}
+    \begin{aligned}
+        {\bf D} &= \varepsilon_0 {\bf E}, \\
+        {\bf B} &= \mu_0 {\bf H},
+    \end{aligned}
+\end{equation}
+where $\varepsilon_0 = 8.854 \times 10^{-12}\,$farad/m is the \textit{permittivity of free space}, and $\mu_0 = 4\pi \times 10^{-7}\,$henry/m is the \textit{permeability of free space}.
+Furthermore, in a vacuum there are no sources, so $\rho = {\bf J} = 0$.
+Therefore, Maxwell's equations reduce to
+\begin{equation}
+    \begin{aligned}
+        \nabla \times {\bf E} &= -\pd{\bf B}{t}, \\
+        \nabla \times {\bf B} &= \mu_0 \varepsilon_0 \pd{\bf E}{t}, \\
+        \nabla \cdot {\bf E} &= 0, \\
+        \nabla \cdot {\bf B} &= 0.
+    \end{aligned}
+\end{equation}
+Taking the curl of the first equation,
+\begin{equation}
+    \begin{aligned}
+        \nabla \times (\nabla \times {\bf E}) &= -\nabla \times \pd{\bf B}{t} \\
+        \cancel{\nabla (\nabla \cdot {\bf E})} - \nabla^2{\bf E} &= -\pd{}{t} (\nabla \times {\bf B}) \\
+        \nabla^2 {\bf E}
+            &= \pd{}{t} \left( \mu_0 \varepsilon_0 \pd{\bf E}{t} \right) \\
+            &= \mu_0 \varepsilon_0 \ppd{\bf E}{t}.
+    \end{aligned}
+\end{equation}
+This is, of course, a wave equation, where we may define $c = 1/\sqrt{\mu_0 \varepsilon_0}$ for brevity, which will turn out to be the speed of the wave.
+
+A general approach to solving it ``from scratch'', so to speak, might be as follows.
+Assume that the solution is separable into a spatial part and a temporal part,
+\begin{equation}
+    {\bf E}({\bf r}, t) = {\bf R}({\bf r}) {\bf T}(t).
+\end{equation}
+Substituting this into the PDE above yields
+\begin{equation}
+    \begin{aligned}
+        {\bf T} \nabla^2 {\bf R} &= \frac{\bf R}{c^2} \derivn{\bf T}{t}{2}, \\
+        \frac{1}{\bf R} \nabla^2 {\bf R} &= \frac{1}{c^2 {\bf T}} \derivn{\bf T}{t}{2}.
+    \end{aligned}
+\end{equation}
+
+As the left hand side depends only on ${\bf r}$, and the right hand side only on $t$, they must be equal to the same constant value, which we set equal to $-k^2$.
+Then the right hand side becomes a linear ODE, which can be solved directly:
+\begin{equation}
+    \begin{aligned}
+        \derivn{\bf T}{t}{2} &= -\omega^2 {\bf T}, \\
+        {\bf T}(t) = Ae^{i \omega t},
+    \end{aligned}
+\end{equation}
+where $\omega = kc$ is revealed to be the angular frequency of the wave, and the amplitude $A$ is an arbitrary constant of integration.
+
+The left hand side becomes the spatial Helmholtz equation (see \url{https://en.wikipedia.org/wiki/Helmholtz_equation}),
+\begin{equation}
+    \nabla^2 {\bf R} = -k^2 {\bf R}.
+    \label{eqn:spatial_part_of_vacuum_soln}
+\end{equation}
+We do not give the general solution here, but we can verify, as an example, that plane waves are solutions.
+The spatial part of a plane wave is
+\begin{equation}
+    {\bf R} = Be^{ik \hat{\bf n}\cdot {\bf r}},
+\end{equation}
+where $\hat{\bf n}$ specifies some particular, constant direction in space, and the amplitude $B$ is a free parameter, as before.
+Substitution of this solution back into \eqref{eqn:spatial_part_of_vacuum_soln} will show that it is indeed a solution.
+
+The general plane wave solution is therefore obtained by multiplying the spatial and temporal parts.
+As both parts have an arbitrary amplitude, they can be absorbed into a single amplitude of the final solution plane wave, which we represent by $A$.
+It is also customary to combine the constant $k$ and the direction $\hat{\bf n}$ into a single quantity called the \emph{wavevector}, ${\bf k} = k\hat{\bf n}$.
+Thus, the plane wave solution can be written
+\begin{equation}
+    {\bf E}({\bf r}, t) = Ae^{i({\bf k}\cdot{\bf r} - \omega t)}.
+\end{equation}
+
+\subsection{Plasmas}
+
+In the presence of a medium like a plasma, the constitutive relations differ from those of a vacuum.
+Let as consider a \textit{homogeneous}, \textit{isotropic} electron gas, with constant density $\rho = \rho_\text{pl}$.
+Under this assumption, Maxwell's equations read:
+\begin{equation}
+    \begin{aligned}
+        \nabla \times {\bf E} &= -\pd{\bf B}{t}, \\
+        \nabla \times {\bf H} &= {\bf J} + \pd{\bf D}{t}, \\
+        \nabla \cdot {\bf D} &= \rho_\text{pl}, \\
+        \nabla \cdot {\bf B} &= 0.
+    \end{aligned}
+\end{equation}
+
+Next, we assume that the medium's permittivity and permeability differ from those of a vacuum in a linear way,
+\begin{align}
+    \varepsilon &= \varepsilon_0(1 + \chi), \\
+    \mu &= \mu_0(1 + \chi_m),
+\end{align}
+where $\chi$ and $\chi_m$ are the \textit{electric} and \textit{magnetic susceptibilities} of the medium, here also assumed to be both spatially and temporally constant.
+Thus, the constitutive relations are
+\begin{equation}
+    \begin{aligned}
+        {\bf D} &= \varepsilon {\bf E}, \\
+        {\bf B} &= \mu {\bf H},
+    \end{aligned}
+\end{equation}
+This brings Maxwell's equations into the form
+\begin{equation}
+    \begin{aligned}
+        \nabla \times {\bf E} &= -\pd{\bf B}{t}, \\
+        \nabla \times {\bf B} &= \mu {\bf J} + \mu \varepsilon \pd{\bf E}{t}, \\
+        \nabla \cdot {\bf E} &= \frac{\rho_\text{pl}}{\varepsilon}, \\
+        \nabla \cdot {\bf B} &= 0.
+    \end{aligned}
+\end{equation}
+
+Following the same procedure as before, we take the curl of the first equation and follow through with various substitutions of the other equations.
+This yields
+\begin{equation}
+    \begin{aligned}
+        \nabla \times (\nabla \times {\bf E}) &= -\nabla \times \pd{\bf B}{t} \\
+        \cancel{\nabla (\nabla \cdot {\bf E})} - \nabla^2{\bf E} &= -\pd{}{t} (\nabla \times {\bf B}) \\
+        \nabla^2 {\bf E}
+            &= \pd{}{t} \left( \mu {\bf J} + \mu \varepsilon \pd{\bf E}{t} \right) \\
+            &= \mu \pd{\bf J}{t} + \mu \varepsilon \ppd{\bf E}{t}.
+    \end{aligned}
+\end{equation}
 
 In \citet{Lorimer2005}, the plasma frequency is given in Gaussian units (see Eq. 4.2):
 \begin{equation}
