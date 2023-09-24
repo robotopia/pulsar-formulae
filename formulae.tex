@@ -987,8 +987,10 @@ Taking the curl of the first equation,
         \cancel{\nabla (\nabla \cdot {\bf E})} - \nabla^2{\bf E} &= -\pd{}{t} (\nabla \times {\bf B}) \\
         \nabla^2 {\bf E}
             &= \pd{}{t} \left( \mu_0 \varepsilon_0 \pd{\bf E}{t} \right) \\
-            &= \mu_0 \varepsilon_0 \ppd{\bf E}{t}.
+        \nabla^2 {\bf E} - \mu_0 \varepsilon_0 \ppd{\bf E}{t}
+            &= 0.
     \end{aligned}
+    \label{eqn:maxeq_for_vacuum}
 \end{equation}
 This is, of course, a wave equation, where we may define $c = 1/\sqrt{\mu_0 \varepsilon_0}$ for brevity, which will turn out to be the speed of the wave.
 
@@ -1038,24 +1040,22 @@ Thus, the plane wave solution can be written
 
 \subsection{Plasmas}
 
-In the presence of a medium like a plasma, the constitutive relations differ from those of a vacuum.
-Let as consider a \textit{homogeneous}, \textit{isotropic} electron gas, with constant density $\rho = \rho_\text{pl}$.
-Under this assumption, Maxwell's equations read:
+Recall that in the presence of a medium, Maxwell's equations read:
 \begin{equation}
     \begin{aligned}
         \nabla \times {\bf E} &= -\pd{\bf B}{t}, \\
         \nabla \times {\bf H} &= {\bf J} + \pd{\bf D}{t}, \\
-        \nabla \cdot {\bf D} &= \rho_\text{pl}, \\
+        \nabla \cdot {\bf D} &= \rho, \\
         \nabla \cdot {\bf B} &= 0.
     \end{aligned}
 \end{equation}
 
-Next, we assume that the medium's permittivity and permeability differ from those of a vacuum in a linear way,
+We will consider media whose permittivity and permeability differ from those of a vacuum in a linear way, i.e.
 \begin{align}
     \varepsilon &= \varepsilon_0(1 + \chi), \\
     \mu &= \mu_0(1 + \chi_m),
 \end{align}
-where $\chi$ and $\chi_m$ are the \textit{electric} and \textit{magnetic susceptibilities} of the medium, here also assumed to be both spatially and temporally constant.
+where $\chi$ and $\chi_m$ are the \textit{electric} and \textit{magnetic susceptibilities} of the medium, here assumed to be both spatially and temporally constant.
 Thus, the constitutive relations are
 \begin{equation}
     \begin{aligned}
@@ -1068,7 +1068,7 @@ This brings Maxwell's equations into the form
     \begin{aligned}
         \nabla \times {\bf E} &= -\pd{\bf B}{t}, \\
         \nabla \times {\bf B} &= \mu {\bf J} + \mu \varepsilon \pd{\bf E}{t}, \\
-        \nabla \cdot {\bf E} &= \frac{\rho_\text{pl}}{\varepsilon}, \\
+        \nabla \cdot {\bf E} &= \frac{\rho}{\varepsilon}, \\
         \nabla \cdot {\bf B} &= 0.
     \end{aligned}
 \end{equation}
@@ -1077,13 +1077,32 @@ Following the same procedure as before, we take the curl of the first equation a
 This yields
 \begin{equation}
     \begin{aligned}
-        \nabla \times (\nabla \times {\bf E}) &= -\nabla \times \pd{\bf B}{t} \\
-        \cancel{\nabla (\nabla \cdot {\bf E})} - \nabla^2{\bf E} &= -\pd{}{t} (\nabla \times {\bf B}) \\
-        \nabla^2 {\bf E}
-            &= \pd{}{t} \left( \mu {\bf J} + \mu \varepsilon \pd{\bf E}{t} \right) \\
-            &= \mu \pd{\bf J}{t} + \mu \varepsilon \ppd{\bf E}{t}.
+        \nabla \times (\nabla \times {\bf E})
+            &= -\nabla \times \pd{\bf B}{t} \\
+        \nabla (\nabla \cdot {\bf E}) - \nabla^2{\bf E}
+            &= -\pd{}{t} (\nabla \times {\bf B}) \\
+        \frac{1}{\varepsilon} \nabla \rho - \nabla^2 {\bf E}
+            &= -\pd{}{t} \left( \mu {\bf J} + \mu \varepsilon \pd{\bf E}{t} \right) \\
+        \nabla^2 {\bf E} - \mu \varepsilon \ppd{\bf E}{t}
+            &= \frac{1}{\varepsilon} \nabla \rho + \mu \pd{\bf J}{t}.
     \end{aligned}
+    \label{eqn:maxeq_for_const_plasma}
 \end{equation}
+Eq. \eqref{eqn:maxeq_for_const_plasma} differs from Eq. \eqref{eqn:maxeq_for_vacuum} by the right hand side which is determined by the dynamic, or ``elastic'' properties of the medium itself.
+Knowledge of these properties will enable us to relate the density, $\rho$, and the current field, ${\bf J}$, to the electric field, ${\bf E}$, and vice versa.
+
+The current is (by definition) the density multiplied by the medium's velocity field,
+\begin{equation}
+    {\bf J} = \rho {\bf v}.
+\end{equation}
+Then
+\begin{equation}
+    \pd{\bf J}{t} = \pd{\rho}{t} {\bf v} + \rho\pd{\bf v}{t}.
+\end{equation}
+
+\dots
+
+\noindent\rule{\textwidth}{1pt}
 
 In \citet{Lorimer2005}, the plasma frequency is given in Gaussian units (see Eq. 4.2):
 \begin{equation}
