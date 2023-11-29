@@ -1731,9 +1731,11 @@ The relativistic generalisation of the Lorentz force (still for $\vec{\beta}$ pe
     m\dot{\beta}\gamma\left(\beta^2\gamma^2 + 1\right) &= q \beta B \\
     m\dot{\beta}\gamma\left(\left(1 - \frac{1}{\gamma^2}\right)\gamma^2 + 1\right) &= q \beta B \\
     m\dot{\beta}\gamma\left((\gamma^2 - 1) + 1\right) &= q \beta B \\
+    m\dot{\beta}\gamma^3 &= q \beta B \\
     m^2\dot{\beta}^2\gamma^3 &= q^2 \beta^2 B^2 \\
-    m^2\dot{\beta}^2\gamma^3 &= q^2 (1 - \frac{1}{\gamma^2}) B^2 \\ % Up to here
-    \dot{\beta}^2 &= \frac{q^2B^2}{m^2}\frac{\gamma^2 - 1}{\gamma^2(\gamma^4 - \gamma^2 + 1)}
+    m^2\dot{\beta}^2\gamma^6 &= q^2 \left(1 - \frac{1}{\gamma^2}\right) B^2 \\
+    m^2\dot{\beta}^2\gamma^6 &= q^2 \frac{\gamma^2 - 1}{\gamma^2} B^2 \\
+    \dot{\beta}^2 &= \frac{q^2B^2}{m^2}\frac{\gamma^2 - 1}{\gamma^8}
 \end{aligned}
 \end{equation}
 Putting this in the relativistic Larmor formula,
@@ -1741,29 +1743,28 @@ Putting this in the relativistic Larmor formula,
 \begin{aligned}
     \deriv{E}{t}
         &= -\frac{q^2\gamma^4\dot{\beta}^2}{6\pi\varepsilon_0 c} \\
-        &= -\frac{q^2\gamma^4}{6\pi\varepsilon_0 c} \left[\frac{q^2B^2}{m^2}\frac{\gamma^2 - 1}{\gamma^2(\gamma^4 - \gamma^2 + 1)} \right] \\
+        &= -\frac{q^2\gamma^4}{6\pi\varepsilon_0 c} \left[\frac{q^2B^2}{m^2}\frac{\gamma^2 - 1}{\gamma^8} \right] \\
         &= -\frac{q^4B^2}{6\pi\varepsilon_0 c m^2}
-            \frac{\gamma^2(\gamma^2 - 1)}{(\gamma^4 - \gamma^2 + 1)^2} \\
-        &\approx -\frac{q^4B^2}{6\pi\varepsilon_0 c m^2\gamma^4}, \qquad \gamma \gg 1.
+            \frac{\gamma^2 - 1}{\gamma^4} \\
 \end{aligned}
+\end{equation}
+In the ultra-relativistic case, $\gamma \gg 1$,
+\begin{equation}
+    \deriv{E}{t} \approx -\frac{q^4B^2}{6\pi\varepsilon_0 c m^2 \gamma^2}
 \end{equation}
 Clearly, this differs from the non-relativistic case by an extra factor of ``energy'' on the right hand side of this differential equation.
-This means that the solution to this equation will no longer be an exponential, and the notion of a characteristic timescale is a bit harder to define.
-However, we may still define an ``instantaneous'' characteristic timescale as the inverse of the coefficient of the $E$ term.
-To \emph{get} an $E$ term, we may ``use up'' one of the $\gamma$ factors to get
-\begin{equation}
-    \deriv{E}{t}
-        \approx -\frac{q^4B^2\gamma}{6\pi\varepsilon_0 c^3 m^3} E,
-\end{equation}
-in which case the instantaneous characteristic timescale is
+Recalling that $E = \gamma mc^2$, we can write
 \begin{equation}
 \begin{aligned}
-    \tau &\equiv \frac{6\pi\varepsilon_0 c^3 m^3}{q^4B^2\gamma} \\
-        &= 5.16 \times 10^{-18}\,\text{s}
-            \times \left(\frac{B}{10^8\,\text{T}}\right)^{-2}
-            \times \left(\frac{\gamma}{100}\right)^{-1}.
+    \deriv{\gamma}{t}\,mc^2 &\approx -\frac{q^4B^2}{6\pi\varepsilon_0 c m^2 \gamma^2} \\
+    \deriv{\gamma}{t} &\approx -\frac{q^4B^2}{6\pi\varepsilon_0 c^3 m^3 \gamma^2},
 \end{aligned}
 \end{equation}
+whose solution is
+\begin{equation}
+    \frac{1}{3}(\gamma^3 - \gamma_0^3) = -\frac{q^4B^2}{6\pi\varepsilon_0 c^3 m^3}\,t.
+\end{equation}
+
 Compare this with the timescale of \citet{Luo1998}:
 \begin{equation}
     \tau \sim 10^{-14}\,\text{s}
@@ -1771,31 +1772,18 @@ Compare this with the timescale of \citet{Luo1998}:
         \times \left(\frac{\gamma}{100}\right)
 \end{equation}
 
-The full solution (albeit still only valid for $\gamma \gg 1$) is
+The full solution is
 \begin{equation}
 \begin{aligned}
-    \deriv{E}{t}
-        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c m^2}\left(\frac{E}{mc^2}\right)^2 \\
-        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c^5 m^4} E^2 \\
-    \int_{E_0}^{E} \frac{1}{E^2}\,\text{d}E
-        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c^5 m^4} \int_0^t\,\text{d}t \\
-    -\frac{1}{E} + \frac{1}{E_0}
-        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c^5 m^4}\,t \\
-    \frac{E_0}{E}
-        &= E_0 \frac{q^4B^2}{6\pi\varepsilon_0 c^5 m^4}\,t + 1 \\
-    \frac{\gamma_0}{\gamma}
-        &= \frac{q^4B^2\gamma_0}{6\pi\varepsilon_0 c^3 m^3}\,t + 1,
+    \deriv{\gamma}{t}
+        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c^3 m^3}\frac{\gamma^2 - 1}{\gamma^4} \\
+    \int_{\gamma_0}^{\gamma} \frac{\gamma^4}{\gamma^2 - 1}\,\text{d}\gamma
+        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c^3 m^3} \int_0^t\,\text{d}t \\
+    \left[ \frac{1}{3}\gamma^3 + \gamma + \frac{1}{2}\ln(1 - \gamma) - \frac{1}{2}\ln(1 + \gamma)\right]_{\gamma_0}^\gamma
+        &= -\frac{q^4B^2}{6\pi\varepsilon_0 c^3 m^3}\,t
 \end{aligned}
 \end{equation}
-where $E_0$ and $\gamma_0$ represent the initial energies.
-Now we make a more precise estimate of the ``time required for the energy to fall to $1/e$ of its original value'' (which is the usual definition of a characteristic timescale):
-\begin{equation}
-\begin{aligned}
-    \frac{\gamma_0}{\gamma} = e &= \frac{q^4B^2\gamma_0}{6\pi\varepsilon_0 c^3 m^3}\,\tau + 1 \\
-    \tau &= (e - 1)\frac{6\pi\varepsilon_0 c^3 m^3}{q^4B^2\gamma_0},
-\end{aligned}
-\end{equation}
-which differs from the above by a constant factor of ${\sim}2$.
+where $\gamma_0$ represents the initial energies.
 
 \section{Pair Cascades}
 
