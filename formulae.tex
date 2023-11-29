@@ -1151,12 +1151,45 @@ If in the circular basis\footnote{Not yet verified whether or not this also appl
 
 \section{Goldreich-Julian Charge Density}
 
-In SI units,
+In SI units \citep[e.g.][]{Fung2006},
 \begin{equation}
-    \rho_\text{GJ} \approx 4\pi\varepsilon_0\Omega B,
+    \rho_\text{GJ} = -\frac{2\varepsilon_0 {\bm \Omega}\cdot{\bm B}}{1 - \frac{|{\bm \Omega}\times{\bm r}|^2}{c^2}},
 \end{equation}
 where $\Omega = 2\pi/P$ is the angular velocity of the neutron star and $B$ is the magnetic field strength.
-Its units are C/m$^3$.
+For particles sufficiently close to the magnetic axis, the angle between ${\bm \Omega}$ and ${\bm r}$ is $\alpha$, yielding
+\begin{equation}
+    \rho_\text{GJ}
+        = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{1 - \frac{\Omega^2 r^2}{c^2}\sin^2\alpha}
+        = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{1 - \frac{r^2}{r_L^2}\sin^2\alpha}.
+\end{equation}
+The equivalent number density is
+\begin{equation}
+    n_\text{GJ}
+        = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{q\left(1 - \frac{r^2}{r_L^2}\sin^2\alpha\right)}
+        = -\frac{4\pi\varepsilon_0 B \cos\alpha}{qP\left(1 - \frac{r^2}{r_L^2}\sin^2\alpha\right)}
+\end{equation}
+which can also be expressed
+\begin{equation}
+    n_\text{GJ} \approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-1} \frac{\cos\alpha}{1 - \frac{r^2}{r_L^2}\sin^2\alpha}.
+\end{equation}
+Sufficiently close to the surface, well within the light cylinder radius, $r \ll r_L$, and therefore
+\begin{equation}
+    n_\text{GJ} \approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-1} \cos\alpha.
+\end{equation}
+
+\subsection{Dipole field}
+
+For a dipole field, $B(r) = B_0 (r_p/r)^3$, where $B_0$ is the magnetic field strength at the surface (at the magnetic pole) and $r_p$ is the radius of the neutron star.
+The Goldreich-Julian number density (close to the magnetic axis) is therefore
+\begin{equation}
+    \begin{aligned}
+    n_\text{GJ}
+        &= -\frac{4\pi\varepsilon_0 B_0 r_p^3 \cos\alpha}{qPr^3} \\
+        &\approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B_0}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-4} \left(\frac{r}{r_p}\right)^{-3} \cos\alpha & & \text{(in terms of the stellar radius)}, \\
+        &\approx 6.4 \times 10^5\,\text{m}^{-3} \, \left(\frac{B_0}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-4} \left(\frac{r_p}{10^4\,\text{m}}\right)^3 \left(\frac{r}{r_L}\right)^{-3} \cos\alpha & & \text{(in terms of the light cylinder radius)}.
+    \end{aligned}
+\end{equation}
+
 
 \subsection{Oblique rotator}
 
