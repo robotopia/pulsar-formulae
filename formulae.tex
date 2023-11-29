@@ -1640,6 +1640,7 @@ where $\beta = v/c = \sqrt{1 - \frac{1}{\gamma^2}}$, $\theta = \frac{kT}{mc^2}$,
 \chapter{Strong Magnetic Fields}
 
 \section{Quantum Critical Magnetic Field}
+\label{sec:qcmf}
 
 The ``quantum critical magnetic field'' \citep[translated to SI units from][]{Diachenko2017}:
 \begin{equation}
@@ -1656,6 +1657,19 @@ Electrons in a magnetic field occupy discrete energy levels (Diachenko 2017):
     \tilde{m} = m\sqrt{1 + 2lb},
 \end{equation}
 where $p_z$ is parallel to the field momentum, $l$ is the level number and $b$ is the magnetic field strength in units of the quantum critical field $B_c$.
+Expressed slightly differently, the $n$th Landau level ($n$ here is the same as $l$ above) has energy
+\begin{equation}
+    E_n = mc^2\sqrt{\gamma^2 + 2n\frac{B}{B_c}},
+\end{equation}
+where $\gamma$ is the the Lorentz factor parallel to the magnetic field.
+In the limit when the parallel energy dominates,
+\begin{equation}
+    E_n \approx mc^2\left(\gamma + \frac{n}{\gamma}\frac{B}{B_c}\right),
+\end{equation}
+and the corresponding energy difference between them is
+\begin{equation}
+    \Delta E \approx \frac{mc^2}{\gamma} \frac{B}{B_c}.
+\end{equation}
 
 \subsection{Derivation for timescales for dropping to lowest Landau level}
 
