@@ -317,16 +317,57 @@ which is the form given in Eq. (1) of \citet{Davis1947}, except for a difference
 \subsection{Deutsch-Barnard equations}
 
 In the original form given in \citet{Barnard1986}:
+\begin{quote}
 \begin{equation}
     \begin{aligned}
-        B_r &= \left[\left(\frac{R}{r}\right)^3 \cos i \cos \theta +
+        B_r &= B_0 \left[\left(\frac{R}{r}\right)^3 \cos i \cos \theta +
                \left(\frac{R}{r}\right)^2\left(\frac{R\Omega}{c}\right) \sin i \sin \theta \sin(\zeta + \lambda) +
                \left(\frac{R}{r}\right)^3 \sin i \sin \theta \cos(\zeta + \lambda)\right], \\
-        B_\theta &= \frac{1}{2}B_0 \left\{\left(\frac{R}{r}\right)^3 \cos i \sin \theta +
-                    \left[\left(\frac{R\Omega}{c}\right)^2\left(\frac{R}{r}\right) - \left(\frac{R}{r}\right)\right] \sin i \cos \theta \cos(\zeta + \lambda) -
-                    \left(\frac{R\Omega}{c}\right)\left(\frac{R}{r}\right)^2 \sin i \cos \theta \sin(\zeta + \lambda)\right\}, \\
+        B_\theta &= \frac{1}{2}B_0 \Bigg\{\left(\frac{R}{r}\right)^3 \cos i \sin \theta +
+                    \left[\left(\frac{R\Omega}{c}\right)^2\left(\frac{R}{r}\right) - \left(\frac{R}{r}\right)^3\right] \sin i \cos \theta \cos(\zeta + \lambda) - \\
+            &\hspace{2cm}
+                    \left(\frac{R\Omega}{c}\right)\left(\frac{R}{r}\right)^2 \sin i \cos \theta \sin(\zeta + \lambda)\Bigg\}, \\
         B_\phi &= -\frac{1}{2} B_0 \sin i \left\{\left(\frac{R\Omega}{c}\right)\left(\frac{R}{r}\right)^2 \cos(\zeta + \lambda) +
-                  \left[\left(\frac{R\Omega}{c}^2\left(\frac{R}{r}\right) - \left(\frac{R}{r}\right)^3\right] \sin(\zeta + \lambda)\right\}.
+                  \left[\left(\frac{R\Omega}{c}\right)^2\left(\frac{R}{r}\right) - \left(\frac{R}{r}\right)^3\right] \sin(\zeta + \lambda)\right\}.
+    \end{aligned}
+\end{equation}
+    ``Here $B_0$ is an arbitrary normalization, $\zeta \equiv r\Omega/c$, $\lambda \equiv \phi - \Omega t$, $\Omega \equiv |{\bm \Omega}|$, and $t$ is the time such that the dipole is in the $({\bf n}, {\bm \Omega})$-plane when $t = 0$.
+    ...
+    [This equation] is approximate in that it assumes $(R\Omega/c) \ll 1$, which is a good approximation even for millisecond pulsars.
+    Here $R$ is the radius of the star...''
+\end{quote}
+
+The following table shows the translation between the notation used in \citet{Barnard1986} and the notation used in these notes.
+Only notation that differs between the two is included.
+\begin{table}[!h]
+    \centering
+    \caption{Notation lookup table}
+    \label{tbl:barnard_notation}
+    \begin{tabular}{ccl}
+        \citet{Barnard1986} & These notes & Description \\
+        \hline
+        $i$ & $\alpha$ & The magnetic inclination \\
+        $\lambda$ & - & (*There is no standard notation in these notes) \\
+        ${\bf n}$ & $\hat{\bf n}$ & The line of sight (directed towards the observer) \\
+        $R$ & $r_p$ & The stellar radius \\
+        $\Omega$ & $\frac{2\pi}{P}$ & The angular rotation frequency \\
+        ${\bm \Omega}$ & $\hat{\bm \omega}$ & The rotation axis \\
+        $\zeta$ & $r^\prime = \frac{r}{r_L}$ & The radial coordinate normalised to the light cylinder radius \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Translating to the notation used in this document, making use of $r_L = c/\Omega$ where appropriate, and factoring out some common terms, the above equations become
+\begin{equation}
+    \begin{aligned}
+        B_r &= B_0\bigg(\frac{r_p}{r}\bigg)^3 \bigg[ \cos \alpha \cos \theta +
+               r^\prime \sin \alpha \sin \theta \sin\big(r^\prime + \lambda\big) +
+               \sin \alpha \sin \theta \cos\big(r^\prime + \lambda\big)\bigg], \\
+        B_\theta &= \frac{1}{2}B_0 \bigg(\frac{r_p}{r}\bigg)^3 \bigg\{\cos \alpha \sin \theta +
+                    \Big[\big(r^\prime\big)^2 - 1\Big] \sin \alpha \cos \theta \cos\big(r^\prime + \lambda\big) -
+                    r^\prime \sin \alpha \cos \theta \sin\big(r^\prime + \lambda\big)\bigg\}, \\
+        B_\phi &= -\frac{1}{2} B_0 \bigg(\frac{r_p}{r}\bigg)^3 \sin \alpha \bigg\{r^\prime \cos\bigg(r^\prime + \lambda\bigg) +
+                  \Big[\big(r^\prime\big)^2 - 1\Big] \sin\big(r^\prime + \lambda\big)\bigg\}.
     \end{aligned}
 \end{equation}
 
