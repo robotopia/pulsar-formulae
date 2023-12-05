@@ -10,3 +10,6 @@ formulae.pdf: formulae.tex biblio.bib $(IMAGES)
 
 images/%.png:
 	$(MAKE) -C $(dir $@)
+
+clean:
+	$(RM) formulae.bbl formulae.aux formulae.blg

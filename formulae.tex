@@ -1728,6 +1728,28 @@ and the corresponding energy difference between them is
     \Delta E \approx \frac{mc^2}{\gamma} \frac{B}{B_c}.
 \end{equation}
 
+\subsection{Wave functions}
+
+\subsubsection{From \url{http://hitoshi.berkeley.edu/221A/landau.pdf} (accessed 5 Dec 2023)}
+
+This document has a few issues: there are mistakes, and it is not always clear whether the term ``ground state'' refers to the minimum principle quantum number, or the minimum ``secondary'' quantum number that relates to quantised angular momentum.
+With that in mind, the document states that the ``ground state'' wave function for Landau level $n$ is:
+\begin{equation}
+    \psi_n(z, \overline{z}) = N_n z^n e^{-eB\overline{z}z/4\hbar c},
+\end{equation}
+where $z = x + iy$, $\overline{z} = x - iy$, $x$ and $y$ are the Cartesian coordinates in the plane normal to the magnetic field direction, and the normalisation factor
+\begin{equation}
+    N_n = \left(n! \pi \left(\frac{2\hbar c}{eB}\right)^{n+1}\right)^{-1/2}.
+\end{equation}
+
+\subsubsection{From Wikipedia}
+
+In the symmetric gauge, the wave function corresponding to quantum numbers $n$ and $m_z$ is
+\begin{equation}
+    \psi_{n,m_z}(x,y) = \left(\pd{}{w} - \frac{\overline{w}{4}\right)^n w^{n + m_z} e^{-|w|^2/4},
+\end{equation}
+where $w = x - iy$, $x$ and $y$ are the Cartesian coordinates in the plane normal to the magnetic field direction, and the equation has been expressed ``in terms of dimensionless lengths and energies.''
+
 \subsection{Derivation for timescales for dropping to lowest Landau level}
 
 \subsubsection{Purely classical scenario: non-relativistic particle in a uniform magnetic field}
