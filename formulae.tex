@@ -29,6 +29,13 @@
 \newcommand{\unitvec}[1]{\hat{\bm{#1}}}
 \newcommand{\shat}{\hat{\bf s}}
 
+\newcommand{\rL}{r_\text{lc}} % Light cylinder radius
+\newcommand{\rpl}{r_\text{pl}} % Polarisation limiting radius
+\newcommand{\rwB}{r_{\omega B}} % Cyclotron resonance radius
+\newcommand{\rxf}{r_\xi} % Approximate radius at which light cylinder effects dominate field line curvature
+\newcommand{\rp}{r_\text{p}} % Stellar radius
+
+
 \newcommand{\linktosage}[1]{\hyperref[#1]{[Sage script]}}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
@@ -349,24 +356,24 @@ Only notation that differs between the two is included.
         $i$ & $\alpha$ & The magnetic inclination \\
         $\lambda$ & - & (*There is no standard notation in these notes) \\
         ${\bf n}$ & $\hat{\bf n}$ & The line of sight (directed towards the observer) \\
-        $R$ & $r_p$ & The stellar radius \\
+        $R$ & $\rp$ & The stellar radius \\
         $\Omega$ & $\frac{2\pi}{P}$ & The angular rotation frequency \\
         ${\bm \Omega}$ & $\hat{\bm \omega}$ & The rotation axis \\
-        $\zeta$ & $r^\prime = \frac{r}{r_L}$ & The radial coordinate normalised to the light cylinder radius \\
+        $\zeta$ & $r^\prime = \frac{r}{\rL}$ & The radial coordinate normalised to the light cylinder radius \\
         \hline
     \end{tabular}
 \end{table}
 
-Translating to the notation used in this document, making use of $r_L = c/\Omega$ where appropriate, and factoring out some common terms, the above equations become
+Translating to the notation used in this document, making use of $\rL = c/\Omega$ where appropriate, and factoring out some common terms, the above equations become
 \begin{equation}
     \begin{aligned}
-        B_r &= B_0\bigg(\frac{r_p}{r}\bigg)^3 \bigg[ \cos \alpha \cos \theta +
+        B_r &= B_0\bigg(\frac{\rp}{r}\bigg)^3 \bigg[ \cos \alpha \cos \theta +
                r^\prime \sin \alpha \sin \theta \sin\big(r^\prime + \lambda\big) +
                \sin \alpha \sin \theta \cos\big(r^\prime + \lambda\big)\bigg], \\
-        B_\theta &= \frac{1}{2}B_0 \bigg(\frac{r_p}{r}\bigg)^3 \bigg\{\cos \alpha \sin \theta +
+        B_\theta &= \frac{1}{2}B_0 \bigg(\frac{\rp}{r}\bigg)^3 \bigg\{\cos \alpha \sin \theta +
                     \Big[\big(r^\prime\big)^2 - 1\Big] \sin \alpha \cos \theta \cos\big(r^\prime + \lambda\big) -
                     r^\prime \sin \alpha \cos \theta \sin\big(r^\prime + \lambda\big)\bigg\}, \\
-        B_\phi &= -\frac{1}{2} B_0 \bigg(\frac{r_p}{r}\bigg)^3 \sin \alpha \bigg\{r^\prime \cos\big(r^\prime + \lambda\big) +
+        B_\phi &= -\frac{1}{2} B_0 \bigg(\frac{\rp}{r}\bigg)^3 \sin \alpha \bigg\{r^\prime \cos\big(r^\prime + \lambda\big) +
                   \Big[\big(r^\prime\big)^2 - 1\Big] \sin\big(r^\prime + \lambda\big)\bigg\}.
     \end{aligned}
 \end{equation}
@@ -376,10 +383,10 @@ Translating to the notation used in this document, making use of $r_L = c/\Omega
 \begin{equation}
 \begin{aligned}
     \vec{B}(\vec{r}) &= \mu \cos{\alpha} \F{1} \frac{1}{r^5} + \\
-                   &\hspace{13pt} \mu \sin{\alpha} \F{2} \frac{\cos(\ph)}{r^3 r_L^2} +
-                                  \mu \sin{\alpha} \F{3} \bigg(\frac{\cos(\ph)}{r^5} + \frac{\sin(\ph)}{r^4 r_L}\bigg) - \\
-                   &\hspace{13pt} \mu \sin{\alpha} \F{4} \frac{\sin(\ph)}{r^3 r_L^2} -
-                                  \mu \sin{\alpha} \F{5} \bigg(\frac{\sin(\ph)}{r^5} - \frac{\cos(\ph)}{r^4 r_L}\bigg)
+                   &\hspace{13pt} \mu \sin{\alpha} \F{2} \frac{\cos(\ph)}{r^3 \rL^2} +
+                                  \mu \sin{\alpha} \F{3} \bigg(\frac{\cos(\ph)}{r^5} + \frac{\sin(\ph)}{r^4 \rL}\bigg) - \\
+                   &\hspace{13pt} \mu \sin{\alpha} \F{4} \frac{\sin(\ph)}{r^3 \rL^2} -
+                                  \mu \sin{\alpha} \F{5} \bigg(\frac{\sin(\ph)}{r^5} - \frac{\cos(\ph)}{r^4 \rL}\bigg)
 \end{aligned}
 \end{equation}
 where
@@ -394,15 +401,15 @@ where
 \end{equation}
 and
 \begin{equation}
-    \ph = \frac{r - r_p}{r_L}
+    \ph = \frac{r - \rp}{\rL}
 \end{equation}
 
 
 \section{Field Lines}
 
 Consider a single field line in a plane, whose coordinates are chosen (without loss of generality) so that the magnetic moment is aligned with the $z$-axis.
-Also, let distances be normalised to some characteristic length, $r_L$, so that $r^\prime = r/r_L$.
-Let the maximum distance of the field line from the origin be $R^\prime = R/r_L$.
+Also, let distances be normalised to some characteristic length, $\rL$, so that $r^\prime = r/\rL$.
+Let the maximum distance of the field line from the origin be $R^\prime = R/\rL$.
 One can write down the equation for the line in either Cartesian or polar coordinates.
 The relations between the various coordinates are found in Table \ref{tbl:dipolar}.
 \begin{table}[!ht]
@@ -501,15 +508,15 @@ In particular, the arc length as measured from the origin is
 and the arc length as measured from the surface is
 \begin{equation}
     \begin{aligned}
-        \ell_\text{surface} &= \int_{r_p}^r \deriv{s}{r^\prime} \,dr^\prime \\
+        \ell_\text{surface} &= \int_{\rp}^r \deriv{s}{r^\prime} \,dr^\prime \\
                &= \frac{R}{12}\left(\frac{6S}{3 - S^2} + \sqrt{3}\log\left(\frac{S - \sqrt{3}}{S + \sqrt{3}}\right)\right) -
-                  \frac{R}{12}\left(\frac{6S_{r_p}}{3 - S_{r_p}^2} + \sqrt{3}\log\left(\frac{S_{r_p} -
-                  \sqrt{3}}{S_{r_p} + \sqrt{3}}\right)\right)
+                  \frac{R}{12}\left(\frac{6S_{\rp}}{3 - S_{\rp}^2} + \sqrt{3}\log\left(\frac{S_{\rp} -
+                  \sqrt{3}}{S_{\rp} + \sqrt{3}}\right)\right)
      \end{aligned}
 \end{equation}
 where
 \begin{equation}
-    S_{r_p} = \sqrt{\frac{4R-3r_p}{R-r_p}}
+    S_{\rp} = \sqrt{\frac{4R-3\rp}{R-\rp}}
 \end{equation}
 A Taylor series expansion of $\ell_0$ about $r=0$ gives
 \begin{equation}
@@ -520,15 +527,15 @@ in agreement with Eq \eqref{eqn:arclengthth} above.
 \section{Footpoints}
 \label{sec:footpoints}
 
-Let $r_p$ be the pulsar's radius, and $\theta_p$ by the angle the footpoint makes with the magnetic axis.
+Let $\rp$ be the pulsar's radius, and $\theta_p$ by the angle the footpoint makes with the magnetic axis.
 \begin{align}
-    r_p^\prime &= R^\prime\sin^2\theta_p \\
-    \theta_p &= \sin^{-1}\sqrt{\frac{r_p^\prime}{R^\prime}} = \sin^{-1}\sqrt{\frac{r_p^\prime\sin^2\theta}{r^\prime}} \\
-    \theta   &= \sin^{-1}\left[\sqrt{\frac{r^\prime}{r_p^\prime}}\sin\theta_p\right] \label{eqn:thp_to_th}
+    \rp^\prime &= R^\prime\sin^2\theta_p \\
+    \theta_p &= \sin^{-1}\sqrt{\frac{\rp^\prime}{R^\prime}} = \sin^{-1}\sqrt{\frac{\rp^\prime\sin^2\theta}{r^\prime}} \\
+    \theta   &= \sin^{-1}\left[\sqrt{\frac{r^\prime}{\rp^\prime}}\sin\theta_p\right] \label{eqn:thp_to_th}
 \end{align}
-To normalise a footpoint with respect to the footpoint of the last open field lines ($R = r_L \equiv \frac{cP}{2\pi}$), we define
+To normalise a footpoint with respect to the footpoint of the last open field lines ($R = \rL \equiv \frac{cP}{2\pi}$), we define
 \begin{equation}
-    \theta_L \equiv \sin^{-1}\sqrt{r_p^\prime}
+    \theta_L \equiv \sin^{-1}\sqrt{\rp^\prime}
 \end{equation}
 and then
 \begin{equation}
@@ -536,26 +543,26 @@ and then
 \end{equation}
 To convert from a given $s$ to $R$:
 \begin{equation}
-    R^\prime = \frac{r_p^\prime}{\sin^2\left(s\sin^{-1}\sqrt{r_p^\prime}\right)}
+    R^\prime = \frac{\rp^\prime}{\sin^2\left(s\sin^{-1}\sqrt{\rp^\prime}\right)}
 \end{equation}
 Given the $s$ and $r$ of an arbitrary point in the magnetosphere, the point's colatitude is
 \begin{equation}
-    \theta = \sin^{-1}\sqrt{\frac{r^\prime}{r_p^\prime}\sin^2\left(s \sin^{-1}\sqrt{r_p^\prime}\right)}
+    \theta = \sin^{-1}\sqrt{\frac{r^\prime}{\rp^\prime}\sin^2\left(s \sin^{-1}\sqrt{\rp^\prime}\right)}
 \end{equation}
 and its height is
 \begin{equation}
     \begin{aligned}
-        r^\prime &= \frac{r_p^\prime\sin^2\theta}{\sin^2\left(s \sin^{-1}\sqrt{r_p^\prime}\right)} \\
-        \frac{r^\prime}{\sin^2\theta} = R^\prime &\approx \frac{1}{s^2} - \frac{r_p^\prime}{3s^2} + O\left[(r_p^\prime)^2\right]
+        r^\prime &= \frac{\rp^\prime\sin^2\theta}{\sin^2\left(s \sin^{-1}\sqrt{\rp^\prime}\right)} \\
+        \frac{r^\prime}{\sin^2\theta} = R^\prime &\approx \frac{1}{s^2} - \frac{\rp^\prime}{3s^2} + O\left[(\rp^\prime)^2\right]
     \end{aligned}
 \end{equation}
-where the Taylor expansion was taken about $r_p^\prime = 0$.
+where the Taylor expansion was taken about $\rp^\prime = 0$.
 Its partial derivative with respect to $s$ is
 \begin{equation}
     \begin{aligned}
-        \pd{r^\prime}{s} &= -\frac{2r_p^\prime \cos\left(s\,\sin^{-1}\sqrt{r_p^\prime}\right) \sin^{-1}\sqrt{r_p^\prime} \sin^2\theta}{
-                                   \sin^3\left(s\,\sin^{-1}\sqrt{r_p^\prime}\right)} \\
-        \frac{1}{\sin^2\theta} \pd{r^\prime}{s} &\approx -\frac{2}{s^3} + \frac{2r_p^\prime}{3s^3} + O\left[\left(r_p^\prime\right)^2\right]
+        \pd{r^\prime}{s} &= -\frac{2\rp^\prime \cos\left(s\,\sin^{-1}\sqrt{\rp^\prime}\right) \sin^{-1}\sqrt{\rp^\prime} \sin^2\theta}{
+                                   \sin^3\left(s\,\sin^{-1}\sqrt{\rp^\prime}\right)} \\
+        \frac{1}{\sin^2\theta} \pd{r^\prime}{s} &\approx -\frac{2}{s^3} + \frac{2\rp^\prime}{3s^3} + O\left[\left(\rp^\prime\right)^2\right]
     \end{aligned}
 \end{equation}
 
@@ -625,7 +632,7 @@ Expanding around both $r = 0$ and $\theta = 0$:
 \begin{equation}
    \kappa^\prime \approx 2\sin\alpha + 0r^\prime + ?\theta
 \end{equation}
-Note that this is in agreement with the expression ($\rho \approx r_L/(2\sin\alpha)$) stated in \citet{Thomas2007}.
+Note that this is in agreement with the expression ($\rho \approx \rL/(2\sin\alpha)$) stated in \citet{Thomas2007}.
 
 \section{Beam Opening Angles}
 \label{sec:beamopeningangles}
@@ -765,20 +772,20 @@ Without rotation effects, $\hat{V} = \hat{B}$ everywhere, so $\eta = 0$.
 With rotation effects, we compute $\hat{V}\cdot\hat{B}$ in the magnetic frame, and expand it around $\theta = 0$ (where $\theta$ is the magnetic colatitude):
 \begin{equation}
     \begin{aligned}
-        \cos\eta &\approx \Lambda - \frac{\cos\sigma}{\Lambda} \frac{r\sin\alpha}{\beta r_L} \frac{r\cos\alpha}{\beta r_L} \sin\theta +
+        \cos\eta &\approx \Lambda - \frac{\cos\sigma}{\Lambda} \frac{r\sin\alpha}{\beta \rL} \frac{r\cos\alpha}{\beta \rL} \sin\theta +
                           O(\theta^2) \\
-        \sin\eta &\approx \frac{r\sin\alpha}{\beta r_L} + \frac{r\cos\alpha}{\beta r_L}\cos\sigma\sin\theta +
+        \sin\eta &\approx \frac{r\sin\alpha}{\beta \rL} + \frac{r\cos\alpha}{\beta \rL}\cos\sigma\sin\theta +
                           O(\theta^2)
     \end{aligned}
 \end{equation}
 where
 \begin{equation}
-    \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}
+    \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta \rL}\right)^2}
 \end{equation}
 When $\alpha = 0$, we have the exact expressions
 \begin{align}
-    \cos\eta &= \sqrt{1-\left(\frac{r\sin\theta}{\beta r_L}\right)^2}, &
-    \sin\eta &= \frac{r\sin\theta}{\beta r_L}
+    \cos\eta &= \sqrt{1-\left(\frac{r\sin\theta}{\beta \rL}\right)^2}, &
+    \sin\eta &= \frac{r\sin\theta}{\beta \rL}
 \end{align}
 Expanding about both $r = 0$ and $\theta = 0$ gives:
 \begin{equation}
@@ -793,23 +800,23 @@ If we compute $\zeta$ in the magnetic frame and Taylor expand about $\theta = 0$
 \begin{equation}
     \begin{aligned}
         \cos\zeta &\approx \Lambda\cos\alpha -
-            \frac{\sin\alpha}{2\Lambda}\left[\left(3\Lambda^2 + 2\left(\frac{r\cos\alpha}{\beta r_L}\right)^2\right)\cos\sigma +
-                \frac{r\cos\alpha}{\beta r_L}\sin\sigma\right] \sin\theta + O(\sin^2\theta) \\
+            \frac{\sin\alpha}{2\Lambda}\left[\left(3\Lambda^2 + 2\left(\frac{r\cos\alpha}{\beta \rL}\right)^2\right)\cos\sigma +
+                \frac{r\cos\alpha}{\beta \rL}\sin\sigma\right] \sin\theta + O(\sin^2\theta) \\
         \sin\zeta &\approx \Lambda^\prime \sin\alpha + \dots
     \end{aligned}
     \label{eqn:zeta_th}
 \end{equation}
 where
 \begin{align}
-    \Lambda &\equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}, &
-    \Lambda^\prime &\equiv \sqrt{1+\left(\frac{r\cos\alpha}{\beta r_L}\right)^2}
+    \Lambda &\equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta \rL}\right)^2}, &
+    \Lambda^\prime &\equiv \sqrt{1+\left(\frac{r\cos\alpha}{\beta \rL}\right)^2}
 \end{align}
-The viewing angle can also be taylor expanded about $r/r_L = 0$, in which case we get
+The viewing angle can also be taylor expanded about $r/\rL = 0$, in which case we get
 \begin{equation}
     \cos\zeta \approx
         \frac{3\cos\sigma\sin\theta\cos\theta\sin\alpha - (3\cos^2\theta - 1)\cos\alpha}{\sqrt{3\cos^2\theta + 1}}
-        \left[1 + \frac{\sin\sigma\sin\theta}{\sqrt{3\cos^2\theta+1}} \frac{r\sin\alpha}{\beta r_L}\right] +
-        O\left(\left(\frac{r}{r_L}\right)^2\right)
+        \left[1 + \frac{\sin\sigma\sin\theta}{\sqrt{3\cos^2\theta+1}} \frac{r\sin\alpha}{\beta \rL}\right] +
+        O\left(\left(\frac{r}{\rL}\right)^2\right)
     \label{eqn:viewingangle_taylor}
 \end{equation}
 Expanding about both $r = 0$ and $\theta = 0$ gives:
@@ -834,22 +841,22 @@ The latter gives
 \begin{equation}
     \cos\zeta \approx
         \cos\alpha -
-        \frac32\sqrt{\frac{r}{r_p}}\sin\alpha\cos\sigma\sin\left(s\sin^{-1}\sqrt{\frac{r_p}{r_L}}\right) -
-        \frac98\frac{r}{r_p}\cos\alpha\sin^2\left(s\sin^{-1}\sqrt{\frac{r_p}{r_L}}\right) +
+        \frac32\sqrt{\frac{r}{\rp}}\sin\alpha\cos\sigma\sin\left(s\sin^{-1}\sqrt{\frac{\rp}{\rL}}\right) -
+        \frac98\frac{r}{\rp}\cos\alpha\sin^2\left(s\sin^{-1}\sqrt{\frac{\rp}{\rL}}\right) +
         O(r^{3/2})
     \label{eqn:zeta_in_r_and_s}
 \end{equation}
 I'm not sure if it adds up to anything meaningful yet, but one can take the first few terms in Eq. \eqref{eqn:zeta_in_r_and_s} and solve for $r$, which gives:
 \begin{equation}
-    r \approx \frac{4r_p\left(\sin\alpha\cos\sigma \pm \sqrt{\sin^2\alpha\cos^2\sigma + 2\cos^2\alpha - 2\cos\alpha\cos\zeta}\right)^2}{
-        9\cos^2\alpha\sin^2\left(s\sin^{-1}\sqrt{\frac{r_p}{r_L}}\right)}
+    r \approx \frac{4\rp\left(\sin\alpha\cos\sigma \pm \sqrt{\sin^2\alpha\cos^2\sigma + 2\cos^2\alpha - 2\cos\alpha\cos\zeta}\right)^2}{
+        9\cos^2\alpha\sin^2\left(s\sin^{-1}\sqrt{\frac{\rp}{\rL}}\right)}
 \end{equation}
 If $s=1$, then this becomes
 \begin{equation}
     r^\prime \approx \frac{4\left(\sin\alpha\cos\sigma \pm \sqrt{\sin^2\alpha\cos^2\sigma + 2\cos^2\alpha - 2\cos\alpha\cos\zeta}\right)^2}{
         9\cos^2\alpha}
 \end{equation}
-where, as usual, $r^\prime \equiv r/r_L$.
+where, as usual, $r^\prime \equiv r/\rL$.
 If $\zeta > \alpha$, then we can expect the lowest height to occur at the fiducial point, or when $\sigma = 0$. In that case, the lowest height estimate for last open field line emission happens at the approximate height\footnote{NB: When I plot this up as a heat map function of $\alpha$ and $\zeta$, it only appears to make sense (i.e. $r^\prime < 1$ and lowest heights when $\zeta \approx \alpha$) if I choose the negative sign.}
 \begin{equation}
     r^\prime \approx \frac{8\left(1 - \cos\alpha\cos\zeta \pm \sin\alpha\sqrt{1 - 2\cos\alpha\cos\zeta + \cos^2\alpha}\right)}{
@@ -871,8 +878,8 @@ Taylor expanding $\sin\phase_\text{ab}$ about $\theta = 0$ in the magnetic frame
 \end{equation}
 where
 \begin{align}
-    \Lambda &\equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}, &
-    \Lambda^\prime &\equiv \sqrt{1+\left(\frac{r\cos\alpha}{\beta r_L}\right)^2}
+    \Lambda &\equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta \rL}\right)^2}, &
+    \Lambda^\prime &\equiv \sqrt{1+\left(\frac{r\cos\alpha}{\beta \rL}\right)^2}
 \end{align}
 Expanding about both $r = 0$ and $\theta = 0$ gives:
 \begin{equation}
@@ -894,28 +901,28 @@ A particle at position $\vec{r}$ has a ``retardation time''
 \end{equation}
 and a corresponding ``retardation phase''
 \begin{equation}
-    \Delta\phase_\text{ret} = -\frac{2\pi\Delta\tau_\text{ret}}{P} = -\frac{\vec{r}\cdot\hat{n}}{r_L}
+    \Delta\phase_\text{ret} = -\frac{2\pi\Delta\tau_\text{ret}}{P} = -\frac{\vec{r}\cdot\hat{n}}{\rL}
 \end{equation}
-where $P$ is the pulsar's rotation period, $r_L$ is the light cylinder radius, and where it is understood that emission from a particle at $\vec{r}$ at some rotation phase $\phase$ would be observed at phase $\phase + \Delta\phase_\text{ret}$.
+where $P$ is the pulsar's rotation period, $\rL$ is the light cylinder radius, and where it is understood that emission from a particle at $\vec{r}$ at some rotation phase $\phase$ would be observed at phase $\phase + \Delta\phase_\text{ret}$.
 
 For any observed emission site, we can identify the line of sight with the particle's instantaneous velocity since the condition for a site being observed is $\hat{n}\cdot\hat{V} = 1$.
 Therefore, the retardation angle can be written
 \begin{equation}
-    \Delta\phase_\text{ret} = -\frac{\vec{r}\cdot\hat{V}}{r_L}
+    \Delta\phase_\text{ret} = -\frac{\vec{r}\cdot\hat{V}}{\rL}
 \end{equation}
 which can be Taylor expanded around $\theta = 0$ in the magnetic frame to yield
 \begin{equation}
     \Delta\phase_\text{ret} \approx
-        -\frac{r\Lambda}{r_L} + \frac{r^2\sin\alpha(2r\cos\alpha\cos\sigma + \beta r_L \Lambda \sin\sigma)}{2\beta^2 r_L^3 \Lambda} \sin\theta
+        -\frac{r\Lambda}{\rL} + \frac{r^2\sin\alpha(2r\cos\alpha\cos\sigma + \beta \rL \Lambda \sin\sigma)}{2\beta^2 \rL^3 \Lambda} \sin\theta
 \end{equation}
 where
 \begin{equation}
-    \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}
+    \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta \rL}\right)^2}
 \end{equation}
 When $\alpha = 0$, the exact expression is
 \begin{equation}
-    \Delta\phase_\text{ret} = -\frac{2r\cos\theta}{r_L\sqrt{3\cos^2\theta+1}}
-        \sqrt{1 - \left(\frac{r\sin\theta}{\beta r_L}\right)^2}
+    \Delta\phase_\text{ret} = -\frac{2r\cos\theta}{\rL\sqrt{3\cos^2\theta+1}}
+        \sqrt{1 - \left(\frac{r\sin\theta}{\beta \rL}\right)^2}
 \end{equation}
 Expanding about both $r = 0$ and $\theta = 0$ gives:
 \begin{equation}
@@ -942,17 +949,17 @@ This can be solved for $k$, yielding
 \end{equation}
 where $\vec{\phase} = \rho\hat{V}_\phase = \{-y,x,0\}$. Hence \linktosage{sage:Vdip},
 \begin{equation}
-    \hat{V} = \frac{\rho}{r_L}\hat{V}_\phase + \left[-\frac{\vec{\phase}\cdot\hat{B}}{r_L} \pm
-              \sqrt{\left(\frac{\vec{\phase}\cdot\hat{B}}{r_L}\right)^2 - \left(\frac{\rho}{r_L}\right)^2 + 1}\right]\,\hat{B},
+    \hat{V} = \frac{\rho}{\rL}\hat{V}_\phase + \left[-\frac{\vec{\phase}\cdot\hat{B}}{\rL} \pm
+              \sqrt{\left(\frac{\vec{\phase}\cdot\hat{B}}{\rL}\right)^2 - \left(\frac{\rho}{\rL}\right)^2 + 1}\right]\,\hat{B},
 \end{equation}
 For an aligned dipole, at the fiducial point, the velocity field in Cartesian coordinates is \linktosage{sage:V_aligned}:
 \begin{equation}
-    \hat{V} = \frac{1}{\beta r_L}\begin{bmatrix} -y \\ x \\ 0 \end{bmatrix} +
-        \frac{1}{\beta rr_L}\sqrt{\frac{\beta^2r_L^2 - x^2 - y^2}{r^2-3z^2}} \begin{bmatrix} 3xz \\ 3yz \\ 3z^2-r^2 \end{bmatrix}
+    \hat{V} = \frac{1}{\beta \rL}\begin{bmatrix} -y \\ x \\ 0 \end{bmatrix} +
+        \frac{1}{\beta r\rL}\sqrt{\frac{\beta^2\rL^2 - x^2 - y^2}{r^2-3z^2}} \begin{bmatrix} 3xz \\ 3yz \\ 3z^2-r^2 \end{bmatrix}
 \end{equation}
 In magnetic frame coordinates, this becomes
 \begin{equation}
-    \hat{V} = \frac{r\sin\theta}{\beta r_L}\begin{bmatrix} -\sin\sigma \\ \cos\sigma \\ 0 \end{bmatrix} +
+    \hat{V} = \frac{r\sin\theta}{\beta \rL}\begin{bmatrix} -\sin\sigma \\ \cos\sigma \\ 0 \end{bmatrix} +
         \frac{\Lambda}{\sqrt{3\cos^2\theta + 1}}
         \begin{bmatrix} 3\sin\theta\cos\theta\cos\sigma \\ 3\sin\theta\cos\theta\sin\sigma \\ 3\cos^2\theta-1 \end{bmatrix}
 \end{equation}
@@ -962,16 +969,16 @@ Instead, we shift to magnetic coordinates and Taylor expand about $\theta = 0$ (
 The first order terms are \linktosage{sage:V_taylor}
 \begin{align}
     \hat{V}_x &\approx \left(\frac32\Lambda\cos\sigma -
-                    \frac{r\cos\alpha}{\beta r_L}\sin\sigma \right) \sin\theta + O(\sin^2\theta) \\
-    \hat{V}_y &\approx \frac{r\sin\alpha}{\beta r_L} +
+                    \frac{r\cos\alpha}{\beta \rL}\sin\sigma \right) \sin\theta + O(\sin^2\theta) \\
+    \hat{V}_y &\approx \frac{r\sin\alpha}{\beta \rL} +
                \left(\frac32\Lambda\sin\sigma +
-                    \frac{r\cos\alpha}{\beta r_L}\cos\sigma \right) \sin\theta + O(\sin^2\theta) \\
-    \hat{V}_z &\approx \Lambda - \frac{r\sin\alpha}{\beta r_L\Lambda}\left(\frac32\Lambda\sin\sigma +
-                    \frac{r\cos\alpha}{r_L}\cos\sigma \right) \sin\theta + O(\sin^2\theta)
+                    \frac{r\cos\alpha}{\beta \rL}\cos\sigma \right) \sin\theta + O(\sin^2\theta) \\
+    \hat{V}_z &\approx \Lambda - \frac{r\sin\alpha}{\beta \rL\Lambda}\left(\frac32\Lambda\sin\sigma +
+                    \frac{r\cos\alpha}{\rL}\cos\sigma \right) \sin\theta + O(\sin^2\theta)
 \end{align}
 where
 \begin{equation}
-    \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta r_L}\right)^2}
+    \Lambda \equiv \sqrt{1-\left(\frac{r\sin\alpha}{\beta \rL}\right)^2}
 \end{equation}
 
 \section{Carousels and Sparks}
@@ -1175,6 +1182,119 @@ In either case, using \texttt{astropy.units} and \texttt{astropy.constants}, it 
 \end{equation}
 which differs slightly from \citeauthor{Lorimer2005}, who write the constant term as $8.5\,$kHz.
 
+\subsubsection{Polarisation limiting radius}
+
+\paragraph{From \citet{Barnard1986}:}
+
+The polarisation limiting radius, $\rpl$, is derived using two distinct criteria, called the ``CR'' and the ``Stinebring'' criteria, which refer to earlier papers in which these criteria were first derived.
+They also define three regimes that are distinguished by the relative ordering of a set of characteristic radii:
+\begin{enumerate}
+    \item The \textit{cyclotron resonance radius}, $\rwB$;
+    \item The \textit{light cylinder radius}, $\rL$; and
+    \item The approximate radius at which ``the radius of curvature of the magnetic field lines ... [is] dominated by light cylinder effects rather than by the dipole field,'' $\rxf \equiv (\xi_f/2)\rL$, where $\xi_f$ is the half-angle of the cone of emission.\footnote{``$\rxf$'' is my own notation; the original paper writes $(\xi_f/2)\rL$ throughout.}
+\end{enumerate}
+The cases are then defined as
+\begin{description}
+    \item[Case I:] $\rwB < \rxf < \rL$
+    \item[Case II:] $\rxf < \rwB < \rL$
+    \item[Case III:] $\rxf < \rL < \rwB$
+\end{description}
+Case I is said to be largely inapplicable except for scenarios with high wave frequencies and low magnetic field strengths.
+Cases II and III are further divided into subcases depending on the relative magnitude of $\rpl$ compared to the other radii.
+
+The dividing line between cases II and II is worked out to be (cf. Eq. (29) in the original):
+\begin{equation}
+    \begin{aligned}
+        P &> 0.06\,\text{s} \,
+            \bigg(\dfrac{B}{10^{12}\,\text{G}}\bigg)^{1/3}
+            \bigg(\dfrac{f}{1\,\text{GHz}}\bigg)^{-1/3}
+            \bigg(\dfrac{\gamma}{100}\bigg)^{-1/3}
+            \qquad\text{(case II)} \\
+        P &< 0.06\,\text{s} \,
+            \bigg(\dfrac{B}{10^{12}\,\text{G}}\bigg)^{1/3}
+            \bigg(\dfrac{f}{1\,\text{GHz}}\bigg)^{-1/3}
+            \bigg(\dfrac{\gamma}{100}\bigg)^{-1/3}
+            \qquad\text{(case III)}
+    \end{aligned}
+\end{equation}
+Assuming the standard braking index of $n=3$, the above can be expressed in terms of $P$ and $\dot{P}$ via
+\begin{equation}
+    \begin{aligned}
+        B &= 3.2\times10^{19}\,\text{G} \, \frac{1}{\sin^2\alpha} \bigg(\frac{P\dot{P}}{\text{s}}\bigg)^{1/2} \\
+        \frac{B}{10^{12}\,\text{G}} &\approx \frac{1}{\sin^2\alpha} \bigg(\frac{P}{\text{s}}\bigg)^{1/2}\bigg(\frac{\dot{P}}{10^{-15}}\bigg)^{1/2}.
+    \end{aligned}
+\end{equation}
+Substituting these into the expressions above,
+\begin{equation}
+    \begin{aligned}
+        P &> 0.034\,\text{s} \,
+            \dfrac{1}{(\sin\alpha)^{4/5}}
+            \bigg(\dfrac{f}{1\,\text{GHz}}\bigg)^{-2/5}
+            \bigg(\dfrac{\gamma}{100}\bigg)^{-2/5}
+            \bigg(\dfrac{\dot{P}}{10^{-15}}\bigg)^{1/5}
+            \qquad\text{(case II)} \\
+        P &< 0.034\,\text{s} \,
+            \dfrac{1}{(\sin\alpha)^{4/5}}
+            \bigg(\dfrac{f}{1\,\text{GHz}}\bigg)^{-2/5}
+            \bigg(\dfrac{\gamma}{100}\bigg)^{-2/5}
+            \bigg(\dfrac{\dot{P}}{10^{-15}}\bigg)^{1/5}
+            \qquad\text{(case III)}
+    \end{aligned}
+\end{equation}
+
+The cyclotron resonance radius is worked out to be (cf. Eq. (28) in the original)
+\begin{equation}
+    \frac{\rwB}{\rp} = \begin{cases}
+        1050 \bigg(\dfrac{B}{10^{12}\,\text{G}}\bigg)^{1/5}
+             \bigg(\dfrac{f}{1\,\text{GHz}}\bigg)^{-1/5}
+             \bigg(\dfrac{\gamma}{100}\bigg)^{-1/5}
+             \bigg(\dfrac{P}{\text{s}}\bigg)^{2/5} & \text{(case II)} \\[15pt]
+        1.25 \bigg(\dfrac{B}{10^{12}\,\text{G}}\bigg)
+             \bigg(\dfrac{f}{1\,\text{GHz}}\bigg)^{-1}
+             \bigg(\dfrac{\gamma}{100}\bigg)^{-1}
+             \bigg(\dfrac{P}{\text{s}}\bigg)^{-2} & \text{(case III)}
+    \end{cases}.
+\end{equation}
+Again using $n=3$,
+\begin{equation}
+    \frac{\rwB}{\rp} = \begin{cases}
+        1050 \dfrac{1}{(\sin\alpha)^{2/5}}
+             \bigg(\dfrac{f}{1\,\text{GHz}}\bigg)^{-1/5}
+             \bigg(\dfrac{\gamma}{100}\bigg)^{-1/5}
+             \bigg(\dfrac{P}{\text{s}}\bigg)^{1/2}
+             \bigg(\dfrac{\dot{P}}{10^{-15}}\bigg)^{1/10}
+             & \text{(case II)} \\[15pt]
+        1.25 \dfrac{1}{\sin^2\alpha}
+             \bigg(\dfrac{f}{1\,\text{GHz}}\bigg)^{-1}
+             \bigg(\dfrac{\gamma}{100}\bigg)^{-1}
+             \bigg(\dfrac{P}{\text{s}}\bigg)^{-3/2}
+             \bigg(\dfrac{\dot{P}}{10^{-15}}\bigg)^{1/2}
+             & \text{(case III)}
+    \end{cases}.
+\end{equation}
+From this point on, I only write down the expressions in terms of $P$ and $\dot{P}$ assuming braking index $n=3$.
+
+The polarisation limiting radius is worked out for cases II and III.
+When the CR criterion is used, we have (cf. Eq. (31) in the original)
+\begin{equation}
+    \frac{\rpl}{\rp} = \begin{cases}
+        873 \dfrac{1}{(\sin\alpha)^{2/5}}
+             \bigg(\dfrac{\kappa}{10^3}\bigg)^{1/5}
+             \bigg(\dfrac{\gamma}{100}\bigg)^{-3/5}
+             \bigg(\dfrac{f}{1\,\text{GHz}}\bigg)^{-1/5}
+             \bigg(\dfrac{P}{\text{s}}\bigg)^{1/2}
+             \bigg(\dfrac{\dot{P}}{10^{-15}}\bigg)^{1/10},
+             & 2.4 > \bigg(\dfrac{\kappa}{10^3}\bigg) \bigg(\dfrac{\gamma}{100}\bigg)^{-2} \qquad \text{(case IIA)} \\[15pt]
+        991 \dfrac{1}{(\sin\alpha)^{2/5}}
+             \bigg(\dfrac{\kappa}{10^3}\bigg)^{1/15}
+             \bigg(\dfrac{\gamma}{100}\bigg)^{-1/3}
+             \bigg(\dfrac{f}{1\,\text{GHz}}\bigg)^{-1/5}
+             \bigg(\dfrac{P}{\text{s}}\bigg)^{1/2}
+             \bigg(\dfrac{\dot{P}}{10^{-15}}\bigg)^{1/10},
+             & 2.4 < \bigg(\dfrac{\kappa}{10^3}\bigg) \bigg(\dfrac{\gamma}{100}\bigg)^{-2} \qquad \text{(case IIB)}
+    \end{cases}.
+\end{equation}
+
 \subsection{Incoherent dedispersion}
 
 \begin{equation}
@@ -1217,33 +1337,33 @@ For particles sufficiently close to the magnetic axis, the angle between ${\bm \
 \begin{equation}
     \rho_\text{GJ}
         = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{1 - \frac{\Omega^2 r^2}{c^2}\sin^2\alpha}
-        = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{1 - \frac{r^2}{r_L^2}\sin^2\alpha}.
+        = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{1 - \frac{r^2}{\rL^2}\sin^2\alpha}.
 \end{equation}
 The equivalent number density is
 \begin{equation}
     n_\text{GJ}
-        = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{q\left(1 - \frac{r^2}{r_L^2}\sin^2\alpha\right)}
-        = -\frac{4\pi\varepsilon_0 B \cos\alpha}{qP\left(1 - \frac{r^2}{r_L^2}\sin^2\alpha\right)}
+        = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{q\left(1 - \frac{r^2}{\rL^2}\sin^2\alpha\right)}
+        = -\frac{4\pi\varepsilon_0 B \cos\alpha}{qP\left(1 - \frac{r^2}{\rL^2}\sin^2\alpha\right)}
 \end{equation}
 which can also be expressed
 \begin{equation}
-    n_\text{GJ} \approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-1} \frac{\cos\alpha}{1 - \frac{r^2}{r_L^2}\sin^2\alpha}.
+    n_\text{GJ} \approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-1} \frac{\cos\alpha}{1 - \frac{r^2}{\rL^2}\sin^2\alpha}.
 \end{equation}
-Sufficiently close to the surface, well within the light cylinder radius, $r \ll r_L$, and therefore
+Sufficiently close to the surface, well within the light cylinder radius, $r \ll \rL$, and therefore
 \begin{equation}
     n_\text{GJ} \approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-1} \cos\alpha.
 \end{equation}
 
 \subsection{Dipole field}
 
-For a dipole field, $B(r) = B_0 (r_p/r)^3$, where $B_0$ is the magnetic field strength at the surface (at the magnetic pole) and $r_p$ is the radius of the neutron star.
+For a dipole field, $B(r) = B_0 (\rp/r)^3$, where $B_0$ is the magnetic field strength at the surface (at the magnetic pole) and $\rp$ is the radius of the neutron star.
 The Goldreich-Julian number density (close to the magnetic axis) is therefore
 \begin{equation}
     \begin{aligned}
     n_\text{GJ}
-        &= -\frac{4\pi\varepsilon_0 B_0 r_p^3 \cos\alpha}{qPr^3} \\
-        &\approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B_0}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-4} \left(\frac{r}{r_p}\right)^{-3} \cos\alpha & & \text{(in terms of the stellar radius)}, \\
-        &\approx 6.4 \times 10^5\,\text{m}^{-3} \, \left(\frac{B_0}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-4} \left(\frac{r_p}{10^4\,\text{m}}\right)^3 \left(\frac{r}{r_L}\right)^{-3} \cos\alpha & & \text{(in terms of the light cylinder radius)}.
+        &= -\frac{4\pi\varepsilon_0 B_0 \rp^3 \cos\alpha}{qPr^3} \\
+        &\approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B_0}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-4} \left(\frac{r}{\rp}\right)^{-3} \cos\alpha & & \text{(in terms of the stellar radius)}, \\
+        &\approx 6.4 \times 10^5\,\text{m}^{-3} \, \left(\frac{B_0}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-4} \left(\frac{\rp}{10^4\,\text{m}}\right)^3 \left(\frac{r}{\rL}\right)^{-3} \cos\alpha & & \text{(in terms of the light cylinder radius)}.
     \end{aligned}
 \end{equation}
 
@@ -1746,9 +1866,26 @@ where $z = x + iy$, $\overline{z} = x - iy$, $x$ and $y$ are the Cartesian coord
 
 In the symmetric gauge, the wave function corresponding to quantum numbers $n$ and $m_z$ is
 \begin{equation}
-    \psi_{n,m_z}(x,y) = \left(\pd{}{w} - \frac{\overline{w}{4}\right)^n w^{n + m_z} e^{-|w|^2/4},
+    \psi_{n,m_z}(x,y) = \left(\pd{}{w} - \frac{\overline{w}}{4}\right)^n w^{n + m_z} e^{-|w|^2/4}, \qquad m_z \ge -n,
 \end{equation}
 where $w = x - iy$, $x$ and $y$ are the Cartesian coordinates in the plane normal to the magnetic field direction, and the equation has been expressed ``in terms of dimensionless lengths and energies.''
+
+\paragraph{Examples}
+
+For $n = 0$, the wavefunction is
+\begin{equation}
+    \psi_{0,m_z}(x,y) = w^{m_z} e^{-|w|^2/4}, \qquad m_z \in \{0, 1, 2, \dots\}.
+\end{equation}
+This is a kind of ``ring'' around the origin.
+
+For $n = 1$, the wavefunction is
+\begin{equation}
+    \begin{aligned}
+        \psi_{1,m_z}(x,y)
+            &= \left(\pd{}{w} - \frac{\overline{w}}{4}\right) w^{1 + m_z} e^{-|w|^2/4}, \\
+            &= \left(w^{m_z} - w^{1 + m_z}\frac{|w|}{2}\right) e^{-|w|^2/4}
+    \end{aligned}
+\end{equation}
 
 \subsection{Derivation for timescales for dropping to lowest Landau level}
 
@@ -1791,7 +1928,7 @@ For an electron in a pulsar magnetosphere, this is
 \end{equation}
 For a dipolar field,
 \begin{equation}
-    \tau = 1.32 \times 10^{-19}\,\text{s} \times \left(\frac{B_0}{B_c}\right)^{-2} \left(\frac{r}{r_p}\right)^6.
+    \tau = 1.32 \times 10^{-19}\,\text{s} \times \left(\frac{B_0}{B_c}\right)^{-2} \left(\frac{r}{\rp}\right)^6.
 \end{equation}
 
 \subsubsection{Relativistic generalisation [check me!]}
@@ -2194,7 +2331,7 @@ Critical frequency:
              = \frac{3\gamma^3 c}{4\pi\rho} \\
         \omega_c &= \frac{3\gamma^3 c\kappa}{2}
                   = \frac{3\gamma^3 c}{2\rho} \\
-        f_c &= 1.5\text{\,GHz} \times \left(\frac{\gamma}{1000}\right)^3 \left(\frac{\rho}{r_L}\right)^{-1} \left(\frac{P}{\text{s}}\right)^{-1}
+        f_c &= 1.5\text{\,GHz} \times \left(\frac{\gamma}{1000}\right)^3 \left(\frac{\rho}{\rL}\right)^{-1} \left(\frac{P}{\text{s}}\right)^{-1}
     \end{aligned}
     \tag{J14.81}
 \end{equation}
