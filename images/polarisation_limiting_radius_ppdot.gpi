@@ -41,21 +41,30 @@ c = 299792458.0 # m/s
 r_p = 1e4 # m
 P_r_lc(r_lc) = 2*pi*r_lc/c
 
-IIB_P(rpl_rp, Pdot) = 1.31e-6*(rpl_rp)**2 * (Pdot/1e-15)**(-1./5.)
-IIB_max_Pdot(rpl_rp) = 9.13e-12*(rpl_rp)**5 * 1e-15
+IIB_P_rpl(rpl_rp, Pdot) = 1.31e-6*(rpl_rp)**2 * (Pdot/1e-15)**(-1./5.)
+IIB_P_rwB(rwB_rp, Pdot) = (1./1050.)**2 * rwB_rp**2 * (Pdot/1e-15)**(-1./5.)
+IIB_max_Pdot_rpl(rpl_rp) = 9.13e-12*(rpl_rp)**5 * 1e-15
+IIB_max_Pdot_rwB(rwB_rp) = 3.63e-12*(rwB_rp)**5 * 1e-15
 
-Pdot_IIB_rpl_rp(t, rpl_rp) = logspace(t, Pdot_min, IIB_max_Pdot(rpl_rp) > Pdot_max ? Pdot_max : IIB_max_Pdot(rpl_rp)) # Lines from Pdot min to the II-III boundary, corresponding to the polarisation limiting radius in the IIB region (for a canonical emission mechanism)
+# Lines from Pdot min to the II-III boundary, corresponding to the polarisation limiting radius in the IIB region (for a canonical emission mechanism)
+Pdot_IIB_rpl_rp(t, rpl_rp) = logspace(t, Pdot_min, IIB_max_Pdot_rpl(rpl_rp) > Pdot_max ? Pdot_max : IIB_max_Pdot_rpl(rpl_rp))
+Pdot_IIB_rwB_rp(t, rwB_rp) = logspace(t, Pdot_min, IIB_max_Pdot_rwB(rwB_rp) > Pdot_max ? Pdot_max : IIB_max_Pdot_rwB(rwB_rp))
 
 do for [r10=1:5] {
-    set label r10+10 "r_{pl}/r_p = 10^".r10 at IIB_P(10**r10, 1e-21), 1e-21 tc rgb "#ff8888" center
+    set label r10+10 "r_{pl}/r_p = 10^".r10 at IIB_P_rpl(10**r10, 1e-21), 1e-21 tc rgb "#ff8888" center
+}
+
+do for [r10=1:5] {
+    set label r10+20 "r_{ωB}/r_p = 10^".r10 at IIB_P_rwB(10**r10, 1e-20), 1e-20 tc rgb "#8888ff" center
 }
 
 do for [r10=1:9] {
-    set label r10+20 "r_{lc}/r_p = 10^".r10 at P_r_lc(10**r10 * r_p), 1e-16 tc rgb "#cccccc" center rotate by 90
+    set label r10+30 "r_{lc}/r_p = 10^".r10 at P_r_lc(10**r10 * r_p), 1e-16 tc rgb "#cccccc" center rotate by 90
 }
 
 plot '< psrcat -x -c "p0 p1"' u 1:4 pt 7 ps 0.25, \
      II_III(Pdot_full(t)), Pdot_full(t) lc rgb "black", \
      for [r10=1:9] P_r_lc(10**r10 * r_p), Pdot_full(t) lc rgb "#cccccc", \
-     for [r10=1:3] IIB_P(10**r10, Pdot_IIB_rpl_rp(t, 10**r10)), Pdot_IIB_rpl_rp(t, 10**r10) lc rgb "#ff8888", \
-     for [r10=4:5] IIB_P(10**r10, Pdot_IIB_rpl_rp(t, 10**r10)), Pdot_IIB_rpl_rp(t, 10**r10) lc rgb "#ff8888"
+     for [r10=1:3] IIB_P_rpl(10**r10, Pdot_IIB_rpl_rp(t, 10**r10)), Pdot_IIB_rpl_rp(t, 10**r10) lc rgb "#ff8888", \
+     for [r10=4:5] IIB_P_rpl(10**r10, Pdot_IIB_rpl_rp(t, 10**r10)), Pdot_IIB_rpl_rp(t, 10**r10) lc rgb "#ff8888", \
+     for [r10=1:5] IIB_P_rwB(10**r10, Pdot_IIB_rwB_rp(t, 10**r10)), Pdot_IIB_rwB_rp(t, 10**r10) lc rgb "#8888ff"
