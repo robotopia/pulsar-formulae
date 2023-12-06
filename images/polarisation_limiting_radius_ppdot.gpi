@@ -17,8 +17,8 @@ Pdot_full(t) = logspace(t, Pdot_min, Pdot_max)
 
 set parametric # default dummy variable = t
 
-set label 1 "III" at graph 0.1,0.9 font "Times,24" center
-set label 2 "II" at graph 0.9,0.1 font "Times,24" center
+set label 1 "III" at graph 0.1,0.9 font "Times,24" center front
+set label 2 "II" at graph 0.9,0.1 font "Times,24" center front
 
 II_III(Pdot) = 0.034*(Pdot/1e-15)**(1./5.) # Returns P in seconds
 
