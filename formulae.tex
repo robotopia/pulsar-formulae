@@ -566,6 +566,35 @@ Its partial derivative with respect to $s$ is
     \end{aligned}
 \end{equation}
 
+\section{Polar cap \& polar gap}
+
+In \citet{Ruderman1975}, the polar cap is defined as extending to the last open field line which has a positive Goldreich-Julian charge density (\S\ref{sec:GJ-charge-density}) at the light cylinder.
+In purely dipolar fields of aligned rotators (assumed here), the ``null line'' where the GJ charge density changes sign occurs for the angle at which $dz/dx = 0$, which from Table \ref{tbl:dipolarderiv} can be seen to occur when $3\cos^2\theta - 1 = 0$, or
+\begin{equation}
+    \cos^2 \theta_{\rm null} = \frac13,
+    \qquad\text{or, equivalently,}\qquad
+    \sin^2 \theta_{\rm null} = \frac23,
+\end{equation}
+and hence $\theta_{\rm null} \approx 55^\circ$.
+The angular radius of the polar cap, $\theta_{\rm pc}$, is therefore the footpoint of the field line which crosses the null line at the light cylinder:
+\begin{equation}
+    \begin{aligned}
+        \frac{\sin^2\theta_{\rm pc}}{\rp}
+            &= \frac{\sin^2 \theta_{\rm null}}{\rL} \\
+        \sin \theta_{\rm pc}
+            &= \sqrt{\frac{2\rp}{3\rL}}.
+    \end{aligned}
+\end{equation}
+The radius\footnote{NB: The $r$ of $r_{\rm pc}$ has a different meaning here: It is measured from the magnetic pole along the pulsar surface!} of the polar cap itself is therefore
+\begin{equation}
+    r_{\rm pc}
+        = \rp\theta_{\rm pc}
+        \approx \rp\sqrt{\frac{2\rp}{3\rL}}
+        = \rp\sqrt{\frac{4\pi\rp}{3cP}}
+\end{equation}
+in the small angle approximation.
+With canonical ...
+
 \section{Curvature}
 
 \subsection{Aligned rotator, without rotation effects}
@@ -1327,6 +1356,7 @@ If in the circular basis\footnote{Not yet verified whether or not this also appl
 \end{equation}
 
 \section{Goldreich-Julian Charge Density}
+\label{sec:GJ-charge-density}
 
 In SI units \citep[e.g.][]{Fung2006},
 \begin{equation}
