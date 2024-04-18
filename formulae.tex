@@ -1441,6 +1441,7 @@ As stated in \citet{Contopoulos2024}:
 \end{equation}
 where ``$I = I(\Psi)$ is the distribution of poloidal electric current from which one obtains the azimuthal component of the magnetic field $B_\phi = I/(r \sin\theta)$, and $I^\prime \equiv {\rm d}I/{\rm d}\Psi$.''
 
+
 \chapter{Coordinate Systems}
 
 In this section (unless otherwise specified), $\theta$ is the colatitude (measured from the $z$-axis) and $\phase$ is the longitude (measured from the $x$-axis).
@@ -1542,6 +1543,8 @@ At rotation phase $\phase$, the relations between magnetic and observer coordina
 
 [YET TO DO]
 
+
+
 \chapter{Miscellaneous}
 
 \section{Taylor Series}
@@ -1576,6 +1579,33 @@ This was in hope of getting expressions that don't ``divide by zero'' in Sagemat
         \pdpd{z}{x}{y} &= -\frac{\cos z \pd{z}{x}\pd{z}{y} + \pdpd{f(x,y)}{x}{y}}{\sin z}
     \end{aligned}
 \end{equation}
+
+\section{Multipole radiation}
+
+``[The Cartesian components of the time-averaged] angular momentum in a spherical shell between $r$ and $(r + {\rm d}r)$ in the radiation zone is...'' \citep[][see their Eqs. (9.141) to (9.143)]{Jackson1975}
+\begin{equation}
+    \begin{aligned}
+        \deriv{M_x}{r}
+            &= \frac{\mu_0}{4\omega k^2} \Re \sum_m \bigg[
+                \sqrt{(l-m)(l+m+1)} \, a_E^\ast(l,m+1) +
+                \sqrt{(l+m)(l-m+1)} \, a_E^\ast(l,m-1) \bigg] a_E(l,m) \\
+        \deriv{M_y}{r}
+            &= \frac{\mu_0}{4\omega k^2} \Im \sum_m \bigg[
+                \sqrt{(l-m)(l+m+1)} \, a_E^\ast(l,m+1) -
+                \sqrt{(l+m)(l-m+1)} \, a_E^\ast(l,m-1) \bigg] a_E(l,m) \\
+        \deriv{M_z}{r}
+            &= \frac{\mu_0}{2\omega k^2} \sum_m \left|a_E(l,m)\right|^2
+    \end{aligned}
+\end{equation}
+
+$l$ and $m$ are the spherical harmonic numbers, where $l$ is a non-negative integer and $m$ is an integer in the range $-l \le m \le l$.
+``The $l=0$ term is called the monopole term, $l=1$ are the dipole terms, etc.'' \citep[][\S4.1]{Jackson1975}.
+
+The coefficients $a_E(l,m)$ ``specify the amounts of electrical $(l,m)$ multipole \dots fields,'' or in other words, the coefficients of the spherical harmonic expansion.
+
+$k = \omega/c$ \citep[defined after Eq. (9.107) in][]{Jackson1975}, where we consider only the Fourier component of the time dependent fields with angular frequency $\omega$.
+
+$\mu_0$ appears to be the vacuum permeability.
 
 \section{Maxwell's Equations}
 
