@@ -1,0 +1,45 @@
+reset
+
+set terminal pngcairo size 700,600
+set output 'braking_index.png'
+
+set logscale xy
+unset key
+
+set multiplot
+
+set xrange [0.001:500]
+#set yrange [1e-22:1e-10]
+set xlabel "Period (s)"
+set ylabel "Period derivative (s/s)"
+
+set title "Known braking indices (Archibald et al., 2016)"
+
+plot '< psrcat -x -c "p0 p1"' using 1:4 pt 7 ps 0.5 lc rgb "#dddddd", \
+     'braking_index.txt' using 3:6 pt 7 ps 1 lc rgb "#ff0000"
+
+#------------------------------------------
+
+unset xtics
+unset ytics
+unset xlabel
+unset ylabel
+unset title
+
+set tmargin at screen 0.45
+set bmargin at screen 0.15
+set lmargin at screen 0.5
+set rmargin at screen 0.95
+
+set xrange [0.006:3]
+#set yrange [1e-22:1e-10]
+
+# Set background rectangle to (opaque) white
+set object 1 rectangle from graph 0,0 to graph 1,1 fillstyle solid fc "white"
+
+plot 'braking_index.txt' using 3:6 pt 7 ps 1 lc rgb "#ff0000", \
+     '' using ($3*1.1):6:9 with labels left, \
+     '' using ($3/1.1):6:1 with labels right
+
+
+unset multiplot

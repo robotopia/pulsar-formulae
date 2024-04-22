@@ -1,6 +1,7 @@
 TARGETS = curvature-no-rotation.png \
 		  curvature-with-rotation.png \
-		  polarisation_limiting_radius_ppdot.png
+		  polarisation_limiting_radius_ppdot.png \
+		  braking_index.png
 
 all: $(TARGETS)
 
@@ -9,3 +10,6 @@ curvature-%.png: curvature-%.gpi curvature-common.gpi
 
 polarisation_limiting_radius_ppdot.png: polarisation_limiting_radius_ppdot.gpi
 	gnuplot -e "set terminal pngcairo enhanced size 1000,800; set output '$@'" $<
+
+braking_index.png: braking_index.gpi
+	gnuplot $<
