@@ -1,5 +1,11 @@
-formulae.aux
-formulae.log
-formulae.out
-formulae.pdf
-formulae.toc
+# LaTeX
+*.aux
+*.log
+*.out
+*.pdf
+*.toc
+*.bbl
+*.blg
+
+# Images
+*.png

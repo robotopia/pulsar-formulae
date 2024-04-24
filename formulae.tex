@@ -18,6 +18,8 @@
 \title{Formulas relating to pulsars}
 \author{Sam McSweeney}
 
+\newcommand{\todo}[1]{{\color{red}TODO: {#1}}}
+
 \newcommand{\phase}{\varphi}
 \newcommand{\deriv}[2]{\frac{\text{d}{#1}}{\text{d}{#2}}}
 \newcommand{\derivn}[3]{\frac{\text{d}^{#3}{#1}}{\text{d}{#2}^{#3}}}
@@ -765,14 +767,23 @@ The braking index is an \emph{observable}, defined as
   n = \frac{\nu\ddot{\nu}}{\dot{\nu}^2},
 \end{equation}
 where $\nu$ is the rotation frequency, and the overdot signifies the time derivative.
+In terms of the period, $P = 1/\nu$, this becomes
+\begin{equation}
+    n = 2 - \frac{P\ddot{P}}{\dot{P}^2}.
+\end{equation}
 
 \subsection{Models}
 
-\citet[][Eq. (7)]{Archibald2016} gives an equation relating the expected braking index taking into account a changing magnetic field (either by decaying or by the dipole component changing its orientation):
+\citet[][Eq. (7)]{Archibald2016} gives an equation relating the expected braking index taking into account a changing magnetic field:
 \begin{equation}
   n = 3 + 2\frac{\nu}{\dot{\nu}} \bigg( \frac{\dot{B}}{B} + \frac{\dot{\alpha}}{\tan\alpha} \bigg),
 \end{equation}
 where $B$ is the magnetic field, and $\alpha$ is the magnetic inclination.
+If one explicitly includes a general change of inertia, $I$, by other means, one can write \citep[cf.][]{Li2024}:
+\begin{equation}
+    n = 3 + 2\frac{\nu}{\dot{\nu}} \bigg( \frac{\dot{B}}{B} + 2\frac{\dot{\alpha}}{\tan\alpha} + \frac{\dot{I}}{I} \bigg).
+\end{equation}
+\todo{Check the factor of 2 difference between \citet{Archibald2016} and \citet{Li2024}.}
 
 \subsection{Measurements}
 
