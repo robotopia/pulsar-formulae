@@ -777,13 +777,35 @@ In terms of the period, $P = 1/\nu$, this becomes
 \citet[][Eq. (7)]{Archibald2016} gives an equation relating the expected braking index taking into account a changing magnetic field:
 \begin{equation}
   n = 3 + 2\frac{\nu}{\dot{\nu}} \bigg( \frac{\dot{B}}{B} + \frac{\dot{\alpha}}{\tan\alpha} \bigg),
+  \label{eqn:archibald2016_eq7}
 \end{equation}
 where $B$ is the magnetic field, and $\alpha$ is the magnetic inclination.
-If one explicitly includes a general change of inertia, $I$, by other means, one can write \citep[cf.][]{Li2024}:
+This can be obtained from the (commonly held) assumption that the spin-down energy is due magnetic dipole radiation for pulsars in a vacuum (but see \todo{??} below), in which case
 \begin{equation}
-    n = 3 + 2\frac{\nu}{\dot{\nu}} \bigg( \frac{\dot{B}}{B} + 2\frac{\dot{\alpha}}{\tan\alpha} + \frac{\dot{I}}{I} \bigg).
+  I \nu \dot{\nu} \propto B^2 \sin^2\alpha \nu^4.
 \end{equation}
-\todo{Check the factor of 2 difference between \citet{Archibald2016} and \citet{Li2024}.}
+Implicit differentiation yields
+\begin{equation}
+  \frac{\ddot{\nu}}{\dot{\nu}} = 2\frac{\dot{B}}{B} + 2\frac{\dot{\alpha}}{\tan\alpha} + 3\frac{\dot{\nu}}{\nu},
+\end{equation}
+from which Eq. \eqref{eqn:archibald2016_eq7} directly follows.
+\footnote{\citet[cf.][]{Li2024} claim that generalising still further to allow a time-dependent moment of inertia,
+\[
+  n = 3 + 2\frac{\nu}{\dot{\nu}} \bigg( \frac{\dot{B}}{B} + 2\frac{\dot{\alpha}}{\tan\alpha} + \frac{\dot{I}}{I} \bigg).
+\]
+I don't think this is correct though.}
+
+\citet{Philippov2014}, however, show that the above only applies to vacuum magnetospheres.
+For their MHD (magnetohydrodynamic) simulations of (more realistic) pulsar magnetospheres, the correct starting assumption is of the form (see their Eq. (16))
+\begin{equation}
+  I \nu \dot{\nu} \propto B^2 (k_0 + k_1 \sin^2 \alpha) \nu^4,
+\end{equation}
+in which case implicit differentiation yields
+\begin{equation}
+  n = 3 + 2\frac{\nu}{\dot{\nu}} \bigg( \frac{\dot{B}}{B} + \frac{2 k_1 \dot{\alpha} \sin\alpha \cos\alpha}{k_0 + k_1 \sin^2\alpha} \bigg).
+\end{equation}
+$k_0$ and $k_1$ in general depend on the radius of the NS, since they assume that the applied torque should be evaluated at the NS surface.
+Their simulations give $k_0 \approx 1$ and $k_1 \approx 1.4 - 3.1(r_p/\rL)^2$.
 
 \subsection{Measurements}
 
