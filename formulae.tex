@@ -1,6 +1,7 @@
 \documentclass{book}
 
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{fullpage}
 \usepackage[colorlinks]{hyperref}
 \usepackage{bm}
@@ -1553,28 +1554,6 @@ It follows that the maximum allowed 1D number density for the same energy range 
   \label{eqn:1D-particle-in-box-density}
 \end{equation}
 
-We now assume a Goldreich-Julian magnetosphere subject to Maxwell-J\"uttner statistics along the $z$-direction (parallel to the magnetic field).
-Consider a slab from $z$ to $z + \Delta z$.
-The slab contains particles of multiple energies, so to find the \emph{minimum allowed} total surface density, we have to integrate the total (assumed Goldreich-Julian) number density divided by the \emph{maximum allowed} 1D number density for free particles, found above.
-That is,
-\begin{equation}
-  \begin{aligned}
-    \frac{{\rm d}N_{\rm min}}{{\rm d}x\,{\rm d}y}
-      &= \int_1^\infty \frac{\nGJ \, j(\gamma)}{{\rm d}N/{\rm d}z} \, {\rm d}\gamma \\
-      &= \frac{\nGJ\,\hbar\pi\sqrt{2}}{mc} \int_1^\infty \gamma^{1/2}\,\frac{\gamma^2\beta}{\theta K_2(1/\theta)} e^{-\gamma/\theta} \, {\rm d}\gamma.
-  \end{aligned}
-\end{equation}
-where $\theta \equiv k_B T/(mc^2)$ and $T$ is the temperature of the magnetosphere.
-Expressing $\beta$ in terms of $\gamma$, we can write
-\begin{equation}
-  \gamma\beta = \gamma\sqrt{1 - \frac{1}{\gamma^2}} = \sqrt{\gamma^2 - 1},
-\end{equation}
-and therefore,
-\begin{equation}
-  \frac{{\rm d}N_{\rm min}}{{\rm d}x\,{\rm d}y}
-    = \frac{\nGJ\,\hbar\pi\sqrt{2}}{mc\theta K_2(1/\theta)} \int_1^\infty \gamma^{3/2}\sqrt{\gamma^2 - 1} \, e^{-\gamma/\theta} \, {\rm d}\gamma.
-\end{equation}
-
 Next, we consider the Landau levels, which, when considering particles confined to the $xy$-plane, admit a 2D density of
 \begin{equation}
   \frac{{\rm d}N}{{\rm d}x\,{\rm d}y} = \frac{qB}{2\pi\hbar}
@@ -1588,17 +1567,95 @@ If $\kappa$ is the number of Landau levels that are filled, then the total 2D de
 \begin{equation}
   \frac{{\rm d}N}{{\rm d}x\,{\rm d}y} = \kappa \frac{qB}{2\pi\hbar\gamma}.
 \end{equation}
+Said another way, the above 2D density requires \emph{at least}
+\begin{equation}
+  \kappa = \frac{{\rm d}N}{{\rm d}x\,{\rm d}y} \frac{2\pi\hbar\gamma}{qB}
+\end{equation}
+Landau levels to be filled.
 
-Combining the 2D density derived from the Landau levels with the 1D density from the free particles, and finally including an extra factor of two for the allowed spin states, we find that the 3D density for the given energy range is
+Combining the 2D density derived from the Landau levels with the 1D density from the free particles, and finally including an extra factor of two for the allowed spin states, we find that the minimum number of Landau levels to support a gas with (3D) number density $n$, for the given energy range, is
 \begin{equation}
   \begin{aligned}
-    \deriv{N}{V}
-      &= 2\frac{{\rm d}N}{{\rm d}x\,{\rm d}y\,{\rm d}z} \\
-      &= 2\frac{qB}{2\pi\hbar\gamma} \frac{mc}{\hbar\pi} \sqrt{\frac{1}{2\gamma^3}}\,{\rm d}\gamma \\
-      &= \frac{qBmc}{\pi^2\hbar^2} \sqrt{\frac{1}{2\gamma^5}}\,{\rm d}\gamma.
+    \kappa
+      &= \frac{2n}{{\rm d}N/{\rm d}z} \frac{2\pi\hbar\gamma}{qB} \\
+      &= \frac{2n\hbar\pi\sqrt{2\gamma}}{mc} \frac{2\pi\hbar\gamma}{qB} \\
+      &= \frac{4\pi^2 n \hbar^2 \sqrt{2\gamma^3}}{mcqB}.
   \end{aligned}
 \end{equation}
-Therefore, the number of Landau levels are needed to support the Goldreich-Julian density 
+
+We now assume a Goldreich-Julian magnetosphere subject to Maxwell-J\"uttner statistics along the $z$-direction (parallel to the magnetic field).
+Consider a slab from $z$ to $z + \Delta z$.
+The slab contains particles of multiple energies, so the minimum number of required Landau levels is
+\begin{equation}
+  \begin{aligned}
+    K &= \int_1^\infty \kappa(\gamma)\,{\rm d}\gamma \\
+      &= \frac{4\pi^2 \nGJ \hbar^2 \sqrt{2}}{mcqB} \int_1^\infty \gamma^{3/2}\,j(\gamma)\,{\rm d}\gamma \\
+      &= \frac{4\pi^2 \nGJ \hbar^2 \sqrt{2}}{mcqB} \int_1^\infty \gamma^{3/2} \frac{\gamma^2\beta}{\theta K_2(1/\theta)} e^{-\gamma/\theta}\,{\rm d}\gamma
+  \end{aligned}
+\end{equation}
+Expanding $j(\gamma)$, and expressing $\beta$ in terms of $\gamma$, we can write
+\begin{equation}
+  \gamma\beta = \gamma\sqrt{1 - \frac{1}{\gamma^2}} = \sqrt{\gamma^2 - 1},
+\end{equation}
+and therefore,
+\begin{equation}
+  K = \frac{4\pi^2 \nGJ \hbar^2 \sqrt{2}}{mcqB \theta K_2(1/\theta)} \int_1^\infty \gamma^{5/2}\sqrt{\gamma^2 - 1} \, e^{-\gamma/\theta} \, {\rm d}\gamma.
+\end{equation}
+
+Using Sage to do a Taylor expansion of the integrand around $\gamma = \infty$, one obtains what looks like an excellent approximation \todo{(YET TO BE VERIFIED)}
+\begin{equation}
+  \gamma^{5/2}\sqrt{\gamma^2 - 1} \, e^{-\gamma/\theta}
+    \approx \bigg( \gamma^{7/2} - \frac12 \gamma^{3/2} - \frac18 \gamma^{-1/2} \bigg) e^{-\gamma/\theta}.
+  \label{eqn:landau_occupancy_integral_1}
+\end{equation}
+The value of this integral is a long, complicated expression which I won't write down here (but which can be obtained using \hyperref[sage:landau_occupancy_integral_1]{this Sage script}), but which is plotted as a function of $\theta$ in Fig. \ref{fig:landau_occupancy_integral_1}.
+\begin{figure}[!th]
+  \centering
+  \includegraphics[width=0.7\textwidth]{images/landau_occupancy_integral_1.png}
+  \caption{Blue line: the value of the integral of the expression given in Eq. \eqref{eqn:landau_occupancy_integral_1} as a function of $\theta$ (on the $x$-axis -- sorry, Sage's labels looked crap, so I didn't include them). Red dashed line: a power law fit by eye to match the blue line at high values of $\theta$, equal to $12 \, \theta^{9/2}$.}
+  \label{fig:landau_occupancy_integral_1}
+\end{figure}
+For $\theta \gtrsim 1$, it appears (see Fig. \ref{fig:landau_occupancy_integral_1}) that the integral is approximately equal to $12\,\theta^{9/2}$.
+Thus, the number of required Landau levels is
+\begin{equation}
+  K \approx \frac{4\pi^2 \nGJ \hbar^2 \theta^{7/2} \sqrt{2}}{mcqB K_2(1/\theta)}
+\end{equation}
+
+The Goldreich-Julian density will be maximised near the surface, ($r \ll \rL$), for pulsars with small magnetic inclination angles ($\alpha \ll 1$).
+Under these conditions, near the magnetic pole (${\bm \Omega}\cdot{\bm B} \approx \Omega B$) we can estimate the number density to be
+\begin{equation}
+  \nGJ \approx \frac{4\pi\varepsilon_0 B}{qP},
+\end{equation}
+where $P = 2\pi/\Omega$ is the rotation period.
+Then
+\begin{equation}
+  \begin{aligned}
+    K &\approx \frac{4\pi^2 \hbar^2 \theta^{7/2} \sqrt{2}}{mcqB K_2(1/\theta)} \frac{4\pi\varepsilon_0 B}{qP} \\
+      &\approx \frac{16\pi^3 \varepsilon_0 \hbar^2 \theta^{7/2} \sqrt{2}}{mcq^2 P K_2(1/\theta)} \\
+      &\approx 10^{-17} \, \bigg(\frac{P}{\rm s} \bigg)^{-1} \frac{\theta^{7/2}}{K_2(1/\theta)}
+  \end{aligned}
+\end{equation}
+
+It's interesting that this number doesn't depend on the magnetic field strength.
+For ordinary pulsars ($P \approx 1\,$s), the lowest Landau level is only insufficient for a population of electrons if
+\begin{equation}
+  \frac{\theta^{7/2}}{K_2(1/\theta)} \gtrsim 1,
+\end{equation}
+which, after checking numerically (assuming that the Bessel function in the denominator is indeed the function \texttt{bessel\_K(2,x)} in Sage), only occurs when
+\begin{equation}
+  \theta \gtrsim 3.42 \times 10^{11},
+\end{equation}
+which corresponds to temperatures of
+\begin{equation}
+  T = \frac{\theta \, mc^2}{k_B}
+    \gtrsim 2 \times 10^{21}\,{\rm K}
+\end{equation}
+or
+\begin{equation}
+  k_B T = \theta\,mc^2
+    \gtrsim 1.7 \times 10^{17}\,{\rm eV}.
+\end{equation}
+As this is, I believe, far in excess of temperatures of normal magnetospheres (\todo{VERIFY!}), this saturating limit is not expected to be reached.
 
 \section{The Pulsar Equation}
 
@@ -2650,6 +2707,7 @@ The scripts are in alphabetical order by filename.
 \lstsage{Particle Velocity---Aligned Rotator---Dipole}{V_aligned}
 \lstsage{Particle Velocity---Inclined Rotator---Dipole}{V_taylor}
 \lstsage{Viewing Inclination}{zeta}
+\lstsage{Approximate Landau Level Occupancy integral}{landau_occupancy_integral_1}
 
 \bibliography{biblio}
 
