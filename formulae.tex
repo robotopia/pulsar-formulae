@@ -37,6 +37,7 @@
 \newcommand{\rxf}{r_\xi} % Approximate radius at which light cylinder effects dominate field line curvature
 \newcommand{\rp}{r_\text{p}} % Stellar radius
 
+\newcommand{\nGJ}{n_{\rm GJ}}
 
 \newcommand{\linktosage}[1]{\hyperref[#1]{[Sage script]}}
 
@@ -1463,7 +1464,9 @@ Sufficiently close to the surface, well within the light cylinder radius, $r \ll
     n_\text{GJ} \approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-1} \cos\alpha.
 \end{equation}
 
-\subsection{Dipole field}
+\subsection{Specific geometries}
+
+\subsubsection{Dipole field}
 
 For a dipole field, $B(r) = B_0 (\rp/r)^3$, where $B_0$ is the magnetic field strength at the surface (at the magnetic pole) and $\rp$ is the radius of the neutron star.
 The Goldreich-Julian number density (close to the magnetic axis) is therefore
@@ -1477,7 +1480,7 @@ The Goldreich-Julian number density (close to the magnetic axis) is therefore
 \end{equation}
 
 
-\subsection{Oblique rotator}
+\subsubsection{Oblique rotator}
 
 The following is from \citet{Hones1965}, quoted in \citet{Michel2004}.
 (I haven't confirmed whether what units this is in.)
@@ -1486,6 +1489,89 @@ A rotating magnetised body will be surrounded by a plasma density
     \rho = -\frac{\mu\omega}{2\pi cr^3} \left\{ [ 3 \cos^2\theta - 1 ] \cos\alpha + \left[ 3 \sin\theta \cos\theta \cos(\phi - \omega t) \right] \sin\alpha \right \},
 \end{equation}
 where $\alpha$ is the inclination angle of the dipole magnetic field, $\mu$ is the magnetic moment, $\omega$ is the stellar rotation rate, and the angles are the usual spherical angles.
+
+\subsection{Landau Level occupancy}
+
+This is an attempted derivation to see whether the lowest Landau level gets filled under ordinary pulsar magnetospheric assumptions.
+It assumes (almost certainly incorrectly) that one can treat the components of a particle's energy parallel and perpendicular to the local magnetic field independently of each other.
+
+Assuming a \hyperref[sec:maxwell-juttner-distribution]{Maxwell-J\"uttner distribution}, $j(\gamma)$, and the \hyperref[sec:GJ-charge-density]{Goldreich-Julian density}, $\nGJ$, the number density of particles between energy $\gamma$ and $\gamma + \Delta\gamma$ is $\nGJ \, j(\gamma)$.
+
+We will assume that the charges are free in the direction parallel to the local magnetic field.
+To find the line density along this direction (identified here with $\hat{z}$), we first consider the (non-relativistic) particle-in-a-1D-box system, where the particle has energy
+\begin{equation}
+  E_z = \frac{\hbar^2\pi^2}{2m(\Delta z)^2}n_z^2,
+\end{equation}
+where $\Delta z$ is the length of the ``box'', and $n_z$ is the associated quantum number.
+Thus, the energy grows with quantum number according to
+\begin{equation}
+  {\rm d}E_z
+    = \frac{\hbar^2\pi^2}{2m(\Delta z)^2} n_z \, {\rm d}n_z
+    = \frac{\hbar\pi}{\Delta z}\sqrt{\frac{2E_z}{m}} \, {\rm d}n_z,
+\end{equation}
+or, in terms of $\gamma$ (which only refers to motion in the $z$-direction),
+\begin{equation}
+  \begin{aligned}
+    mc^2\,{\rm d}\gamma &= \frac{\hbar\pi}{\Delta z}\sqrt{\frac{2\gamma mc^2}{m}} \, {\rm d}n_z \\
+    {\rm d}\gamma &= \frac{\hbar\pi\sqrt{2\gamma}}{mc\Delta z} \, {\rm d}n_z
+  \end{aligned}
+\end{equation}
+Neglecting particle spin for the moment\footnote{To avoid double counting later.}, each quantum number admits one particle, so the maximum allowed number of particles in the range $\gamma$ and $\gamma + {\rm d}\gamma$ is
+\begin{equation}
+  N = \frac{mc\Delta z}{\hbar\pi\sqrt{2\gamma}}.
+\end{equation}
+It follows that the maximum allowed 1D number density for the same energy range is\footnote{I don't know whether some kind of length contraction is needed to extend this result into the relativistic regime. If so, I guess the appropriate correction would be: ${\rm d}z \rightarrow {\rm d}z/\gamma$, giving an extra factor of $\gamma$ to the denominator of Eq. \eqref{eqn:1D-particle-in-box-density}.}
+\begin{equation}
+  \deriv{N}{z} = \frac{mc}{\hbar\pi\sqrt{2\gamma}}.
+  \label{eqn:1D-particle-in-box-density}
+\end{equation}
+
+We now assume a Goldreich-Julian magnetosphere subject to Maxwell-J\"uttner statistics along the $z$-direction (parallel to the magnetic field).
+Consider a slab from $z$ to $z + \Delta z$.
+The slab contains particles of multiple energies, so to find the \emph{minimum allowed} total surface density, we have to integrate the total (assumed Goldreich-Julian) number density divided by the \emph{maximum allowed} 1D number density for free particles, found above.
+That is,
+\begin{equation}
+  \begin{aligned}
+    \frac{{\rm d}N_{\rm min}}{{\rm d}x\,{\rm d}y}
+      &= \int_1^\infty \frac{\nGJ \, j(\gamma)}{{\rm d}N/{\rm d}z} \, {\rm d}\gamma \\
+      &= \frac{\nGJ\,\hbar\pi\sqrt{2}}{mc} \int_1^\infty \gamma^{1/2}\,\frac{\gamma^2\beta}{\theta K_2(1/\theta)} e^{-\gamma/\theta} \, {\rm d}\gamma.
+  \end{aligned}
+\end{equation}
+where $\theta \equiv k_B T/(mc^2)$ and $T$ is the temperature of the magnetosphere.
+Expressing $\beta$ in terms of $\gamma$, we can write
+\begin{equation}
+  \gamma\beta = \gamma\sqrt{1 - \frac{1}{\gamma^2}} = \sqrt{\gamma^2 - 1},
+\end{equation}
+and therefore,
+\begin{equation}
+  \frac{{\rm d}N_{\rm min}}{{\rm d}x\,{\rm d}y}
+    = \frac{\nGJ\,\hbar\pi\sqrt{2}}{mc\theta K_2(1/\theta)} \int_1^\infty \gamma^{3/2}\sqrt{\gamma^2 - 1} \, e^{-\gamma/\theta} \, {\rm d}\gamma.
+\end{equation}
+
+Next, we consider the Landau levels, which, when considering particles confined to the $xy$-plane, admit a 2D density of
+\begin{equation}
+  \frac{{\rm d}N}{{\rm d}x\,{\rm d}y} = \frac{qB}{2\pi\hbar}
+\end{equation}
+for each Landau level (still ignoring spin), where $q$ is the charge of the particle, and $B$ is the magnetic field strength.
+However, when considering particles moving along the field (in the same direction, as we suppose for now) with energy $\gamma$, such particles only ``see'' a field of strength $B/\gamma$, so the relativistic version of the above becomes
+\begin{equation}
+  \frac{{\rm d}N}{{\rm d}x\,{\rm d}y} = \frac{qB}{2\pi\hbar\gamma}.
+\end{equation}
+If $\kappa$ is the number of Landau levels that are filled, then the total 2D density is
+\begin{equation}
+  \frac{{\rm d}N}{{\rm d}x\,{\rm d}y} = \kappa \frac{qB}{2\pi\hbar\gamma}.
+\end{equation}
+
+Combining the 2D density derived from the Landau levels with the 1D density from the free particles, and finally including an extra factor of two for the allowed spin states, we find that the 3D density for the given energy range is
+\begin{equation}
+  \begin{aligned}
+    \deriv{N}{V}
+      &= 2\frac{{\rm d}N}{{\rm d}x\,{\rm d}y\,{\rm d}z} \\
+      &= 2\frac{qB}{2\pi\hbar\gamma} \frac{mc}{\hbar\pi} \sqrt{\frac{1}{2\gamma^3}}\,{\rm d}\gamma \\
+      &= \frac{qBmc}{\pi^2\hbar^2} \sqrt{\frac{1}{2\gamma^5}}\,{\rm d}\gamma.
+  \end{aligned}
+\end{equation}
+Therefore, the number of Landau levels are needed to support the Goldreich-Julian density 
 
 \section{The Pulsar Equation}
 
@@ -1956,9 +2042,10 @@ Integrating over solid angle gives the distribution for the speed,
 \end{equation}
 
 \section{Maxwell-J\"uttner Distribution}
+\label{sec:maxwell-juttner-distribution}
 
 \begin{equation}
-    f(\gamma) = \frac{\gamma^2 \beta}{\theta K_2(1/\theta)} e^{-\gamma/\theta},
+    j(\gamma) = \frac{\gamma^2 \beta}{\theta K_2(1/\theta)} e^{-\gamma/\theta},
 \end{equation}
 where $\beta = v/c = \sqrt{1 - \frac{1}{\gamma^2}}$, $\theta = \frac{kT}{mc^2}$, and $K_2$ is the modified Bessel function of the second kind.
 
