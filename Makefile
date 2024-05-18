@@ -1,7 +1,8 @@
 IMAGES = images/pulsarangles.png \
-		 images/curvature-no-rotation.png \
-		 images/curvature-with-rotation.png \
-		 images/braking_index.png
+				 images/curvature-no-rotation.png \
+				 images/curvature-with-rotation.png \
+				 images/braking_index.png \
+				 images/beam_width_vs_height.png
 
 formulae.pdf: formulae.tex biblio.bib $(IMAGES)
 	pdflatex $<

@@ -4,7 +4,7 @@ set terminal pngcairo size 800,600
 set output 'beam_width_vs_height.png'
 
 # Period
-P = 10000 # s
+P = 1 # s
 
 # Speed of light
 c = 3e8 # m/s
@@ -16,16 +16,31 @@ rL = c*P/(2*pi) # m
 rp = 1e4 # m
 
 # This will be a function of emission height normalised to 10km
-set dummy h_rp
+set dummy h
 
 # Alpha, "a", will be the magnetic inclination, in degrees
 set angle degrees
 
 set samples 1000
-set xrange [1:rL/rp/10]
-set yrange [0:360]
-set xlabel "h/r_p"
-set ylabel "Maximum pulse width (°)"
+set xrange [10:rL/1e3]
+set yrange [*:360]
+set xlabel "Emission height, h (km)"
+set ylabel "Maximum pulse width, W (°)"
+set logscale xy
+set title "P = ".P." s"
 unset key
 
-plot for [a=5:90:5] 2*acos(1 - (1/sin(a)**2) * (1 - (2*rL - 3*h_rp*rp)/sqrt(rL*(4*rL - 3*h_rp*rp)))) title "α = ".a."°"
+#set palette defined ( 0 "#000000", 1 "#0000ff", 2 "#00ffff" )
+set cbrange [0:90]
+set cblabel "Magnetic inclination, α (°)"
+
+set for [a=5:90:5] arrow a from graph 0.7,0.1 length 8e3*P angle (90-a) nohead lc palette frac a/90.0
+set arrow 1 from graph 0.7,0 to graph 0.7,0.4 nohead lw 2 lc rgb "black"
+set object 1 circle center graph 0.7,0.1 size 1e3*P fill solid fc rgb "black" front
+
+plot for [a=5:90:5] 2*acos(1 - (1/sin(a)**2) * (1 - (2*rL - 3*h*1e3)/sqrt(rL*(4*rL - 3*h*1e3)))) lc palette frac a/90.0
+
+
+# Taylor expansion for h/rL << 1:
+#     180/pi * 3*sqrt(h*1e3/rL)/sin(A) lc rgb "red" 
+
