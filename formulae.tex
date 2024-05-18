@@ -704,6 +704,7 @@ The relationship between $\theta$ and $\Gamma$ (and its inverse) is given by \ci
         \sin^2\theta  &= -\frac16\left(\cos\Gamma\sqrt{8 + \cos^2\Gamma} + \cos^2\Gamma - 4\right) \\
         \tan\Gamma &= \frac{3\sin\theta\cos\theta}{3\cos^2\theta - 1}
     \end{aligned}
+    \label{eqn:beam-angle-aligned-no-rotation}
 \end{equation}
 Taylor series expansions (about $\theta = 0$ or $\Gamma = 0$):
 \begin{equation}
@@ -758,6 +759,70 @@ Taylor expanding about both $r = 0$ and $\theta = 0$ gives:
             O(\text{4th order terms in $r$ and $\theta$}) \\
         \sin\Gamma &\stackrel{?}{\approx} r^\prime\sin\alpha + \frac32\theta\sin\sigma + r^\prime\cos\alpha\cos\sigma + \dots
     \end{aligned}
+\end{equation}
+
+\subsection{Maximum pulse width as a function of period, height, and magnetic inclination.}
+
+Let $P$ be the period, $h$ the emission height, and $\alpha$ the magnetic inclination.
+For a beam with half-opening angle $\Gamma$, the pulse width (in units of radians per rotation), $W$, is \citep[from spherical geometry, cf.][, Eq. (3.26)]{lorimer2005handbook}
+\begin{equation}
+  \cos\Gamma
+    = \cos\alpha \cos\zeta + \sin\alpha \sin\zeta \cos\bigg(\frac{W}{2}\bigg) 
+\end{equation}
+The maximum pulse width corresponds to the line of sight cutting through the middle of the beam ($\zeta = \alpha$), giving
+\begin{equation}
+  \begin{aligned}
+    \cos\Gamma
+      &= \cos^2\alpha + \sin^2\alpha \cos\bigg(\frac{W_{\rm max}}{2}\bigg) \\
+      &= 1 - \sin^2\alpha \left( 1 - \cos\bigg(\frac{W_{\rm max}}{2}\bigg) \right)
+  \end{aligned}
+\end{equation}
+After rearranging,
+\begin{equation}
+  \cos\bigg(\frac{W_{\rm max}}{2}\bigg)
+    = 1 - \frac{1 - \cos\Gamma}{\sin^2\alpha}
+    = 1 - \frac{2 \sin^2\left(\frac{\Gamma}{2}\right)}{\sin^2\alpha},
+  \label{eqn:width-beam-relation} 
+\end{equation}
+and even,
+\begin{equation}
+  \begin{aligned}
+  2\sin^2\bigg(\frac{W_{\rm max}}{4}\bigg)
+    &= \frac{2 \sin^2\left(\frac{\Gamma}{2}\right)}{\sin^2\alpha} \\
+  \sin\bigg(\frac{W_{\rm max}}{4}\bigg)
+    &= \frac{\sin\left(\frac{\Gamma}{2}\right)}{\sin\alpha}
+  \end{aligned}
+\end{equation}
+
+Assuming the emission takes place on open field lines, and assuming the polar cap of an inclined rotator is approximately the same size as an aligned one, we want to find the opening beam angle as a function of height.
+We could use Eq. \eqref{eqn:beam-angle-aligned-no-rotation}, but that relates the beam opening angle to the angle of the emission site from the magnetic axis, and we would have to then convert that into a height.
+More conveniently, we can use some of the other derivatives already worked out above in Table \ref{tbl:dipolarderiv} to get the anser in terms of the emission height ($r$ in the table, but here we'll use $h$) and the dipolar field line constant, which for the last open field lines is the light cylinder radius ($R = \rL = cP/(2\pi)$).
+In particular,
+\begin{equation}
+  \deriv{z}{r} = \frac{2\rL - 3h}{2\sqrt{\rL(\rL - h)}},
+  \qquad
+  \deriv{x}{r} = \frac{3}{2} \sqrt{\frac{h}{\rL}}.
+\end{equation}
+The tangent to the field line (and therefore the half-opening angle), is
+\begin{equation}
+  \tan\Gamma \equiv \deriv{z}{x}
+    = \frac{2\rL - 3h}{3\sqrt{h(\rL - h)}},
+\end{equation}
+but inconveniently, our expression above is not in terms of $\tan\Gamma$ directly.
+However, noting the following trig identity. we may write
+\begin{equation}
+  \begin{aligned}
+    \cos\Gamma
+      &= \frac{1}{\sqrt{1 + \tan^2\Gamma}} \\
+      &= \frac{1}{\sqrt{1 + \frac{(2\rL - 3h)^2}{9h(\rL - h)}}} \\
+      &= \sqrt{\frac{9h(\rL - h)}{9h(\rL - h) + (2\rL - 3h)^2}} \\
+      &= \sqrt{\frac{9h(\rL - h)}{\rL(4\rL - 3h)}}
+  \end{aligned}
+\end{equation}
+Hence, finally, we can use Eq. \eqref{eqn:width-beam-relation} to write
+\begin{equation}
+  \cos\bigg(\frac{W_{\rm max}}{2}\bigg)
+    = 1 - \frac{1}{\sin^2\alpha}\left( 1 - \sqrt{\frac{9h(\rL - h)}{\rL(4\rL - 3h)}} \right)
 \end{equation}
 
 \section{Core vs Cone Taxonomy}
