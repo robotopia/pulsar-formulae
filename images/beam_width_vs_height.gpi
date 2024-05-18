@@ -1,0 +1,31 @@
+reset
+
+set terminal pngcairo size 800,600
+set output 'beam_width_vs_height.png'
+
+# Period
+P = 10000 # s
+
+# Speed of light
+c = 3e8 # m/s
+
+# Light cylinder radius
+rL = c*P/(2*pi) # m
+
+# Canonical stellar radius
+rp = 1e4 # m
+
+# This will be a function of emission height normalised to 10km
+set dummy h_rp
+
+# Alpha, "a", will be the magnetic inclination, in degrees
+set angle degrees
+
+set samples 1000
+set xrange [1:rL/rp/10]
+set yrange [0:360]
+set xlabel "h/r_p"
+set ylabel "Maximum pulse width (°)"
+unset key
+
+plot for [a=5:90:5] 2*acos(1 - (1/sin(a)**2) * (1 - (2*rL - 3*h_rp*rp)/sqrt(rL*(4*rL - 3*h_rp*rp)))) title "α = ".a."°"
