@@ -805,8 +805,8 @@ In particular,
 \end{equation}
 The tangent to the field line (and therefore the half-opening angle), is
 \begin{equation}
-  \tan\Gamma \equiv \deriv{z}{x}
-    = \frac{2\rL - 3h}{3\sqrt{h(\rL - h)}},
+  \tan\Gamma \equiv \deriv{x}{z}
+    = \frac{3\sqrt{h(\rL - h)}}{2\rL - 3h},
 \end{equation}
 but inconveniently, our expression above is not in terms of $\tan\Gamma$ directly.
 However, noting the following trig identity. we may write
@@ -814,15 +814,15 @@ However, noting the following trig identity. we may write
   \begin{aligned}
     \cos\Gamma
       &= \frac{1}{\sqrt{1 + \tan^2\Gamma}} \\
-      &= \frac{1}{\sqrt{1 + \frac{(2\rL - 3h)^2}{9h(\rL - h)}}} \\
-      &= \sqrt{\frac{9h(\rL - h)}{9h(\rL - h) + (2\rL - 3h)^2}} \\
-      &= \sqrt{\frac{9h(\rL - h)}{\rL(4\rL - 3h)}}
+      &= \frac{1}{\sqrt{1 + \frac{9h(\rL - h)}{(2\rL - 3h)^2}}} \\
+      &= \sqrt{\frac{(2\rL - 3h)^2}{(2\rL - 3h)^2 + 9h(\rL - h)}} \\
+      &= \frac{2\rL - 3h}{\sqrt{\rL(4\rL - 3h)}}
   \end{aligned}
 \end{equation}
 Hence, finally, we can use Eq. \eqref{eqn:width-beam-relation} to write
 \begin{equation}
   \cos\bigg(\frac{W_{\rm max}}{2}\bigg)
-    = 1 - \frac{1}{\sin^2\alpha}\left( 1 - \sqrt{\frac{9h(\rL - h)}{\rL(4\rL - 3h)}} \right)
+    = 1 - \frac{1}{\sin^2\alpha}\left( 1 - \frac{2\rL - 3h}{\sqrt{\rL(4\rL - 3h)}} \right)
 \end{equation}
 
 \section{Core vs Cone Taxonomy}
