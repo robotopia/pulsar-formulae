@@ -41,8 +41,9 @@ set angle degrees
 set cbrange [0:90]
 set cblabel "α (°)"
 
-set key bottom right
+set key top left offset -10
 set xrange [0:90]
+set yrange [10:*]
 set samples 1000
 set dummy a
 set logscale xy
