@@ -777,6 +777,7 @@ The maximum pulse width corresponds to the line of sight cutting through the mid
       &= \cos^2\alpha + \sin^2\alpha \cos\bigg(\frac{W_{\rm max}}{2}\bigg) \\
       &= 1 - \sin^2\alpha \left( 1 - \cos\bigg(\frac{W_{\rm max}}{2}\bigg) \right)
   \end{aligned}
+  \label{eqn:los_middle_cut}
 \end{equation}
 After rearranging,
 \begin{equation}
@@ -819,7 +820,7 @@ However, noting the following trig identity. we may write
       &= \sqrt{\frac{(2\rL - 3h)^2}{(2\rL - 3h)^2 + 9h(\rL - h)}} \\
       &= \frac{2\rL - 3h}{\sqrt{\rL(4\rL - 3h)}}
   \end{aligned}
-    \label{eqn:Gamma_vs_h_exact}
+  \label{eqn:Gamma_vs_h_exact}
 \end{equation}
 Hence, finally, we can use Eq. \eqref{eqn:width-beam-relation} to write
 \begin{equation}
@@ -842,6 +843,7 @@ When $h \ll \rL$,
 \end{equation}
 
 \subsection{Minimum heights for a known width and period}
+\label{sec:min_height_ulp}
 
 Continuing in the $h \ll \rL$ regime, we can turn Eq. \eqref{eqn:W_vs_h_taylor} around, showing that the \emph{minimum} allowed height for a given observed pulse width, $W$, and for a known rotation period, $P$, is
 \begin{equation}
@@ -872,12 +874,40 @@ whose solution is
   \end{aligned}
 \end{equation}
 Only the negative solution is within the light cylinder radius.
+Thus, the minimum height must be
+\begin{equation}
+  \frac{h}{\rL} > \frac{4 - \cos^2\Gamma - \cos\Gamma \sqrt{\cos^2\Gamma + 8}}{6}.
+\end{equation}
 This can then be coupled with the equations in the previous section to generate a full function of magnetic inclination, duty cycle, and period.
-Some values for ULPs (but still under the above pulsar assumptions) are shown in Figure \ref{fig:min_height_ulp}.
+
+\subsection{Interpulses as well?}
+
+For a pulsar with a magnetic inclination angle of $\alpha$, the only way that interpulses could possibly be detected is if both ``front'' and ``back'' beams overlap a common swath of the pulsar's sky, which can only happen when the half-opening beam angle, $\Gamma$ satisfies
+\begin{equation}
+  \alpha + \Gamma > \pi - \alpha - \Gamma,
+\end{equation}
+or
+\begin{equation}
+  \Gamma > \frac{\pi}{2} - \alpha,
+\end{equation}
+or
+\begin{equation}
+  \cos\Gamma > \sin\alpha.
+\end{equation}
+From Eq. \eqref{eqn:Gamma_vs_h_exact}, this implies
+\begin{equation}
+  \frac{2\rL - 3h}{\sqrt{\rL(4\rL - 3h)}} > \sin\alpha,
+\end{equation}
+and, following the same logic as in \S\ref{sec:min_height_ulp}, we find that the height must be
+\begin{equation}
+  \frac{h}{\rL} > \frac{4 - \sin^2\alpha - \sin\alpha \sqrt{\sin^2\alpha + 8}}{6}.
+\end{equation}
+
+Some height constraints for ULPs (but still under the above pulsar assumptions) are shown in Figure \ref{fig:min_height_ulp}.
 \begin{figure}[th]
     \centering
     \includegraphics[scale=0.45]{images/min_height_ulp.png}
-    \caption{The minimum height needed to generate the observed maximum pulse width ($W_{\rm max}$; here in absolute time units instead of the ``radians of rotation'' as given in the text) as a function of magnetic inclination, for some ultra-long period transients (ULPs). The grey area is indicative of typical emission heights established for pulsars with $P{\sim}$seconds.}
+    \caption{The minimum height needed to generate the observed maximum pulse width ($W_{\rm max}$; here in absolute time units instead of the ``radians of rotation'' as given in the text) as a function of magnetic inclination, for some ultra-long period transients (ULPs). The grey area is indicative of typical emission heights established for pulsars with $P{\sim}$seconds. The dashed line is the independent constraint on the emission height that is necessary (but not sufficient) to see an interpulse.}
     \label{fig:min_height_ulp}
 \end{figure}
 
