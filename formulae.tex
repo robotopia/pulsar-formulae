@@ -37,6 +37,7 @@
 \newcommand{\rwB}{r_{\omega B}} % Cyclotron resonance radius
 \newcommand{\rxf}{r_\xi} % Approximate radius at which light cylinder effects dominate field line curvature
 \newcommand{\rp}{r_\text{p}} % Stellar radius
+\newcommand{\dc}{\delta} % duty cycle
 
 \newcommand{\nGJ}{n_{\rm GJ}}
 
@@ -835,6 +836,20 @@ This is plotted for different magnetic inclination angles in Fig. \ref{fig:beam_
 When $h \ll \rL$,
 \begin{equation}
   W_{\rm max} \approx \frac{3}{\sin\alpha} \sqrt{\frac{h}{\rL}}.
+  \label{eqn:W_vs_h_taylor}
+\end{equation}
+
+\subsection{Minimum heights for a known width and period}
+
+Continuing in the $h \ll \rL$ regime, we can turn Eq. \eqref{eqn:W_vs_h_taylor} around, showing that the \emph{minimum} allowed height for a given observed pulse width, $W$, and for a known rotation period, $P$, is
+\begin{equation}
+  h \gtrsim \frac{\rL}{9} W^2 \sin^2\alpha
+    = \frac{cP}{18\pi} W^2 \sin^2\alpha.
+\end{equation}
+Recall that the width, $W$, is still in ``radians of rotation''.
+In terms of the duty cycle, $\dc \equiv W/(2\pi)$,
+\begin{equation}
+  h \gtrsim \frac{2\pi cP}{9} \dc^2 \sin^2\alpha
 \end{equation}
 
 \section{Core vs Cone Taxonomy}
