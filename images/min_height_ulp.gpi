@@ -1,0 +1,68 @@
+reset
+
+set terminal pngcairo size 800,600
+set output "min_height_ulp.png"
+
+c = 3e8 # m/s
+
+ulp1 = "GCRT J1745-3009"
+P1 = 4620.720 # s
+Wmax1 = 600.0 # s (in contrast to notes, Wmax here has units of seconds, not radians of rotation)
+dc1 = Wmax1/P1 # duty cycle
+
+ulp3 = "[ASKAP] J1839-0756"
+P3 = 23213.4 # s
+Wmax3 = 1000 # s (in contrast to notes, Wmax here has units of seconds, not radians of rotation)
+dc3 = Wmax3/P3 # duty cycle
+
+ulp4 = "GLEAM-X J162759.5−523504.3"
+P4 = 1091.1690 # s
+Wmax4 = 60 # s (in contrast to notes, Wmax here has units of seconds, not radians of rotation)
+dc4 = Wmax4/P4 # duty cycle
+
+ulp5 = "GLEAM-X J0704-37"
+P5 = 10496.6 # s
+Wmax5 = 60 # s (in contrast to notes, Wmax here has units of seconds, not radians of rotation)
+dc5 = Wmax5/P5 # duty cycle
+
+ulp2 = "GPM J1839-10"
+P2 = 1318.1957 # s
+Wmax2 = 300 # s (in contrast to notes, Wmax here has units of seconds, not radians of rotation)
+dc2 = Wmax2/P2 # duty cycle
+
+title1 = sprintf("%s (P = %.2f hr, W_{max} = %d s)", ulp1, P1/3600, Wmax1)
+title2 = sprintf("%s (P = %.2f hr, W_{max} = %d s)", ulp2, P2/3600, Wmax2)
+title3 = sprintf("%s (P = %.2f hr, W_{max} = %d s)", ulp3, P3/3600, Wmax3)
+title4 = sprintf("%s (P = %.2f hr, W_{max} = %d s)", ulp4, P4/3600, Wmax4)
+title5 = sprintf("%s (P = %.2f hr, W_{max} = %d s)", ulp5, P5/3600, Wmax5)
+
+set angle degrees
+
+set cbrange [0:90]
+set cblabel "α (°)"
+
+set key bottom right
+set xrange [0:90]
+set samples 1000
+set dummy a
+set logscale xy
+set xlabel "Magnetic inclination, α (°)"
+set ylabel "Minimum emission height, h_{min} (km)"
+
+set object 1 rectangle from graph 0, first 100 to graph 1, first 1000 fs solid noborder fc "#dddddd" back
+set label 1 '"Normal" pulsar range' at graph 0, first 700
+
+# The beam opening angle
+cGa(al, dc) = cos(al)**2 + sin(al)**2 * cos(180*dc)
+
+# The emission height (exact)
+h(al, P, dc) = (c*P/(2*pi)) * (4 - cGa(al, dc)**2 - cGa(al, dc)*sqrt(cGa(al, dc)**2 + 8))/6.0
+
+plot h(a, P1, dc1) / 1e3 title title1 lt 1, \
+     h(a, P2, dc2) / 1e3 title title2 lt 3, \
+     h(a, P3, dc3) / 1e3 title title3 lt 2, \
+     h(a, P4, dc4) / 1e3 title title4 lt 4, \
+     h(a, P5, dc5) / 1e3 title title5 lt 7
+
+# Taylor expansion for low emission heights (small opening beam angles?)
+#     2*pi*c*P/9 * dc**2 * sin(a)**2 / 1e3
