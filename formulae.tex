@@ -1629,19 +1629,19 @@ For particles sufficiently close to the magnetic axis, the angle between ${\bm \
         = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{1 - \frac{\Omega^2 r^2}{c^2}\sin^2\alpha}
         = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{1 - \frac{r^2}{\rL^2}\sin^2\alpha}.
 \end{equation}
-The equivalent number density is
+The equivalent number density (assuming all particles have charge $\pm q$) is
 \begin{equation}
-    n_\text{GJ}
+    n_\text{GJ}^+ - n_\text{GJ}^-
         = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{q\left(1 - \frac{r^2}{\rL^2}\sin^2\alpha\right)}
         = -\frac{4\pi\varepsilon_0 B \cos\alpha}{qP\left(1 - \frac{r^2}{\rL^2}\sin^2\alpha\right)}
 \end{equation}
 which can also be expressed
 \begin{equation}
-    n_\text{GJ} \approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-1} \frac{\cos\alpha}{1 - \frac{r^2}{\rL^2}\sin^2\alpha}.
+    n_\text{GJ}^+ - n_\text{GJ}^- \approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-1} \frac{\cos\alpha}{1 - \frac{r^2}{\rL^2}\sin^2\alpha}.
 \end{equation}
 Sufficiently close to the surface, well within the light cylinder radius, $r \ll \rL$, and therefore
 \begin{equation}
-    n_\text{GJ} \approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-1} \cos\alpha.
+    n_\text{GJ}^+ - n_\text{GJ}^- \approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-1} \cos\alpha.
 \end{equation}
 
 \subsection{Specific geometries}
@@ -1652,7 +1652,7 @@ For a dipole field, $B(r) = B_0 (\rp/r)^3$, where $B_0$ is the magnetic field st
 The Goldreich-Julian number density (close to the magnetic axis) is therefore
 \begin{equation}
     \begin{aligned}
-    n_\text{GJ}
+    n_\text{GJ}^+ - n_\text{GJ}^-
         &= -\frac{4\pi\varepsilon_0 B_0 \rp^3 \cos\alpha}{qPr^3} \\
         &\approx 7 \times 10^{16}\,\text{m}^{-3} \, \left(\frac{B_0}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-4} \left(\frac{r}{\rp}\right)^{-3} \cos\alpha & & \text{(in terms of the stellar radius)}, \\
         &\approx 6.4 \times 10^5\,\text{m}^{-3} \, \left(\frac{B_0}{10^{12}\,\text{G}}\right) \left(\frac{P}{\text{s}}\right)^{-4} \left(\frac{\rp}{10^4\,\text{m}}\right)^3 \left(\frac{r}{\rL}\right)^{-3} \cos\alpha & & \text{(in terms of the light cylinder radius)}.
@@ -1736,6 +1736,7 @@ Combining the 2D density derived from the Landau levels with the 1D density from
 \end{equation}
 
 We now assume a Goldreich-Julian magnetosphere subject to Maxwell-J\"uttner statistics along the $z$-direction (parallel to the magnetic field).
+\todo{Note that the below erroneously uses $n_\text{GJ}$ instead of $n_\text{GJ}^+ - n_\text{GJ}^-$.}
 Consider a slab from $z$ to $z + \Delta z$.
 The slab contains particles of multiple energies, so the minimum number of required Landau levels is
 \begin{equation}
