@@ -23,7 +23,7 @@ def main():
     popt, pcov = curve_fit(plane, [logP0s, logP1s], logW10s, nan_policy='omit', p0=[1, 0, 1.5])
     a, b, c = popt
     ae, be, ce = np.sqrt(np.diag(pcov))
-    print(f'W10 = (P0/s)^A × (P1)^B × 10^C ms')
+    print(f'W10 = (P0/s)^a × (P1)^b × 10^c ms')
     print(f'a = {a:.2f} ± {ae:.2f}')
     print(f'b = {b:.2f} ± {be:.2f}')
     print(f'c = {c:.2f} ± {ce:.2f}')

@@ -911,6 +911,26 @@ Some height constraints for ULPs (but still under the above pulsar assumptions) 
     \label{fig:min_height_ulp}
 \end{figure}
 
+\section{Period vs Spindown vs Width}
+\label{sec:p0-p1-w10}
+
+Fitting a plane to $P$-$\dot{P}$-$W_{10}$ data from ATNF gives the plot in Fig. \ref{fig:p0-p1-w10} and the fitted parameters
+\begin{equation}
+  \begin{aligned}
+    W_{10} &= \bigg(\frac{P}{\rm s}\bigg)^\alpha \bigg(\frac{\dot{P}}{\rm s/s}\bigg)^\beta \times 10^\gamma\,{\rm ms}, \\
+    \alpha &= 0.72 \pm 0.02 \\
+    \beta &= -0.01 \pm 0.01 \\
+    \gamma &= 1.58 \pm 0.09.
+  \end{aligned}
+\end{equation}
+\begin{figure}[th]
+    \centering
+    \includegraphics[scale=0.75]{images/p0-p1-w10.png}
+    \caption{See text in \S\ref{sec:p0-p1-w10} for fitted plane values and discussion.}
+    \label{fig:p0-p1-w10}
+\end{figure}
+So it seems that $W_{10}$ is independent of $\dot{P}$.
+I don't know if the dependence $W_{10} \propto P^{0.72}$ has any widely accepted explanation.
 
 \section{Core vs Cone Taxonomy}
 
