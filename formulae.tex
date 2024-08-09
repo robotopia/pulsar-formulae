@@ -4,7 +4,6 @@
 \usepackage{amssymb}
 \usepackage{fullpage}
 \usepackage[colorlinks]{hyperref}
-\usepackage{bm}
 \usepackage{listings}
 \usepackage{color}
 \usepackage{graphicx}
@@ -27,9 +26,9 @@
 \newcommand{\pd}[2]{\frac{\partial {#1}}{\partial {#2}}}
 \newcommand{\ppd}[2]{\frac{\partial^2{#1}}{\partial {#2}^2}}
 \newcommand{\pdpd}[3]{\frac{\partial^2{#1}}{\partial {#2} \partial {#3}}}
-\newcommand{\F}[1]{\bm{F}_{#1}}
+\newcommand{\F}[1]{\pmb{F}_{#1}}
 \newcommand{\ph}{\phi_\ast}
-\newcommand{\unitvec}[1]{\hat{\bm{#1}}}
+\newcommand{\unitvec}[1]{\hat{\pmb{#1}}}
 \newcommand{\shat}{\hat{\bf s}}
 
 \newcommand{\rL}{r_\text{lc}} % Light cylinder radius
@@ -242,7 +241,7 @@ Then,
 The magnetic field, in coordinate-free notation, centred at the origin \linktosage{sage:Bdip}:
 \begin{equation}
     \begin{aligned}
-        \bm{B}(\bm{r})
+        \pmb{B}(\pmb{r})
             &= B_0\left(\frac{r_0}{r}\right)^3\frac{3(\unitvec{\mu}\cdot\unitvec{r})\unitvec{r} - \unitvec{\mu}}{2} \\
             &= B_0\left(\frac{r_0}{r}\right)^3\frac{3\cos\theta\,\unitvec{r} - \unitvec{\mu}}{2},
     \end{aligned}
@@ -251,7 +250,7 @@ where $B_0$ is the magnetic field strength at the poles at distance $r_0$ from t
 Its magnitude is:
 \begin{equation}
 \begin{aligned}
-    B({\bm{r}}) = |\bm{B}(\bm{r})|
+    B({\pmb{r}}) = |\pmb{B}(\pmb{r})|
         &= B_0\left(\frac{r_0}{r}\right)^3 \frac{\sqrt{(3\cos\theta\,\unitvec{r} - \unitvec{\mu}) \cdot (3\cos\theta\,\unitvec{r} - \unitvec{\mu}) }}{2} \\
         &= B_0\left(\frac{r_0}{r}\right)^3 \frac{\sqrt{ 9\cos^2\theta\,\unitvec{r}\cdot\unitvec{r} - 6\cos\theta\,\unitvec{r}\cdot\unitvec{\mu} + \unitvec{\mu}\cdot\unitvec{\mu} }}{2} \\
         &= B_0\left(\frac{r_0}{r}\right)^3 \frac{\sqrt{ 9\cos^2\theta - 6\cos^2\theta + 1 }}{2} \\
@@ -260,8 +259,8 @@ Its magnitude is:
 \end{equation}
 and the normalised field is:
 \begin{equation}
-    \unitvec{B}(\bm{r})
-        = \frac{\bm{B}(\bm{r})}{B(\bm{r})}
+    \unitvec{B}(\pmb{r})
+        = \frac{\pmb{B}(\pmb{r})}{B(\pmb{r})}
         = \frac{3\cos\theta \, \unitvec{r} - \unitvec{\mu}}{\sqrt{3\cos^2\theta + 1}}
 \end{equation}
 
@@ -270,7 +269,7 @@ and the normalised field is:
 When the magnetic dipole is aligned with the $z$-axis (i.e. $\unitvec{\mu} = \unitvec{z}$), in Cartesian coordinates (but still using the shorthand $r = \sqrt{x^2 + y^2 + z^2}$) \linktosage{sage:Bdip_aligned}:
 \begin{equation}
 \begin{aligned}
-    \bm{B}(\bm{r})
+    \pmb{B}(\pmb{r})
         &= B_0\left(\frac{r_0}{r}\right)^3\frac{3\cos\theta\,\unitvec{r} - \unitvec{\mu}}{2} \\
         &= B_0\left(\frac{r_0}{r}\right)^3\frac{3r\cos\theta (x\unitvec{x} + y\unitvec{y} + z\unitvec{z}) - r^2\unitvec{z}}{2r^2} \\
         &= B_0\left(\frac{r_0}{r}\right)^3\frac{3z(x\unitvec{x} + y\unitvec{y} + z\unitvec{z}) - r^2\unitvec{z}}{2r^2} \\
@@ -285,7 +284,7 @@ Or, if you define the reduced quantities:
 \end{align}
 then it can also be written
 \begin{equation}
-    \bm{B}(\bm{r})
+    \pmb{B}(\pmb{r})
         = B_0\left(\frac{r_0}{r}\right)^3\frac{3 x_r z_r \,\unitvec{x} + 3 y_r z_r \,\unitvec{y} + (3 z_r^2 - 1)\,\unitvec{z}}{2}.
 \end{equation}
 The corresponding normalised magnetic field is
@@ -299,7 +298,7 @@ The corresponding normalised magnetic field is
 \end{equation}
 When the magnetic dipole is tilted in the $xz$-plane by angle $\alpha$ \linktosage{sage:Bdip_inclined}:
 \begin{equation}
-    \bm{B}(\bm{r}) =
+    \pmb{B}(\pmb{r}) =
     \frac{\mu\cos\alpha}{r^5}\begin{bmatrix}
         3xz \\
         3yz \\
@@ -318,7 +317,7 @@ To translate from Cartesian to spherical, we need the identity $\unitvec{z} = \c
 For the aligned case ($\unitvec{\mu} = \unitvec{z}$),
 \begin{equation}
 \begin{aligned}
-    \bm{B}(\bm{r})
+    \pmb{B}(\pmb{r})
         &= B_0\left(\frac{r_0}{r}\right)^3\frac{3\cos\theta\,\unitvec{r} - \unitvec{\mu}}{2} \\
         &= B_0\left(\frac{r_0}{r}\right)^3\frac{3\cos\theta\,\unitvec{r} - \cos\theta \,\unitvec{r} + \sin\theta\,\unitvec{\theta}}{2} \\
         &= B_0\left(\frac{r_0}{r}\right)^3\left(\cos\theta\,\unitvec{r} + \frac12 \sin\theta\,\unitvec{\theta}\right),
@@ -343,7 +342,7 @@ In the original form given in \citet{Barnard1986} (Eq. (7)):
                   \left[\left(\frac{R\Omega}{c}\right)^2\left(\frac{R}{r}\right) - \left(\frac{R}{r}\right)^3\right] \sin(\zeta + \lambda)\right\}.
     \end{aligned}
 \end{equation}
-    ``Here $B_0$ is an arbitrary normalization, $\zeta \equiv r\Omega/c$, $\lambda \equiv \phi - \Omega t$, $\Omega \equiv |{\bm \Omega}|$, and $t$ is the time such that the dipole is in the $({\bf n}, {\bm \Omega})$-plane when $t = 0$.
+    ``Here $B_0$ is an arbitrary normalization, $\zeta \equiv r\Omega/c$, $\lambda \equiv \phi - \Omega t$, $\Omega \equiv |{\pmb \Omega}|$, and $t$ is the time such that the dipole is in the $({\bf n}, {\pmb \Omega})$-plane when $t = 0$.
     ...
     [This equation] is approximate in that it assumes $(R\Omega/c) \ll 1$, which is a good approximation even for millisecond pulsars.
     Here $R$ is the radius of the star...''
@@ -363,7 +362,7 @@ Only notation that differs between the two is included.
         ${\bf n}$ & $\hat{\bf n}$ & The line of sight (directed towards the observer) \\
         $R$ & $\rp$ & The stellar radius \\
         $\Omega$ & $\frac{2\pi}{P}$ & The angular rotation frequency \\
-        ${\bm \Omega}$ & $\hat{\bm \omega}$ & The rotation axis \\
+        ${\pmb \Omega}$ & $\hat{\pmb \omega}$ & The rotation axis \\
         $\zeta$ & $r^\prime = \frac{r}{\rL}$ & The radial coordinate normalised to the light cylinder radius \\
         \hline
     \end{tabular}
@@ -1640,10 +1639,10 @@ If in the circular basis\footnote{Not yet verified whether or not this also appl
 
 In SI units \citep[e.g.][]{Fung2006},
 \begin{equation}
-    \rho_\text{GJ} = -\frac{2\varepsilon_0 {\bm \Omega}\cdot{\bm B}}{1 - \frac{|{\bm \Omega}\times{\bm r}|^2}{c^2}},
+    \rho_\text{GJ} = -\frac{2\varepsilon_0 {\pmb \Omega}\cdot{\pmb B}}{1 - \frac{|{\pmb \Omega}\times{\pmb r}|^2}{c^2}},
 \end{equation}
 where $\Omega = 2\pi/P$ is the angular velocity of the neutron star and $B$ is the magnetic field strength.
-For particles sufficiently close to the magnetic axis, the angle between ${\bm \Omega}$ and ${\bm r}$ is $\alpha$, yielding
+For particles sufficiently close to the magnetic axis, the angle between ${\pmb \Omega}$ and ${\pmb r}$ is $\alpha$, yielding
 \begin{equation}
     \rho_\text{GJ}
         = -\frac{2\varepsilon_0 \Omega B \cos\alpha}{1 - \frac{\Omega^2 r^2}{c^2}\sin^2\alpha}
@@ -1795,7 +1794,7 @@ Thus, the number of required Landau levels is
 \end{equation}
 
 The Goldreich-Julian density will be maximised near the surface, ($r \ll \rL$), for pulsars with small magnetic inclination angles ($\alpha \ll 1$).
-Under these conditions, near the magnetic pole (${\bm \Omega}\cdot{\bm B} \approx \Omega B$) we can estimate the number density to be
+Under these conditions, near the magnetic pole (${\pmb \Omega}\cdot{\pmb B} \approx \Omega B$) we can estimate the number density to be
 \begin{equation}
   \nGJ \approx \frac{4\pi\varepsilon_0 B}{qP},
 \end{equation}
@@ -2270,9 +2269,9 @@ The radiated power is
 
 \begin{equation}
     \deriv{E}{t} = \frac{q^2\gamma^6}{6\pi\varepsilon_0 c}
-        \left[\dot{\bm{\beta}}^2 - (\bm{\beta}\times\dot{\bm{\beta}})^2\right]
+        \left[\dot{\pmb{\beta}}^2 - (\pmb{\beta}\times\dot{\pmb{\beta}})^2\right]
 \end{equation}
-When $\bm{\beta}$ is perpendicular to $\dot{\bm{\beta}}$,
+When $\pmb{\beta}$ is perpendicular to $\dot{\pmb{\beta}}$,
 \begin{equation}
 \begin{aligned}
     \deriv{E}{t}
@@ -2784,7 +2783,7 @@ In the small angle approximation,
 \end{equation}
 Projecting it onto celestial coordinates,
 \begin{equation}
-    \shat^\prime = \shat - \frac{\kappa}{f^2} \left( \frac{1}{\cos\zeta} \deriv{\text{STEC}}{\alpha}\hat{\bm{\alpha}} + \deriv{\text{STEC}}{\delta}\hat{\bm{\delta}} \right),
+    \shat^\prime = \shat - \frac{\kappa}{f^2} \left( \frac{1}{\cos\zeta} \deriv{\text{STEC}}{\alpha}\hat{\pmb{\alpha}} + \deriv{\text{STEC}}{\delta}\hat{\pmb{\delta}} \right),
 \end{equation}
 where $\zeta$ is the zenith angle.
 
