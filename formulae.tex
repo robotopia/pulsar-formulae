@@ -1055,6 +1055,46 @@ The \emph{characteristic age} is the above age evaluated for $n = 3$ (the so-cal
     \tau_c = \frac{P}{2\dot{P}}
 \end{equation}
 
+\section{Characteristic magnetic field strength}
+
+The average power radiated by a rotating magnetic dipole is \citep[SI units; cf.][Eq. 11.40]{Griffiths1998}
+\begin{equation}
+  \langle P \rangle = \frac{\mu_0 m_0^2 \Omega^4}{12\pi c^3},
+\end{equation}
+where $m_0$ is the projection of the magnetic dipole moment onto the rotation axis.
+For inclination angle $\alpha$, the magnetic dipole moment is
+\begin{equation}
+  m_0 = \frac{4\pi}{\mu_0} B_s r_p^3 \sin\alpha,
+\end{equation}
+and the above becomes
+\begin{equation}
+  \begin{aligned}
+    \langle P \rangle &= \frac{\mu_0 \Omega^4}{12\pi c^3} \left(\frac{4\pi B_s r_p^3 \sin\alpha}{\mu_0}\right)^2 \\
+      &= \frac{4\pi \Omega^4 B_s^2 r_p^6 \sin^2\alpha}{3\mu_0 c^3}.
+  \end{aligned}
+\end{equation}
+
+If we equate the radiated power with the spindown luminosity, $\langle P \rangle = -I\Omega\dot{\Omega}$, we can solve for the magnetic field strength (at the surface) to get
+\begin{equation}
+  \begin{aligned}
+    -I\Omega\dot{\Omega}
+      &= \frac{4\pi \Omega^4 B_s^2 r_p^6 \sin^2\alpha}{3\mu_0 c^3} \\
+    B_s &= \sqrt{-\frac{3\mu_0 c^3 I}{4\pi r_p^6 \sin^2\alpha} \frac{\dot{\Omega}}{\Omega^3}}.
+  \end{aligned}
+\end{equation}
+(The negative sign under the radical cancels the negative value of $\dot{\Omega} < 0$.)
+This can also be expressed in terms of the period and period derivative, via $\Omega = 2\pi/P$ and $\dot{\Omega} = -2\pi \dot{P}/P^2$:
+\begin{equation}
+  B_s = \sqrt{\frac{3\mu_0 c^3 I}{16\pi^3 r_p^6 \sin^2\alpha} \dot{P}P}
+\end{equation}
+Using caninocal values of radius $r_p = 10\,$km, mass $M = 1.4\,M_\odot$, and moment of inertia $I = \frac25 MR^2 \approx 10^{45}\,{\rm g}\,{\rm cm}^2$,
+\begin{equation}
+  B_s \approx 1.5 \times 10^{12}\,{\rm G} \times \frac{1}{\sin\alpha} \left(\frac{\dot{P}}{10^{-15}\,{\rm s}}\right)^{1/2} \left(\frac{P}{\rm s}\right)^{1/2}.
+\end{equation}
+This differs from the literature value owing to a factor of 2 difference in the assumed radiated power (or elsewhere??). If included, the ``16'' in the denominator of the expression under the radical would be a ``32''. \todo{Find out what this factor of 2 means.}
+
+Note that the canonical value of the moment of inertia is $I = 10^{45}\,{\rm g}\,{\rm cm}^2$, whereas the value obtained from $\frac25 M r_p^2$, using $M = 1.4\,M_\odot$ and $r_p = 10\,{\rm km}$ is about 10\% different: $\approx 1.1 \times 10^{45}\,{\rm g}\,{\rm cm}^2$.
+
 \section{Pulse Width}
 
 The pulse width, $W$, is related to the beam opening angle, $\Gamma$, as follows \citep{Lorimer2005}:
