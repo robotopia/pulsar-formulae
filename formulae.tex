@@ -24,6 +24,7 @@
 \newcommand{\deriv}[2]{\frac{\text{d}{#1}}{\text{d}{#2}}}
 \newcommand{\derivn}[3]{\frac{\text{d}^{#3}{#1}}{\text{d}{#2}^{#3}}}
 \newcommand{\pd}[2]{\frac{\partial {#1}}{\partial {#2}}}
+\newcommand{\pD}[2]{\dfrac{\partial {#1}}{\partial {#2}}}
 \newcommand{\ppd}[2]{\frac{\partial^2{#1}}{\partial {#2}^2}}
 \newcommand{\pdpd}[3]{\frac{\partial^2{#1}}{\partial {#2} \partial {#3}}}
 \newcommand{\F}[1]{\pmb{F}_{#1}}
@@ -1889,6 +1890,96 @@ As stated in \citet{Contopoulos2024}:
 \end{equation}
 where ``$I = I(\Psi)$ is the distribution of poloidal electric current from which one obtains the azimuthal component of the magnetic field $B_\phi = I/(r \sin\theta)$, and $I^\prime \equiv {\rm d}I/{\rm d}\Psi$.''
 
+
+\section{Timing}
+
+\subsection{Including $t_0$, $P$, $\dot{P}$, and $DM$}
+
+Let $n \in \mathbb{R}$ be the pulse number (including phase information as the fractional part), and $t$ is the time of arrival of that pulse at the barycentre.
+Let $\nu = 1/P$ be the frequency of the pulses.
+Finally, let $t_0$ be the time for pulse $n = 0$.
+Then the timing model that includes only the lowest terms of the Taylor expansion around $t = t_0$ is
+\begin{equation}
+  \begin{aligned}
+    n &= \nu(t - t_0) + \frac12 \dot{\nu} (t - t_0)^2\\
+      &= \frac{t - t_0}{P} - \frac12 \dot{P} \left(\frac{t - t_0}{P}\right)^2
+  \end{aligned}
+\end{equation}
+These can be solved to find $t$ as a function of $n$:
+\begin{equation}
+  \begin{aligned}
+    t &= \frac{2n}{\nu + \sqrt{\nu^2 + 2\dot{\nu}n}} + t_0 \\
+      &= \frac{2n}{\frac{1}{P} + \sqrt{\left(\frac{1}{P}\right)^2 - \frac{2n\dot{P}}{P^2}}} + t_0 \\
+      &= \frac{2nP}{1 + \sqrt{1 - 2n\dot{P}}} + t_0
+  \end{aligned}
+\end{equation}
+\newcommand{\tspin}{\ensuremath{t_{\rm spin}}}
+We might use the symbol $\tspin$ to represent the timing term given by the fraction above,
+\begin{equation}
+  \tspin = \frac{2nP}{1 + \sqrt{1 - 2n\dot{P}}}
+\end{equation}
+in which case the above can be abbreviated as
+\begin{equation}
+  t = t_0 + \tspin
+\end{equation}
+
+Now we add dispersion to the mix.
+We use $f$ to represent observing frequency (remembering that $\nu$ is being used to mean pulse frequency).
+\newcommand{\tDM}{\ensuremath{t_{\rm DM}}}
+\begin{equation}
+  \begin{aligned}
+    n &= \frac{t - t_0 - \tDM(f)}{P} - \frac12 \dot{P} \left(\frac{t - t_0 - \tDM(f)}{P}\right)^2 \\
+    t &= t_0 + \tspin + \tDM(f)
+  \end{aligned}
+\end{equation}
+where
+\begin{equation}
+  \tDM(f) = \frac{\mathcal{D}\,{\rm DM}}{f^2}
+\end{equation}
+is the normal dispersion delay.
+
+\subsection{Prediction errors}
+
+The Jacobian of $t$ w.r.t. the parameters $t_0$, $P$, $\dot{P}$, and DM is
+\begin{equation}
+  {\bf J}
+    = \begin{bmatrix}
+      \pD{t}{t_0} \\[10pt]
+      \pD{t}{P} \\[10pt]
+      \pD{t}{\dot{P}} \\[10pt]
+      \pD{t}{\rm DM}
+    \end{bmatrix}
+    = \begin{bmatrix}
+      1 \\[10pt]
+      \dfrac{\tspin}{P} \\[10pt]
+      \dfrac{\tspin^3}{2P(2nP - \tspin)} \\[10pt]
+      \dfrac{\mathcal{D}}{f^2}
+    \end{bmatrix}
+\end{equation}
+
+\newcommand{\pcov}{\ensuremath{\mathbf{\Sigma}}}
+Now let $\pcov$ be the covariance matrix of a timing solution fit to actual ToAs.
+Then the equation for the error on the prediction is
+\begin{equation}
+  \begin{aligned}
+    \sigma_t
+      &= \sqrt{{\bf J}^{\rm T} \pcov {\bf J}} \\
+      &= \sqrt{
+         \begin{bmatrix}
+           1 & \dfrac{\tspin}{P} & \dfrac{\tspin^3}{2P(2nP - \tspin)} & \dfrac{\mathcal{D}}{f^2}
+         \end{bmatrix}
+         \begin{bmatrix}
+           \sigma_{t_0}^2 & \sigma_{t_0,P} & \sigma_{t_0,\dot{P}} & \sigma_{t,{\rm DM}} \\
+           \sigma_{t_0,P} & \sigma_{P}^2 & \sigma_{P,\dot{P}} & \sigma_{P,{\rm DM}} \\
+           \sigma_{t_0,\dot{P}} & \sigma_{P,\dot{P}} & \sigma_{\dot{P}}^2 & \sigma_{\dot{P},{\rm DM}} \\
+           \sigma_{t_0,{\rm DM}} & \sigma_{P,{\rm DM}} & \sigma_{\dot{P},{\rm DM}} & \sigma_{{\rm DM}}^2
+         \end{bmatrix}
+         \begin{bmatrix}
+           1 \\[10pt] \dfrac{\tspin}{P} \\[10pt] \dfrac{\tspin^3}{2P(2nP - \tspin)} \\[10pt] \dfrac{\mathcal{D}}{f^2}
+         \end{bmatrix}
+         }
+  \end{aligned}
+\end{equation}
 
 \chapter{Coordinate Systems}
 
