@@ -1980,6 +1980,51 @@ Then the equation for the error on the prediction is
          }
   \end{aligned}
 \end{equation}
+In the case when one fixes $\dot{P}$ and DM (so that the covariance terms involving them are zero), then the above simplifies to
+\begin{equation}
+  \begin{aligned}
+    \sigma_t
+      &= \sqrt{
+         \begin{bmatrix}
+           1 & \dfrac{\tspin}{P}
+         \end{bmatrix}
+         \begin{bmatrix}
+           \sigma_{t_0}^2 & \sigma_{t_0,P} \\
+           \sigma_{t_0,P} & \sigma_{P}^2
+         \end{bmatrix}
+         \begin{bmatrix}
+           1 \\[10pt] \dfrac{\tspin}{P}
+         \end{bmatrix}
+         } \\
+      &= \sqrt{
+           \left(\dfrac{\tspin}{P}\right)^2 \sigma_{P}^2 +
+           2\dfrac{\tspin}{P} \sigma_{t_0,P} + \sigma_{t_0}^2
+         } \\
+      &= \sigma_P \sqrt{
+           \left(\dfrac{\tspin}{P}\right)^2 +
+           2\dfrac{\tspin}{P} \dfrac{\sigma_{t_0,P}}{\sigma_P^2} + \dfrac{\sigma_{t_0}^2}{\sigma_P^2}
+         } \\
+      &= \sigma_P \sqrt{
+           \left(\dfrac{\tspin}{P} + \dfrac{\sigma_{t_0,P}}{\sigma_P^2}\right)^2  +
+           \dfrac{\sigma_{t_0}^2 - \sigma_{t_0,P}^2}{\sigma_P^2}
+         }
+  \end{aligned}
+\end{equation}
+To first order, then $\tspin \gg 0$,
+\begin{equation}
+  \sigma_t \approx \frac{\sigma_P}{P} \tspin + \frac{\sigma_{t_0,P}}{\sigma_P}.
+\end{equation}
+We consider a timing solution to have ``dephased'' when the $3\sigma$ confidence interval equals half of the period, i.e. when
+\begin{equation}
+  \begin{aligned}
+    3\left(\frac{\sigma_P}{P} \tspin + \frac{\sigma_{t_0,P}}{\sigma_P}\right) &= \frac{P}{2} \\
+    \tspin &= \frac{P}{\sigma_P} \left(\frac{P}{6} - \frac{\sigma_{t_0,P}}{3\sigma_P}\right) \\
+    t &= \frac{P}{\sigma_P} \left(\frac{P}{6} - \frac{\sigma_{t_0,P}}{3\sigma_P}\right) + t_0
+  \end{aligned}
+\end{equation}
+
+%To write this out in full serves little purpose.
+%However, it is often of interest to find out its asymptotic behaviour, which is to say, for large $n$.
 
 \chapter{Coordinate Systems}
 
